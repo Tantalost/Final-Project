@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users</title>
+    <link rel="stylesheet" href="manageuser.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="/tempo-removebg-preview.png" alt="Library Logo">
+        </div>
+        <h2>Library</h2>
+        </div>
+        <ul>
+            <li><a href="/admindash.html">Dashboard</a></li>
+            <li><a href="/managebook.html">Manage Books</a></li>
+            <li class="active"><a href="/manageuser.html">Manage Users</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <a>About</a>
+            <a>Support</a>
+            <a>Terms & Conditions</a>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <header>
+            <h1>Manage Users</h1>
+        </header>
+        
+        <div class="search-bar">
+            <input type="text" placeholder="Search User">
+            <button>🔍</button>
+        </div>
+        
+        <div class="user-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#00123</td>
+                        <td>Spiderman Delos Reyes</td>
+                        <td class="active">Active</td>
+                        <td><button>Edit</button> <button>Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td>#00456</td>
+                        <td>Barbie Santos</td>
+                        <td class="active">Active</td>
+                        <td><button>Edit</button> <button>Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td>#00789</td>
+                        <td>Batman Dela Cruz</td>
+                        <td class="offline">Offline</td>
+                        <td><button>Edit</button> <button>Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td>#00987</td>
+                        <td>Robloxian Garcia</td>
+                        <td class="active">Active</td>
+                        <td><button>Edit</button> <button>Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td>#00654</td>
+                        <td>Bella Thorne</td>
+                        <td class="restricted">Restricted</td>
+                        <td><button>Edit</button> <button>Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>Select a user to view details...</p>
+    </div>
+</body>
+</html>
