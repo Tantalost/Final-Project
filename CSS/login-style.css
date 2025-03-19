@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: 
+    radial-gradient(
+            circle at center,
+            #8ac5f0a8 30%,
+            #6ab1e3a8 50%,
+            #1d3774c4 90%,
+            #1d3774db 100%
+        ),
+        url('images/library.svg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+} 
+
+
+.container {
+    position: relative; /* Keeps container within the layout */
+    background: #ffffff;
+    backdrop-filter: blur(10px) brightness(100%);
+    -webkit-backdrop-filter: blur(10px) brightness(100%);
+    
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 10px 40px 30px rgba(0, 0, 0, 0.434);
+    text-align: center;
+    width: 100vh;
+    height: 80vh;
+
+    display: flex;
+    flex-direction: column; /* Stacks elements vertically */
+    justify-content: center; /* Centers vertically */
+    align-items: center; 
+}
+
+
+.logo {
+    height: auto; 
+    width: 70%; 
+    margin: 0%; 
+    padding: 0%;
+}
+
+
+ h1 {
+    margin: 0%;
+    padding: 0%;
+} 
+
+h2 {
+    margin: 0%;
+    padding: 0%;
+   
+} 
+h3 {
+    margin: 0%;
+    padding: 0%;
+   
+} 
+h4 {
+    margin: 0%;
+    padding: 0%;
+   
+} 
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: flex-start;
+    color: #1D3774;
+
+}
+
+label {
+    text-align: left;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0%;
+    padding: 0px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #9CD5FF;
+    border-radius: 5px;
+}
+
+
+.btn {
+    background-color: #1D3774;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: #6AB0E3
+}
+
+
+p {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+a {
+    color: #0D3958;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
