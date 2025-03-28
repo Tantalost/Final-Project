@@ -41,7 +41,6 @@ body {
 .logo img {
     width: 100%;
     height: auto;
-    filter: brightness(0) invert(1);
 }
 
 .sidebar a {
@@ -316,4 +315,17 @@ body {
     width: 20px;
     height: 20px;
     padding: 0;
+}
+
+.footer-sidebar {
+    padding: 2rem;
+}
+
+.footer-sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
 }
