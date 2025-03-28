@@ -4,60 +4,260 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Books</title>
-    <link rel="stylesheet" href="managestyle.css">
+    <link rel="stylesheet" href="/CSS/managestyle.css">
 </head>
 <body>
     <div class="sidebar">
         <div class="logo">
-            <img src="/tempo-removebg-preview.png" alt="Library Logo">
+            <img src="/images/logo.svg" alt="Library Logo">
         </div>
-        <h2>Library</h2>
-        <a href="/admindash.html">Dashboard</a>
-        <a href="/managebook.html">Manage Books</a>
-        <a href="/manageuser.html">Manage Users</a>
+        <div class="menu">
+            <a href="/HTML/admindash.html">
+                <img src="/images/dashboard_vector.svg" alt="Dashboard">
+                Dashboard
+            </a>
+            <a href="/HTML/managebook.html" class="active">
+                <img src="/images/manage_books_vector.svg" alt="Manage Books">
+                Manage Books
+            </a>
+            <a href="/HTML/manageuser.html">
+                <img src="/images/manage_users_vector.svg" alt="Manage Users">
+                Manage Users
+            </a>
+        </div>
     </div>
+
     <div class="content">
         <div class="header">
-            <h1>Manage Books</h1>
+            <h1>MANAGE BOOKS</h1>
         </div>
+
         <div class="stats">
             <div class="card">
-                <h3>1090</h3>
-                <p>Total Books</p>
+                <img src="/images/manage_books_vector.svg" alt="Total Books">
+                <div class="stat-info">
+                    <h3>1090</h3>
+                    <p>Total Books</p>
+                </div>
             </div>
             <div class="card">
-                <h3>190</h3>
-                <p>Borrowed Books</p>
+                <img src="/images/borrow_book_vector.svg" alt="Borrowed Books">
+                <div class="stat-info">
+                    <h3>190</h3>
+                    <p>Borrowed Books</p>
+                </div>
             </div>
             <div class="card">
-                <h3>3</h3>
-                <p>Returned Books Confirmations</p>
+                <img src="/images/return_book_vector.svg" alt="Return Confirmations">
+                <div class="stat-info">
+                    <h3>3</h3>
+                    <p>Return Books Confirmations</p>
+                </div>
             </div>
             <div class="card">
-                <h3>11</h3>
-                <p>Reports Available</p>
+                <img src="/images/report_vector.svg" alt="Reports">
+                <div class="stat-info">
+                    <h3>11</h3>
+                    <p>Reports Available</p>
+                </div>
             </div>
         </div>
-        <div class="search-bar">
-            <input type="text" placeholder="Search Book...">
-            <button>Search</button>
+
+        <div class="search-section">
+            <div class="search-bar">
+                <select>
+                    <option>All</option>
+                    <option>Title</option>
+                    <option>Author</option>
+                    <option>ISBN</option>
+                </select>
+                <input type="text" placeholder="Search User">
+                <button type="submit">
+                    <img src="/images/Search.svg" alt="Search">
+                </button>
+            </div>
+            <div class="action-buttons">
+                <button>
+                    <img src="/images/book_available_vector.svg" alt="Add">
+                    Add New Book
+                </button>
+                <button>
+                    <img src="/images/manage_fines_vector.svg" alt="Fines">
+                    Manage Fines
+                </button>
+            </div>
         </div>
+
         <div class="book-list">
             <div class="book">
-                <img src="harry_potter.jpg" alt="Harry Potter">
-                <h3>Harry Potter and the Philosopher's Stone</h3>
+                <img src="/images/image 1.svg" alt="Harry Potter">
+                <h3>HARRY POTTER AND THE PHILOSOPHER'S STONE</h3>
                 <p>By J.K. Rowling</p>
-                <p>Stock: 10</p>
-                <p>Remaining: 8</p>
-                <button class="available">Available</button>
+                <p>ISBN: 978-0747532699</p>
+                <div class="book-stats">
+                    <p>Stock: 10</p>
+                    <p>Remaining: 8</p>
+                    <p>Reports: 1</p>
+                </div>
+                <div class="book-footer">
+                    <span class="status available">Available</span>
+                    <div class="book-actions">
+                        <button><img src="/images/edit_vector.svg" alt="Edit"></button>
+                        <button><img src="/images/delete_vector.svg" alt="Delete"></button>
+                    </div>
+                </div>
             </div>
+
             <div class="book">
-                <img src="brief_history.jpg" alt="A Brief History of Time">
-                <h3>A Brief History of Time</h3>
+                <img src="/images/image 4.svg" alt="A Brief History of Time">
+                <h3>A BRIEF HISTORY OF TIME</h3>
                 <p>By Stephen Hawking</p>
-                <p>Stock: 10</p>
-                <p>Remaining: 5</p>
-                <button class="available">Available</button>
+                <p>ISBN: 978-0553380163</p>
+                <div class="book-stats">
+                    <p>Stock: 10</p>
+                    <p>Remaining: 5</p>
+                    <p>Reports: 0</p>
+                </div>
+                <div class="book-footer">
+                    <span class="status available">Available</span>
+                    <div class="book-actions">
+                        <button><img src="/images/edit_vector.svg" alt="Edit"></button>
+                        <button><img src="/images/delete_vector.svg" alt="Delete"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book">
+                <img src="/images/image 10.svg" alt="Thinking, Fast and Slow">
+                <h3>THINKING, FAST AND SLOW</h3>
+                <p>By Daniel Kahneman</p>
+                <p>ISBN: 978-0374533557</p>
+                <div class="book-stats">
+                    <p>Stock: 20</p>
+                    <p>Remaining: 5</p>
+                    <p>Reports: 0</p>
+                </div>
+                <div class="book-footer">
+                    <span class="status available">Available</span>
+                    <div class="book-actions">
+                        <button><img src="/images/edit_vector.svg" alt="Edit"></button>
+                        <button><img src="/images/delete_vector.svg" alt="Delete"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book unavailable">
+                <img src="/images/image 11.svg" alt="Humpty Dumpty">
+                <h3>HUMPTY DUMPTY</h3>
+                <p>By Charles Reasoner</p>
+                <p>ISBN: 978-0843178835</p>
+                <div class="book-stats">
+                    <p>Stock: 10</p>
+                    <p>Remaining: 0</p>
+                    <p>Reports: 2</p>
+                </div>
+                <div class="book-footer">
+                    <span class="status unavailable">Unavailable</span>
+                    <div class="book-actions">
+                        <button><img src="/images/edit_vector.svg" alt="Edit"></button>
+                        <button><img src="/images/delete_vector.svg" alt="Delete"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book">
+                <img src="/images/image 9.svg" alt="The Republic">
+                <h3>THE REPUBLIC</h3>
+                <p>By Plato</p>
+                <p>ISBN: 978-0140455113</p>
+                <div class="book-stats">
+                    <p>Stock: 10</p>
+                    <p>Remaining: 10</p>
+                    <p>Reports: 0</p>
+                </div>
+                <div class="book-footer">
+                    <span class="status available">Available</span>
+                    <div class="book-actions">
+                        <button><img src="/images/edit_vector.svg" alt="Edit"></button>
+                        <button><img src="/images/delete_vector.svg" alt="Delete"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book">
+                <img src="/images/image 25.svg" alt="The History of the Ancient World">
+                <h3>THE HISTORY OF THE ANCIENT WORLD</h3>
+                <p>By Susan Wise Bauer</p>
+                <p>ISBN: 978-0393059748</p>
+                <div class="book-stats">
+                    <p>Stock: 10</p>
+                    <p>Remaining: 8</p>
+                    <p>Reports: 1</p>
+                </div>
+                <div class="book-footer">
+                    <span class="status available">Available</span>
+                    <div class="book-actions">
+                        <button><img src="/images/edit_vector.svg" alt="Edit"></button>
+                        <button><img src="/images/delete_vector.svg" alt="Delete"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book unavailable">
+                <img src="/images/image 19.svg" alt="The Hobbit">
+                <h3>THE HOBBIT</h3>
+                <p>By J.R.R. Tolkien</p>
+                <p>ISBN: 978-0843178835</p>
+                <div class="book-stats">
+                    <p>Stock: 10</p>
+                    <p>Remaining: 0</p>
+                    <p>Reports: 3</p>
+                </div>
+                <div class="book-footer">
+                    <span class="status unavailable">Unavailable</span>
+                    <div class="book-actions">
+                        <button><img src="/images/edit_vector.svg" alt="Edit"></button>
+                        <button><img src="/images/delete_vector.svg" alt="Delete"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book">
+                <img src="/images/image 28.svg" alt="Harry Potter and the Deathly Hallows">
+                <h3>HARRY POTTER AND THE DEATHLY HALLOWS</h3>
+                <p>By J.K. Rowling</p>
+                <p>ISBN: 978-0747532699</p>
+                <div class="book-stats">
+                    <p>Stock: 10</p>
+                    <p>Remaining: 3</p>
+                    <p>Reports: 0</p>
+                </div>
+                <div class="book-footer">
+                    <span class="status available">Available</span>
+                    <div class="book-actions">
+                        <button><img src="/images/edit_vector.svg" alt="Edit"></button>
+                        <button><img src="/images/delete_vector.svg" alt="Delete"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book">
+                <img src="/images/image 54.svg" alt="Beginner's Step-by-Step Coding Course">
+                <h3>BEGINNER'S STEP-BY-STEP CODING COURSE</h3>
+                <p>By DK</p>
+                <p>ISBN: 978-0374533557</p>
+                <div class="book-stats">
+                    <p>Stock: 1</p>
+                    <p>Remaining: 1</p>
+                    <p>Reports: 0</p>
+                </div>
+                <div class="book-footer">
+                    <span class="status available">Available</span>
+                    <div class="book-actions">
+                        <button><img src="/images/edit_vector.svg" alt="Edit"></button>
+                        <button><img src="/images/delete_vector.svg" alt="Delete"></button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
