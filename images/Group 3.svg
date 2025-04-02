@@ -1,0 +1,19 @@
+<svg width="185" height="197" viewBox="0 0 185 197" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 3">
+<g id="&#240;&#159;&#166;&#134; icon &#34;Book Reader&#34;" filter="url(#filter0_d_41_38)">
+<path id="Vector" d="M125.689 34.7354C125.689 15.9539 110.875 0.728882 92.5999 0.728882C74.3248 0.728882 59.5103 15.9539 59.5103 34.7354C59.5103 53.517 74.3248 68.742 92.5999 68.742C110.875 68.742 125.689 53.517 125.689 34.7354ZM84.8755 86.135C64.4255 73.2691 31.3014 69.7339 14.6325 68.7597C9.03142 68.4338 4.36096 72.8193 4.36096 78.356V157.28C4.36096 162.356 8.35584 166.589 13.4916 166.862C28.5405 167.673 58.9864 170.645 80.0293 181.538C83.259 183.21 87.0884 180.932 87.0884 177.333V90.1945C87.0849 88.5402 86.2887 87.0241 84.8755 86.135ZM170.567 68.7597C153.902 69.7303 120.774 73.2691 100.328 86.135C98.9145 87.0241 98.1183 88.6004 98.1183 90.2547V177.322C98.1183 180.932 101.958 183.213 105.198 181.538C126.238 170.655 156.666 167.683 171.712 166.872C176.847 166.596 180.842 162.363 180.842 157.287V78.356C180.839 72.8193 176.168 68.4338 170.567 68.7597Z" fill="black"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_d_41_38" x="0.360962" y="0.728882" width="184.481" height="195.369" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="10"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.219444 0 0 0 0 0 0 0 0 0 0 0 0 0 0.49 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_41_38"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_41_38" result="shape"/>
+</filter>
+</defs>
+</svg>
