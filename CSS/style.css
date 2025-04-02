@@ -1,4 +1,4 @@
- body {
+body {
     background-image: url('./background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -36,69 +36,198 @@
     position: relative;
     flex-direction: column;
     text-align: center;
-    color: white;
+    color: #ebebeb;
     width: 50%;
     max-width: 600px; 
     padding: 30px;
     border-radius: 10px;
-    background:  rgba(255, 255, 255, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    flex: 1;
+} #welcome-page {
+    position: absolute;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+#role-page {
+    background: #EBEBEB; 
+    color: black;  
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px);
-}h1{
+}
+h3{
+    color: #000;
+    text-align: center;
+    font-family: 'Poppin', sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0,5px;
+}h2{
+    font-family:'Poppin', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #000;
+}.role-selection.p{
+   
+    font-size: 50px;
+} .img{
+    color: black;
+}.welcome-content h1 {
+    font-style: 'Montserrat', sans-serif;
     font-size: 50px;
     font-weight: bold;
-    text-transform: uppercase ;
     color: black;
-}p{
+}.welcome-content p {
+    font-style: 'Montserrat', sans-serif;
     font-size: 20px;
     font-weight: bold;
     color: black;
 }
-.hidden {
-    display: none;
-}
-.login-btn, .role-btn {
-    background-color:  #162938;
-    color: black;
-    padding: 15px 30px;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    margin-top: 20px;
-}.login-btn:hover {
-    background-color: rgb(106, 176, 227); 
-    color: black; 
-    transform: scale(1.1); 
-    transition: 0.3s ease-in-out; 
-}
 
+.role-content h2 {
+    font-size: 40px;
+    font-weight: bold;
+    color: black;
+}
 .role-selection {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 30px;
+    text-align: center;
 }
+
 .role-box {
     background: rgba(255, 255, 255, 0.8);
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
     text-align: center;
     cursor: pointer;
     width: 250px;
-}h3{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 50px;
-    color: black;
-}h2{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 50px;
-    font-weight: bold;
-    color: black;
-}.role-selection.p{
-   
-    font-size: 50px;
+    height: 180px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: flex;  
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: 0.3s    
 }
 
+.role-box:hover {
+    background: rgba(106, 176, 227, 0.8);
+    transform: scale(1.05);
+    
+} .role-box img {
+    width: 50px;
+    margin-bottom: 10px;
+}.img{
+    justify-content: center;
+    align-items: center;
+}.role-box h3 {
+    font-size: 25px;
+    font-weight: 700;
+    margin: 0; 
+    line-height: 1; 
+}
 
+.role-box p {
+    font-size: 14px;
+    margin: 0; 
+    line-height: 1.2; 
+}
 
+.hidden {
+    display: none;
+}.motto {
+    text-align: center;
+    font-style: italic;
+    font-size: 1.2em;
+    margin: 20px;
+    color: floralwhite;
+
+}.motto-container {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    text-align: center;
+}
+
+.motto {
+    font-style: italic;
+    font-size:  1.2em;
+    color: floralwhite;
+    padding: 10px;
+    border-radius: 8px;
+}.footer-container{
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    text-align: center;
+}.footer{
+    font-style: italic;
+    font-size: 1.2em;
+    color: floralwhite;
+    padding: 10px;
+    border-radius: 8px;
+}.sidebar {
+    width: 199px; 
+    height: 95vh; 
+    position: absolute; 
+    left: 0;
+    top: 0;
+    background: linear-gradient(
+        30deg, 
+        rgba(138, 197, 240, 0.66) 30%,  
+        rgba(106, 177, 227, 0.66) 50%,  
+        rgba(29, 55, 116, 0.77) 90%,    
+        rgba(29, 55, 116, 0.86) 100%
+    );
+    color: white; 
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 75px;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    padding: 20px 15px;
+    transform: rotate(180deg);
+    position: fixed; 
+   
+}
+.sidebar span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.sidebar small {
+    font-size: 14px; 
+    font-weight: normal;
+    position: absolute;
+    top: -60px; 
+    text-orientation: mixed;
+    
+}
+.sidebar small {
+    font-size: 12px;
+    font-weight: normal;
+    opacity: 0.7;
+}.member{
+    justify-content: center;
+    align-items: center;
+}
