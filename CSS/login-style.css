@@ -10,7 +10,7 @@ body {
             #1d3774c4 90%,
             #1d3774db 100%
         ),
-        url('images/library.svg') no-repeat center center fixed;
+        url('/images/background.jpg') no-repeat center center fixed;
     background-size: cover;
     margin: 0;
     height: 100vh;

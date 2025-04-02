@@ -1,0 +1,392 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #1D3774;
+    background-color: #f5f5f5;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+.topbar {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background-color: #6AB0E3;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 250px;
+    z-index: 100;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.profile-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.username {
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.user-type {
+    font-size: 0.7em;
+    opacity: 0.8;
+}
+
+.logout {
+    cursor: pointer;
+}
+
+.logout a {
+    color: white;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #6AB0E3;
+    color: white;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    z-index: 200;
+}
+
+.logo-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.logo {
+    max-width: 180px;
+}
+
+.nav-menu {
+    flex-grow: 1;
+    padding: 0 20px;
+}
+
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item {
+    margin-bottom: 5px;
+}
+
+.nav-item a {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.nav-item a:hover,
+.nav-item.active a {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav-item.active a {
+    font-weight: bold;
+}
+
+.nav-icon {
+    margin-right: 10px;
+     width: 20px;
+     text-align: center;
+}
+
+.nav-icon i {
+    color: white;
+}
+
+
+.sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-footer a {
+    display: block;
+    padding: 5px 0;
+    color: white;
+    font-size: 0.8em;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.sidebar-footer a:hover {
+    opacity: 1;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 80px 30px 30px;
+}
+
+.book-details-container {
+    display: flex;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.book-image-container {
+    flex: 0 0 auto;
+    margin-right: 30px;
+}
+
+.book-image {
+    width: 230px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.book-info {
+    flex: 1;
+}
+
+.book-title {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #1D3774;
+}
+
+.book-description {
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+.book-meta {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.stars {
+    display: flex;
+}
+
+.star {
+    width: 20px;
+    height: 20px;
+    background-color: #FFD700;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    margin-right: 5px;
+}
+
+.rating-text {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.action-buttons {
+    display: flex;
+    margin-top: 20px;
+}
+
+.borrow-button, .book-cart-button, .add-to-shelf-button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    border: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.borrow-button {
+    background-color: #6AB0E3;
+    color: white;
+}
+
+.book-cart-button {
+    background-color: #2196F3;
+    color: white;
+}
+
+.add-to-shelf-button {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.heart-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.related-books-section {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+}
+
+.section-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #1D3774;
+}
+
+.related-books {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px 0;
+}
+
+.related-book {
+    margin-right: 20px;
+    flex: 0 0 auto;
+}
+
+.related-book img {
+    height: 180px;
+    border-radius: 5px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s;
+    background-color: #f9f9f9;
+}
+
+.related-book img:hover {
+    transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 60px;
+    }
+
+    .sidebar .logo-container, .sidebar-footer, .nav-item a span {
+        display: none;
+    }
+
+    .nav-item a {
+        justify-content: center;
+    }
+
+    .nav-icon {
+        margin-right: 0;
+    }
+
+    .topbar {
+        left: 60px;
+    }
+     .main-content {
+        margin-left: 60px;
+        padding: 70px 15px 15px;
+    }
+
+    .book-details-container {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .book-image-container {
+        margin-right: 0;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .action-buttons {
+        flex-wrap: wrap;
+    }
+
+    .borrow-button, .book-cart-button, .add-to-shelf-button {
+        margin-bottom: 10px;
+        width: 100%;
+        margin-right: 0; 
+    }
+
+    
+
+}
+.borrow-button {
+    background-color: #007bffE3;
+    color: white;
+}
+
+.book-cart-button {
+    background-color: #007bff; 
+    color: white;
+}
+
+.add-to-shelf-button {
+    background-color: #6c757d; 
+    color: white;
+}
