@@ -35,13 +35,13 @@
         <h2>Select Role</h2>
         <p>You can change your account at any time</p>
         <div class="role-selection">
-            <div class="role-box" onclick="alert('Admin Login')">
+            <div class="role-box" onclick="redirectTo('Admin-Login.html')">
                 <p><img class="admin" src="/images/Group 3.svg" alt="admin"></p>
                 <h3>ADMIN</h3>
                 <p>Develop your business or startup idea</p>
             </div>
             
-            <div class="role-box" onclick="alert('Member Login')">
+            <div class="role-box" onclick="redirectTo('Member-Login.html')">
                 <p><img class="Member" src="/images/🦆 icon _group students_.svg" alt="Member"></p>
                 <h3>MEMBER</h3>
                 <p>Manage your account with colleagues</p>
@@ -61,8 +61,14 @@
             document.getElementById('welcome-page').classList.add('hidden');
             document.getElementById('role-page').classList.remove('hidden');
         }
+    
     </script>
     <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+        function redirectTo(page) {
+            window.location.href = page;
+        }
+    </script>
 
 </body>
 
