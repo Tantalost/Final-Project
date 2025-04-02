@@ -19,7 +19,7 @@ body {
         rgba(29, 55, 116, 0.77) 90%,    
         rgba(29, 55, 116, 0.86) 100%
     ),
-    url('./background.jpg');    
+    url('/images/background.jpg');    
     
 
 }.background{
