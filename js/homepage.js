@@ -1,45 +1,54 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const menuToggle = document.getElementById("menuToggle");
-    const sidebar = document.getElementById("sidebar");
-    const overlay = document.getElementById("sidebarOverlay");
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.getElementById('loginForm');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const menuBtn = document.getElementById('logout-menu');
 
-    // Initialize sidebar state
-    function initSidebar() {
-        if (window.innerWidth <= 768) {
-            sidebar.classList.add("collapsed");
-            sidebar.classList.remove("expanded");
-        } else {
-            sidebar.classList.remove("collapsed");
-        }
+    // Check if user is already logged in
+    if (localStorage.getItem('isLoggedIn') === 'true' && window.location.pathname.includes('index.html')) {
+        window.location.href = 'dashboard.html';
     }
 
-    // Toggle sidebar
-    menuToggle.addEventListener("click", function() {
-        if (window.innerWidth <= 768) {
-            sidebar.classList.toggle("expanded");
-            overlay.classList.toggle("show");
-            document.body.style.overflow = sidebar.classList.contains("expanded") ? "hidden" : "auto";
-        } else {
-            sidebar.classList.toggle("collapsed");
-        }
-    });
+    // Handle login
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
-    // Close sidebar when clicking overlay (mobile)
-    overlay.addEventListener("click", function() {
-        sidebar.classList.remove("expanded");
-        overlay.classList.remove("show");
-        document.body.style.overflow = "auto";
-    });
+            // For demo purposes, we'll use a simple validation
+            // In a real application, you would validate against a backend server
+            if (email && password) {
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userEmail', email);
+                window.location.href = 'dashboard.html';
+            } else {
+                alert('Please fill in all fields');
+            }
+        });
+    }
 
-    // Handle window resize
-    window.addEventListener("resize", function() {
-        initSidebar();
-        if (window.innerWidth > 768) {
-            overlay.classList.remove("show");
-            document.body.style.overflow = "auto";
-        }
-    });
+    // Handle logout
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userEmail');
+            window.location.href = 'index.html';
+        });
+    }
 
-    // Initialize
-    initSidebar();
-});
+    // Handle dropdown menu
+    if (menuBtn) {
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuBtn.contains(e.target)) {
+                menuBtn.blur();
+            }
+        });
+
+        // Prevent dropdown from closing when clicking inside
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    }
+}); 
