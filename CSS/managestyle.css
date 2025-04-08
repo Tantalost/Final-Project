@@ -132,7 +132,6 @@ body {
     margin-left: var(--sidebar-width);
 }
 
-/* Top Bar */
 .topbar {
     background-color: var(--primary-blue);
     padding: 1rem 3rem 1rem 5rem;
@@ -168,7 +167,6 @@ body {
     opacity: 0.8;
 }
 
-/* Dropdown Menu */
 .logout {
     position: relative;
 }
@@ -247,7 +245,6 @@ body {
     filter: invert(36%) sepia(51%) saturate(3731%) hue-rotate(337deg) brightness(87%) contrast(111%);
 }
 
-/* Content Area */
 .content {
     padding: 2rem;
     background-color: var(--light-blue);
