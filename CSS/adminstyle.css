@@ -211,6 +211,7 @@ body {
 }
 
 .pie-chart {
+    left: 180px;
     margin: 2rem 0;
     position: relative;
     width: 200px;
