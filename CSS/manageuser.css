@@ -738,28 +738,3 @@ tr:hover {
 .logout-option img {
     filter: invert(36%) sepia(51%) saturate(3731%) hue-rotate(337deg) brightness(87%) contrast(111%);
 }
-
-.menu-toggle {
-    position: fixed;
-    left: 20px;
-    top: 25px;
-    z-index: 1000;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: left 0.3s ease;
-}
-
-.menu-toggle img {
-    width: 24px;
-    height: 24px;
-    filter: brightness(0) invert(1);
-}
-
-.menu-toggle.active {
-    left: calc(var(--sidebar-width) + 20px);
-}
