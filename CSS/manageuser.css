@@ -660,3 +660,106 @@ tr:hover {
 .action-buttons button.restrict:hover {
     background-color: #B71C1C;
 }
+
+.logout {
+    position: relative;
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-button img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-width: 220px;
+    padding: 8px;
+    z-index: 1000;
+}
+
+.menu-button:focus + .dropdown-menu,
+.menu-button:active + .dropdown-menu,
+.dropdown-menu:hover {
+    display: block;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: background-color 0.2s;
+    border-radius: 8px;
+}
+
+.menu-item:hover {
+    background-color: var(--light-blue);
+}
+
+.menu-item img {
+    width: 20px;
+    height: 20px;
+}
+
+.menu-item span {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.logout-option {
+    border-top: 1px solid var(--light-blue);
+    margin-top: 8px;
+    padding-top: 12px;
+}
+
+.logout-option span {
+    color: #d32f2f;
+}
+
+.logout-option img {
+    filter: invert(36%) sepia(51%) saturate(3731%) hue-rotate(337deg) brightness(87%) contrast(111%);
+}
+
+.menu-toggle {
+    position: fixed;
+    left: 20px;
+    top: 25px;
+    z-index: 1000;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.3s ease;
+}
+
+.menu-toggle img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+.menu-toggle.active {
+    left: calc(var(--sidebar-width) + 20px);
+}
