@@ -1,30 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup Page</title>
-    <link rel="stylesheet" href="/CSS/login-style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin SignUp Page</title>
+  <link rel="stylesheet" href="/css/signup-style.css" />
 </head>
 <body>
-    <div class="container" >
-        <div style="font-family: Montserrat; padding: 0%; margin: 0%;">
-            <img class="logo" src="/images/logo.svg" alt="Logo">
-            <h3 style="color: #0D3958; font-weight:bolder;">ADMIN</h3>
-            <h2 style="color: #0D3958; font-weight: 700;">REGRISTRATION</h2>
-        </div>
-        <form> 
-            <label for="name">Name
-            <input type="text" id="name" placeholder="Enter your name" required></label>                   
-            <label for="email" >Email
-            <input type="email" id="email" placeholder="Enter your email" required></label>
-            <label for="password">Password
-            <input type="password" id="password" placeholder="Enter your password" required></label>
-            <button type="submit" class="btn">Sign in</button>
-        </form>
-        <div class="signup-link">
-            <p>Already have an account? <a href="Admin-Login.html">Log in</a></p>
-        </div>
+  <div class="container">
+    <div style="font-family: Montserrat;">
+        <img class="logo" src="/images/logov4.svg"  alt="Logo">
+        <h3 style="color: #ffffff; font-size: larger; margin: 0;">Welcome !</h3>
+        <h2 style="color: #ffffff; font-weight: 400; font-size: medium; margin: 0;">SIGN UP</h2>
     </div>
+
+    <form class="form">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Enter your name" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email" required />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required />
+      </div>
+
+      <div class="remember-forgot">
+        <label for="remember">
+            <input type="checkbox" id="remember"> Remember me
+        </label>
+      </div>
+
+      <button type="submit" class="btn">Log In</button>
+    </form>
+
+    <p>Already have an account? <a href="/html/Member-Login.html">Sign in</a></p>
+  </div>
+  
 </body>
 </html>
