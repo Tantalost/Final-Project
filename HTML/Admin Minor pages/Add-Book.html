@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+    <link rel="stylesheet" href="/CSS/addbookstyle.css">
+</head>
+<body>
+    <button id="menu-toggle" class="menu-toggle">
+        <img src="/images/borrow_book_vector.svg" alt="Toggle Menu">
+    </button>
+    <div class="sidebar" id="sidebar">
+        <div class="logo-container">
+            <img src="/images/logo.svg" alt="Library Logo">
+        </div>
+        <div class="menu">
+            <a href="/HTML/admindash.html">
+                <img src="/images/dashboard_vector.svg" alt="Dashboard">
+                Dashboard
+            </a>
+            <a href="/HTML/managebook.html" class="active">
+                <img src="/images/manage_books_vector.svg" alt="Manage Books">
+                Manage Books
+            </a>
+            <a href="/HTML/manageuser.html">
+                <img src="/images/manage_users_vector.svg" alt="Manage Users">
+                Manage Users
+            </a>
+        </div>
+        <div class="footer-sidebar">
+            <a href="#">About</a>
+            <a href="#">Support</a>
+            <a href="#">Terms & condition</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="topbar">
+            <div class="user-info">
+                <img src="/images/Profile.svg" alt="Profile">
+                <div class="user-details">
+                    <div class="user-name">Rashdy Arobie</div>
+                    <div class="user-role">Admin</div>
+                </div>
+            </div>
+            <div class="logout">
+                <button class="menu-button">
+                    <img src="/images/logout_vector.svg" alt="Menu">
+                </button>
+                <div class="dropdown-menu">
+                    <div class="menu-item">
+                        <img src="/images/Profile (2).svg" alt="Profile">
+                        <span>Profile</span>
+                    </div>
+                    <div class="menu-item">
+                        <img src="/images/accountsett.png" alt="Account Settings">
+                        <span>Account Settings</span>
+                    </div>
+                    <div class="menu-item">
+                        <img src="/images/languangeicon.png" alt="Language">
+                        <span>Language</span>
+                    </div>
+                    <div class="menu-item">
+                        <img src="/images/darktheme.png" alt="Dark Theme">
+                        <span>Dark Theme</span>
+                    </div>
+                    <div class="menu-item logout-option">
+                        <img src="/images/logout_vector.svg" alt="Log Out">
+                        <span>Log Out</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="header">
+                <h1>Add New Book</h1>
+            </div>
+            
+            <div class="book-section">
+                <div class="book-form">
+                    <form id="bookInfo">
+                        <label>Book Title</label>
+                        <input type="text" id="booktitle" placeholder="Enter Book Title">
+
+                        <label>Author(s)</label>
+                        <input type="text" id="author" placeholder="Enter Author(s)">
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="isbn">ISBN</label>
+                                <input type="text" id="isbn" placeholder="Enter ISBN">
+                            </div>
+                        
+                            <div class="form-group">
+                                <label for="edition">Book Edition</label>
+                                <input type="text" id="edition" placeholder="Enter Book Edition">
+                            </div>
+                        </div>
+
+                        <label>Genre</label>
+                        <input type="text" id="genre" placeholder="Enter Genre">
+
+                        <label>Publisher</label>
+                        <input type="text" id="publisher" placeholder="Enter Publisher">
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="publishdate">Published Date</label>
+                                <input type="text" id="publishdate" placeholder="Enter Date">
+                            </div>
+                        
+                            <div class="form-group">
+                                <label for="stocks">Stocks</label>
+                                <input type="text" id="stocks" placeholder="Enter Stock">
+                            </div>
+                        </div>
+                    </form>
+             </div>
+
+                <div class="book-desc">
+                    <div class="image-add">
+                        <input type="file" id="book-image" accept="image/*" hidden>
+                        <label for="book-image" class="image-upload">
+                        <img src="image-icon.svg" alt="Upload Icon">
+                        </label>
+                    </div>
+                    <h3>Book Description</h3>
+                    <div class="description">
+                        <textarea id="bookdesc" rows="6" placeholder="Enter book description"></textarea>
+                    </div>
+                    <button>Save</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.querySelector('.main-content');
+
+            menuToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+                mainContent.classList.toggle('shifted');
+            });
+        });
+    </script>
+</body>
+</html>
