@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Lugrasimo&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+:root {
+    --sidebar-width: 250px;
+    --topbar-height: 60px;
+    --transition-speed: 0.3s;
+}
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #EAF6FF;
+    color: #0D3958;
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    background-color: #6ab0e3;
+    color: white;
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    left: -250px;
+    transition: left 0.3s ease;
+    z-index: 900;
+}
+
+.sidebar.active {
+    left: 0; 
+}
+
+.menu {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    color: white;
+    text-decoration: none;
+    font-weight: 400;
+    transition: 0.3s;
+    justify-content: center;
+    gap: 10px;
+}
+
+.menu a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.footer-sidebar {
+    width: 100%;
+    margin-top: 20px;
+    text-align: left;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    padding: 10px 10px 50px 30px;
+    bottom: 50px;
+}
+
+.footer-sidebar a {
+    display: block;
+    padding: 5px;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 12px;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    padding-top: 50px;
+}
+
+.logo {
+    width: 60%;
+    height: auto;
+}
+
+
+.menu-toggle {
+    top: 15px;
+    z-index: 1000;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.3s ease;
+}
+
+.menu-toggle img {
+    width: 15px;
+    height: 15px;
+}
+
+.menu-toggle.active {
+    left: calc(var(--sidebar-width) + 20px); 
+}
+
+
+.main-content {
+    margin-left: 0; 
+    width: 100%;
+    overflow-x: hidden;
+    transition: margin-left var(--transition-speed) ease, width var(--transition-speed) ease;
+    box-sizing: border-box;
+}
+
+.main-content.shifted {
+    margin-left: var(--sidebar-width); 
+    width: calc(100% - var(--sidebar-width));
+}
+
+.topbar {
+    width: 100%;
+    height: var(--topbar-height);
+    background-color: #6AB0E3;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    box-sizing: border-box;
+    z-index: 100;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-left: 20px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: white;
+    padding: 0 20px;
+}
+
+.profile img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+
+.logout {
+    position: relative;
+    margin-right: 30px;
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-icon {
+    width: 24px;
+    cursor: pointer;
+}
+
+h1 {
+    font-family: "Lugrasimo", cursive;
+    font-size: 40px;
+    margin: 0;
+}
+
+h2 {
+    margin: 5px;
+    font-weight: 600;
+    color: #356485;
+}
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-width: 200px;
+    padding: 8px;
+    z-index: 1000;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    cursor: pointer;
+    color: #0D3958;
+    transition: background-color 0.2s;
+    border-radius: 8px;
+}
+
+.menu-item:hover {
+    background-color: #EAF6FF;
+}
+
+.menu-item img {
+    width: 20px;
+    height: 20px;
+}
+
+.menu-item span {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.logout-option {
+    border-top: 1px solid #EAF6FF;
+    margin-top: 8px;
+    padding-top: 12px;
+}
+
+.logout-option span {
+    color: #d32f2f;
+}
+
+
