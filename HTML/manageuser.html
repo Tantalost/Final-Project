@@ -8,25 +8,28 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-    <div class="sidebar">
-        <div class="logo">
+    <button id="menu-toggle" class="menu-toggle">
+        <img src="/images/borrow_book_vector.svg" alt="Toggle Menu">
+    </button>
+    <div class="sidebar" id="sidebar">
+        <div class="logo-container">
             <img src="/images/logo.svg" alt="Library Logo">
         </div>
         <div class="menu">
             <a href="/HTML/admindash.html">
-                <span class="material-icons">dashboard</span>
+                <img src="/images/dashboard_vector.svg" alt="Dashboard">
                 Dashboard
             </a>
-            <a href="/HTML/managebook.html">
-                <span class="material-icons">library_books</span>
+            <a href="/HTML/managebook.html" class="active">
+                <img src="/images/manage_books_vector.svg" alt="Manage Books">
                 Manage Books
             </a>
-            <a href="/HTML/manageuser.html" class="active">
-                <span class="material-icons">people</span>
+            <a href="/HTML/manageuser.html">
+                <img src="/images/manage_users_vector.svg" alt="Manage Users">
                 Manage Users
             </a>
         </div>
-        <div class="sidebar-footer">
+        <div class="footer-sidebar">
             <a href="#">About</a>
             <a href="#">Support</a>
             <a href="#">Terms & condition</a>
@@ -34,12 +37,12 @@
     </div>
 
     <div class="main-content">
-        <div class="header">
-            <div class="admin-info">
-                <img src="/images/Profile.svg" alt="Admin Avatar" class="admin-avatar">
-                <div class="admin-details">
-                    <h2>Rashdy Arobie</h2>
-                    <p>Admin</p>
+        <div class="topbar">
+            <div class="user-info">
+                <img src="/images/Profile.svg" alt="Profile">
+                <div class="user-details">
+                    <div class="user-name">Rashdy Arobie</div>
+                    <div class="user-role">Admin</div>
                 </div>
             </div>
             <div class="logout">
@@ -52,22 +55,23 @@
                         <span>Profile</span>
                     </div>
                     <div class="menu-item">
-                        <img src="/images/accountsett.png" alt="Account Settings">
+                        <img src="/images/accountsett.svg" alt="Account Settings">
                         <span>Account Settings</span>
                     </div>
                     <div class="menu-item">
-                        <img src="/images/languangeicon.png" alt="Language">
+                        <img src="/images/languageicon.svg" alt="Language">
                         <span>Language</span>
                     </div>
                     <div class="menu-item">
-                        <img src="/images/darktheme.png" alt="Dark Theme">
+                        <img src="/images/darktheme.svg" alt="Dark Theme">
                         <span>Dark Theme</span>
                     </div>
                     <div class="menu-item logout-option">
                         <img src="/images/logout_vector.svg" alt="Log Out">
                         <span>Log Out</span>
                     </div>
-            </div>
+                </div>
+            </div> 
         </div>
 
         <div class="content">

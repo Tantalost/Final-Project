@@ -173,12 +173,12 @@ body {
 .book-form input {
     width: 100%;
     padding: 0.5rem;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc62;
     border-radius: 6px;
     margin-bottom: 1rem;
     font-size: 0.95rem;
     border-radius: 150px;
-    border: solid black;
+    border: solid #1D3774;
 }
 
 .form-row {
@@ -213,6 +213,30 @@ body {
     width: 60px;
     height: 60px;
     filter: invert(26%) sepia(13%) saturate(2000%) hue-rotate(0deg) brightness(96%) contrast(80%);
+}
+
+textarea {
+    width: 100%;
+    min-height: 120px;
+    border: 1px solid #1D3774;
+    border-radius: 12px;
+    padding: 1rem;
+    font-size: 1rem;
+    resize: vertical;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 0.5rem;
+}
+
+.submit{
+    width: 50%;
+    background-color: #6AB0E3;
+    border: 1px solid #1D3774;
+    border-radius: 12px;
+    padding: 1rem;
+    font-size: 1rem;
+    resize: vertical;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 0.5rem;
 }
 
 .legend-item {
