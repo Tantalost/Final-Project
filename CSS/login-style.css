@@ -1,118 +1,146 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
 
 body {
     font-family: 'Montserrat', sans-serif;
     background: 
-    radial-gradient(
+        radial-gradient(
             circle at center,
-            #8ac5f0a8 30%,
-            #6ab1e3a8 50%,
-            #1d3774c4 90%,
-            #1d3774db 100%
+            #4590c5a8 30%,
+            #2d6c98a8 40%,
+            #1d3774c4 70%,
+            #051129db 100%
         ),
-        url('/images/background.jpg') no-repeat center center fixed;
+        url('/images/library.svg') no-repeat center center fixed;
     background-size: cover;
-    margin: 0;
     height: 100vh;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-} 
+    backdrop-filter: blur(3px);
+}
 
 
 .container {
-    position: relative; /* Keeps container within the layout */
-    background: #ffffff;
-    backdrop-filter: blur(10px) brightness(100%);
-    -webkit-backdrop-filter: blur(10px) brightness(100%);
-    
+    background: white;
     padding: 50px;
-    border-radius: 20px;
-    box-shadow: 10px 40px 30px rgba(0, 0, 0, 0.434);
-    text-align: center;
-    width: 100vh;
-    height: 80vh;
-
+    padding-top: 10px;
+    padding-bottom: 20px;
+    border-radius: 25px;
+    box-shadow: 0 8px 32px 0 #6788cc;
+    border: 1px solid rgba(25, 0, 116, 0.18);
+    width: 400px;
     display: flex;
-    flex-direction: column; /* Stacks elements vertically */
-    justify-content: center; /* Centers vertically */
-    align-items: center; 
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 
 .logo {
-    height: auto; 
-    width: 70%; 
-    margin: 0%; 
-    padding: 0%;
+    width: 40%;
+    height: auto;
+
 }
 
 
- h1 {
-    margin: 0%;
-    padding: 0%;
-} 
-
-h2 {
-    margin: 0%;
-    padding: 0%;
-   
-} 
-h3 {
-    margin: 0%;
-    padding: 0%;
-   
-} 
-h4 {
-    margin: 0%;
-    padding: 0%;
-   
-} 
-
-form {
+.form {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    justify-content: flex-start;
+    width: 100%;
     color: #1D3774;
-
 }
+
 
 label {
     text-align: left;
     font-size: 14px;
     font-weight: bold;
-    margin: 0%;
-    padding: 0px;
+    margin-bottom: 5px;
 }
 
-input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #9CD5FF;
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+
+input[type="email"],
+input[type="text"],
+input[type="password"] {
+    padding: 12px;
+    border: none;
     border-radius: 5px;
+    font-size: 16px;
+    background-color: #0d39581a;
+    color: #000;
+}
+
+input::placeholder {
+    color: #36383a;
+    opacity: 0.5;
+    font-size: 12px;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 10px 2px #c8daff;
+    border: 1px solid #1D3774;
+}
+
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    color: #0D3958;
+    margin-top: -5px;
+}
+
+.remember-forgot label {
+    display: flex;
+    font-size: 10px;
+    align-items: center;
+    gap: 5px;
+    font-weight: 400;
+}
+
+.remember-forgot a {
+    font-weight: 400;
+    text-decoration: none;
+    color: #0D3958;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
 }
 
 
 .btn {
-    background-color: #1D3774;
+    background: linear-gradient(90deg, #1D3774, #6AB0E3);
     color: white;
     padding: 10px;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
     font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 0px;
 }
 
 .btn:hover {
-    background-color: #6AB0E3
+    background-color: #6AB0E3;
 }
 
-
 p {
-    margin-top: 5px;
-    font-size: 14px;
+    margin-top: 15px;
+    font-size: 12px;
 }
 
 a {
@@ -123,4 +151,16 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+
+@media screen and (max-width: 480px) {
+    .container {
+        width: 90%;
+        padding: 30px 20px;
+    }
+
+    .logo {
+        width: 50%;
+    }
 }
