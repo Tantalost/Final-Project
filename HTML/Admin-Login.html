@@ -4,26 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" href="/CSS/login-style.css">
+    <link rel="stylesheet" href="/css/login-style.css">
 </head>
 <body>
     <div class="container">
         <div style="font-family: Montserrat; padding: 0%; margin: 0%;">
-            <img class="logo" src="/images/logo.svg" alt="Logo">
-            <h3 style="color: #0D3958; font-weight:bolder;">ADMIN</h3>
-            <h2 style="color: #0D3958; font-weight: 700;">LOG IN</h2>
+            <img class="logo" src="/images/logov4.svg"  alt="Logo">
+            <h3 style="color: #0D3958; font-size: larger;">Welcome Back !</h3>
+            <h2 style="color: #0D3958; font-weight: 400; font-size: medium;">LOG IN</h2>
         </div>
-        <form id = "loginForm"> 
-                <label for="email" >Email
-                <input type="email" id="email" placeholder="Enter your email" required></label>
-                <label for="password">Password
-                <input type="password" id="password" placeholder="Enter your password" required></label>
-                <button type="submit" class="btn">Log In</button>
-        </form>
-        <div>
-            <p>Register to be an <a href="Admin-SignUp.html">Admin</a></p>
-        </div>
-    </div>
 
+        <form class="form">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+
+            <div class="remember-forgot">
+                <label for="remember">
+                    <input type="checkbox" id="remember"> Remember me
+                </label>
+                <a href="#">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="btn">Sign Up</button>
+        </form>
+
+        <p>Don't have an account? <a href="/html/Admin-SignUp.html">Sign Up</a></p>
+    </div>
 </body>
 </html>
