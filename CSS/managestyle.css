@@ -354,15 +354,12 @@ body {
     cursor: pointer;
 }
 
-.search-section .action-buttons {
+.action-buttons {
     display: flex;
     gap: 1rem;
-    box-shadow: none;
 }
 
-
 .action-buttons button {
-    padding: 0.75rem 1.5rem;
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
@@ -370,8 +367,12 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    background-color: var(--medium-blue);
     color: var(--text-color);
+    background-color: var( --light-blue, #cce7ff);
+}
+
+.cardbutton {
+    cursor: pointer;
 }
 
 .book-list {
