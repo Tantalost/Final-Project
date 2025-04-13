@@ -1,75 +1,74 @@
-// Side bar slide //
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    // Sidebar Magic
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.querySelector('.main-content');
 
-    menuToggle.addEventListener('click', function() {
-        sidebar.classList.toggle('active');
-        menuToggle.classList.toggle('active');
-        mainContent.classList.toggle('shifted');
-    });
-});
+    if (menuToggle && sidebar && mainContent) {
+        menuToggle.addEventListener('click', function () {
+            sidebar.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            mainContent.classList.toggle('shifted');
+        });
+    }
 
-// Admin Time Check //
-function updateDateTime() {
-    const now = new Date();
-    const options = {
-        weekday: 'long', year: 'numeric', month: 'long',
-        day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit'
-    };
-    const formatted = now.toLocaleDateString('en-US', options);
-    document.getElementById('date-time').textContent = formatted;
-}
-
-setInterval(updateDateTime, 1000);
-updateDateTime();
-
-// Magical Line Chart Admin
-const ctx = document.getElementById('lineChart').getContext('2d');
-new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-    datasets: [{
-      label: 'Books Borrowed',
-      data: [12, 19, 3, 5, 2],
-      fill: false,
-      borderColor: 'rgb(75, 192, 192)',
-      tension: 0.4
-    }]
-  },
-  options: {
-    responsive: false,
-    maintainAspectRatio: false
-  }
-});
-
-// Book Selection Script //
-// Admin Dash //
-document.addEventListener('DOMContentLoaded', function () {
+    // Admin Change Book
     const statCards = document.querySelectorAll('.stat-card');
-
     statCards.forEach(card => {
         card.addEventListener('click', function () {
             const link = this.getAttribute('data-link');
-            if (link) {
-                window.location.href = link;
-            }
+            if (link) window.location.href = link;
         });
     });
-});
 
-// Manage Books //
-document.addEventListener('DOMContentLoaded', function () {
+    // Manage Book Change Book
     const stats = document.querySelectorAll('.card');
-
     stats.forEach(card => {
         card.addEventListener('click', function () {
             const link = this.getAttribute('data-link');
-            if (link) {
-                window.location.href = link;
-            }
+            if (link) window.location.href = link;
         });
     });
+
+    // LogOut
+    const logout = document.querySelectorAll('.dropdown-menu .menu-item')
+    logout.forEach(card => {
+        card.addEventListener('click', function () {
+            const link = this.getAttribute('data-link');
+            if (link) window.location.href = link;
+        });
+    });
+
+    // Manage Book Add Book or Manage Fines
+    const actionButtons = document.querySelectorAll('.search-section .cardbutton');
+    actionButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const link = this.getAttribute('data-link');
+            if (link) window.location.href = link;
+        });
+    });
+
+
+    // Magic Chart Lines
+    const lineChartEl = document.getElementById('lineChart');
+    if (lineChartEl) {
+        const ctx = lineChartEl.getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+                datasets: [{
+                    label: 'Books Borrowed',
+                    data: [12, 19, 3, 5, 2],
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: false,
+                maintainAspectRatio: false
+            }
+        });
+    }
 });
