@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library Dashboard</title>
     <link rel="stylesheet" href="/CSS/adminstyle.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <button id="menu-toggle" class="menu-toggle">
-        <img src="/images/borrow_book_vector.svg" alt="Toggle Menu">
+        <img src="/images/hamburgerbtn.svg" alt="Toggle Menu">
     </button>
     <div class="sidebar" id="sidebar">
         <div class="logo-container">
@@ -188,8 +189,7 @@
 
                 <div class="fines-section">
                     <h2>Fines Collected</h2>
-                    <div class="line-chart">
-                    </div>
+                    <canvas id="lineChart"></canvas>
                 </div>
 
                 <div class="reports-section">

@@ -25,6 +25,26 @@ function updateDateTime() {
 setInterval(updateDateTime, 1000);
 updateDateTime();
 
+// Magical Line Chart Admin
+const ctx = document.getElementById('lineChart').getContext('2d');
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+    datasets: [{
+      label: 'Books Borrowed',
+      data: [12, 19, 3, 5, 2],
+      fill: false,
+      borderColor: 'rgb(75, 192, 192)',
+      tension: 0.4
+    }]
+  },
+  options: {
+    responsive: false,
+    maintainAspectRatio: false
+  }
+});
+
 // Book Selection Script //
 // Admin Dash //
 document.addEventListener('DOMContentLoaded', function () {
