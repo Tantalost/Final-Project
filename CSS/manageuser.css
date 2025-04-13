@@ -126,9 +126,11 @@ body {
     margin-left: 30px;
 }
 
-.user-details {
+.user-info .user-details {
     display: flex;
     flex-direction: column;
+    background-color: var(--primary-blue) !important;
+    box-shadow: none;
 }
 
 .user-details .user-name {
@@ -725,6 +727,7 @@ nav{
 .menu-item img {
     width: 20px;
     height: 20px;
+
 }
 
 .menu-item span {
@@ -749,7 +752,7 @@ nav{
 .menu-toggle {
     position: fixed;
     left: 20px;
-    top: 25px;
+    top: 40px;
     z-index: 1000;
     background: none;
     border: none;
@@ -759,11 +762,12 @@ nav{
     align-items: center;
     justify-content: center;
     transition: left 0.3s ease;
+    z-index: 1001;
 }
 
 .menu-toggle img {
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
     filter: brightness(0) invert(1);
 }
 
