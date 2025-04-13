@@ -79,28 +79,28 @@
             </div>
 
             <div class="stats">
-                <div class="card">
+                <div class="card" data-link="manageuser.html">
                     <img src="/images/manage_users_vector.svg" alt="Total Books">
                     <div class="stat-info">
                         <h3>1090</h3>
                         <p>Total Books</p>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card" data-link="manageuser.html">
                     <img src="/images/borrow_book_vector.svg" alt="Borrowed Books">
                     <div class="stat-info">
                         <h3>190</h3>
                         <p>Borrowed Books</p>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card" data-link="manageuser.html">
                     <img src="/images/return_book_vector.svg" alt="Return Confirmations">
                     <div class="stat-info">
                         <h3>3</h3>
                         <p>Return Books Confirmations</p>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card" data-link="manageuser.html">
                     <img src="/images/report.png" alt="Reports">
                     <div class="stat-info">
                         <h3>11</h3>
@@ -308,18 +308,6 @@
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.getElementById('menu-toggle');
-            const sidebar = document.getElementById('sidebar');
-            const mainContent = document.querySelector('.main-content');
-
-            menuToggle.addEventListener('click', function() {
-                sidebar.classList.toggle('active');
-                menuToggle.classList.toggle('active');
-                mainContent.classList.toggle('shifted');
-            });
-        });
-    </script>
+    <script src="/js/admindash.js"></script>
 </body>
 </html>

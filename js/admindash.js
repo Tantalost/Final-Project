@@ -9,3 +9,32 @@ document.addEventListener('DOMContentLoaded', function() {
         mainContent.classList.toggle('shifted');
     });
 });
+
+// Book Selection Script //
+// Admin Dash //
+document.addEventListener('DOMContentLoaded', function () {
+    const statCards = document.querySelectorAll('.stat-card');
+
+    statCards.forEach(card => {
+        card.addEventListener('click', function () {
+            const link = this.getAttribute('data-link');
+            if (link) {
+                window.location.href = link;
+            }
+        });
+    });
+});
+
+// Manage Books //
+document.addEventListener('DOMContentLoaded', function () {
+    const stats = document.querySelectorAll('.card');
+
+    stats.forEach(card => {
+        card.addEventListener('click', function () {
+            const link = this.getAttribute('data-link');
+            if (link) {
+                window.location.href = link;
+            }
+        });
+    });
+});
