@@ -294,6 +294,10 @@ body {
     cursor: pointer;
 }
 
+.card img {
+    filter: invert(45%) sepia(60%) saturate(401%) hue-rotate(173deg) brightness(87%) contrast(90%);
+}
+
 .card h3 {
     color: var(--text-color);
     font-size: 1.5rem;

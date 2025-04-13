@@ -1,3 +1,4 @@
+// Side bar slide //
 document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
@@ -9,6 +10,20 @@ document.addEventListener('DOMContentLoaded', function() {
         mainContent.classList.toggle('shifted');
     });
 });
+
+// Admin Time Check //
+function updateDateTime() {
+    const now = new Date();
+    const options = {
+        weekday: 'long', year: 'numeric', month: 'long',
+        day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit'
+    };
+    const formatted = now.toLocaleDateString('en-US', options);
+    document.getElementById('date-time').textContent = formatted;
+}
+
+setInterval(updateDateTime, 1000);
+updateDateTime();
 
 // Book Selection Script //
 // Admin Dash //
