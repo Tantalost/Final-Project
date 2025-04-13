@@ -27,6 +27,115 @@ body {
     min-height: 100vh;
 }
 
+.header-container {
+    position: relative;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background: linear-gradient(150deg, 
+        #EAF6FF,  
+        #C1E5FF,  
+        #9CD5FF
+    );
+    justify-content: space-between;
+    margin: 0 0 20px 0; 
+}
+
+.back-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+}
+
+.header-title {
+    display: flex;
+    font-size: 25px;
+    font-weight: 700;
+    color:  #0D3958;
+    margin-left: 20px;
+    letter-spacing: 1px;
+}
+
+
+.search-container {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0 0 20px 0;
+    width: 100%;
+    flex-wrap: wrap;
+    
+}
+
+.search-bar {
+    display: flex;
+    width: 100%;
+    max-width: 400px;
+    height: 40px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px; 
+}
+
+.filter-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    background-color: #C1E5FF;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    color: #0D3958;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    padding: 0 15px;
+    background-color:white;
+    font-size: 14px;
+}
+
+.search-input:focus {
+    outline: none;
+}
+
+
+
+.browse {
+    background-color: #6AB0E3;
+    color: white;
+    font-weight: 600;
+    margin-left: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 15px;
+    height: 40px;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+}
+
+.browse img {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+}
+
+.browse:hover {
+    background-color: #3a67a2;
+}
+
 .sidebar {
     width: var(--sidebar-width);
     background-color: var(--primary-blue);
@@ -450,6 +559,7 @@ td {
     grid-template-columns: 1fr 400px;
     gap: 2rem;
     margin-top: 2rem;
+    align-items: flex-start;
 }
 
 .registered-users {
