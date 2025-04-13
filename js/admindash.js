@@ -39,6 +39,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Back Button
+    document.querySelector('.back-button').addEventListener('click', function () {
+        window.location.href = '/HTML/managebook.html'; 
+    });
+
     // Manage Book Add Book or Manage Fines
     const actionButtons = document.querySelectorAll('.search-section .cardbutton');
     actionButtons.forEach(button => {
