@@ -6,6 +6,7 @@
     <title>Borrow Books</title>
     <link rel="stylesheet" href="/css/sidebar.css">
     <link rel="stylesheet" href="/css/return-borrowstyles.css">
+    <link rel="stylesheet" href="/css/modalstyles.css">
 </head>
 <body>
     <aside class="sidebar" id="sidebar">
@@ -26,7 +27,7 @@
                 <img src="/images/Myshelf.svg" width="20" height="20" alt="My Shelf">
                 <span>My Shelf</span>
             </a>
-            <a href="#">
+            <a href="/html/Member-History.html">
                 <img src="/images/history_vector.svg" width="20" height="20" alt="History">
                 <span>History</span>
             </a>
@@ -97,7 +98,7 @@
             <div class="search-container">
                 <div class="search-bar">
                     <button class="filter-button">All</button>
-                    <input type="text" class="search-input" placeholder="Search...">
+                    <input type="text" class="search-input" placeholder="Search Books">
                 </div>
 
                 <a href="/html/" class="browse">
@@ -203,12 +204,86 @@
             </label>
             <div class="right-side">
                 <div class="total-count">Total: <span id="total-count"> 0 </span> </div>
-                <button class="button">Borrow</button>
+                <button class="button" id="borrowbutton">Borrow</button>
+            </div>
+        </div>
+
+        <div class="viewmodal" id="viewmodal">
+            <div class="modal-content" id="borrowModal">
+                <h2>Borrow Book</h2>
+                <table>
+                    <tr class="book-row">
+                        <td>
+                            <div class="modalbookinfo">
+                                <img src="/images/image 47.svg" alt="The Calculating Stars " class="book-cover">
+                                <div class="modalbookdetails">
+                                    <h4>The Calculating Stars</h4>
+                                    <p>Mary Robinette Kowal</p>
+                                    <p>July 3, 2018</p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="book-row">    
+                        <td>
+                            <div class="modalbookinfo">
+                                <img src="/images/image 25.svg" alt="Harry Potter and the Sorcerer's Stone" class="book-cover">
+                                <div class="modalbookdetails">
+                                    <h4>Harry Potter and the Sorcerer's Stone</h4>
+                                    <p> J. K. Rowling</p>
+                                    <p>June 26, 1997</p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="borrow-period">
+                    <p>Date Borrowed: <span  id="dateBorrowed"></span></p> 
+                </div>
+                <div class="borrow-period">
+                    <label for="days">Borrowing Period (1-31 days):
+                    <input type="number" id="days" min="1" max="31" required>
+                    </label>
+                    <div id="alertText" style="color: red; display: none; font-size: 8px; margin: 0;">
+                        Please enter a valid number of days (1–31).
+                    </div>
+                </div>
+                <div class="borrow-period">
+                    <p>Due Date: <span id="dueDate"></span></p>
+                </div>
+                
+                <div class="buttonmodal">
+                    <button type="submit" class="modalbtn proceed" id="proceed">Proceed</button>
+                    <button class="modalbtn close">Close</button>
+                </div>
+            </div>
+
+            <div class="modal-content2" id="confirmationModal" style="display: none;">
+                <img src="/images/logov4.svg" class="modal-logo">
+                <h2>Confirm</h2>
+                <h4>Are you sure you want to borrow books?</h4>
+                <div class="buttonmodal">
+                <button type="button" class="modalbtn confirm" id="confirm">Proceed</button>
+                <button type="button" class="modalbtn close">Close</button> 
+                </div>
+            </div>
+
+            <div class="modal-content2" id="successModal" style="display: none;">
+                <img src="/images/logov4.svg" class="modal-logo">
+                <h2>Success!</h2>
+                <p>Thank you!</p>
+                <img  src="/images/check.svg" class="checkimg">
+                <div class="buttonmodal">
+                    <button type="button" class="modalbtn close">Close</button> 
+                </div>
             </div>
         </div>
 
     <script src="/js/sidebar.js"></script>
     <script src="/js/bookselection.js"></script>
+    <script src="/js/borrowReturnModals.js"></script>
+
     
 </body>
 </html>
