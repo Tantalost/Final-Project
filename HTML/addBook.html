@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Book</title>
     <link rel="stylesheet" href="/CSS/addbookstyle.css">
+    <link rel="stylesheet" href="/CSS/addbookmodal.css">
 </head>
 <body>
     <button id="menu-toggle" class="menu-toggle">
@@ -108,7 +109,7 @@
                         <input type="text" id="publisher" placeholder="Enter Publisher">
 
                         <div class="form-row">
-                            <div class="form-group">
+                            <div class="form-groups">
                                 <label for="publishdate">Published Date</label>
                                 <input type="text" id="publishdate" placeholder="Enter Date">
                             </div>
@@ -139,6 +140,22 @@
 
         </div>
     </div>
+
+    <div id="quantityModal" class="modal">
+        <div class="modal-content">
+          <img src="/images/logo.svg" alt="book icon" class="modal-icon">
+          <h2>Add Quantity</h2>
+          <div class="quantity-control">
+            <button id="decrease">−</button>
+            <span id="quantity">0</span>
+            <button id="increase">+</button>
+          </div>
+          <button class="modal-btn add">Add</button>
+          <button class="modal-btn cancel">Cancel</button>
+        </div>
+      </div>      
+
     <script src="/js/admindash.js"></script>
+    <script src="/js/addbooksmodals.js"></script>
 </body>
 </html>

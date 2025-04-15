@@ -221,10 +221,30 @@ body {
     margin-bottom: 1rem;
 }
 
-.form-group {
+.form-groups {
     flex: 1; 
     display: flex;
     flex-direction: column;
+}
+
+.form-group{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.form-group label{
+    margin: 0;
+}
+
+.form-group img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-left: 4px;
 }
 
 .book-form,

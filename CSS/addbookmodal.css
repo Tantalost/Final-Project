@@ -1,0 +1,77 @@
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+
+  .modal-content {
+    background: #fff;
+    width: 300px;
+    margin: 10% auto;
+    padding: 30px 20px;
+    border-radius: 30px;
+    text-align: center;
+    position: relative;
+    color: #1D3774; 
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .modal-icon {
+    width: 100px;
+    margin-bottom: 15px;
+  }
+  
+  .modal-content h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .quantity-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 25px;
+  }
+  
+  .quantity-control button {
+    background: none;
+    border: 2px solid #1D3774;
+    color: #1D3774;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .modal-btn {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 25px;
+    background-color: #1D3774;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  
+  .modal-btn.cancel {
+    background-color: #1D3774;
+  }
+  
+  .modal-btn:hover {
+    background-color: #3e61b5;
+  }
+  
