@@ -97,19 +97,18 @@
 
             <div class="search-container">
                 <div class="search-bar">
-                    <button class="filter-button">All</button>
+                    <button class="filter-button" id="filter-all">All</button>
                     <input type="text" class="search-input" placeholder="Search Books">
                 </div>
                     <div class="stats-container">
-                        <div class="stat-box">
-                            
+                        <div class="stat-box" id="filter-borrowed" style="cursor: pointer;">
                             <img src="/images/borrow_book_vector.svg" style="height: 40px; margin-right: 10px;">
-                            <div class="stat-style">    
+                            <div class="stat-style">
                                 <div style="font-size: 25px; font-weight: 800; margin-left: 40px;">0</div>
                                 <div style="font-size: 12px; font-weight: 400;">Borrowed Books</div>
                             </div>
                         </div>
-                         <div class="stat-box">
+                        <div class="stat-box" id="filter-returned" style="cursor: pointer;">
                             <img src="/images/return_book_vector.svg" style="height: 40px; margin-right: 10px">
                             <div class="stat-style">
                                 <div style="font-size: 25px; font-weight: 800; margin-left: 40px;">0</div>
@@ -118,7 +117,6 @@
                         </div>
                     </div>
             </div>
-            
 
             <table class="book-table">
                 <thead class="book-header">
@@ -208,10 +206,13 @@
                     </tr>
                 </tbody>
             </table>
+            
         </main>
 
     
     <script src="/js/sidebar.js"></script>
+    <script src="/js/bookselection.js"></script>
+    <script src="/js/history-filter.js"></script>
     
 </body>
 </html>
