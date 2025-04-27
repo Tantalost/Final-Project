@@ -204,73 +204,118 @@
             </div>
         </div>
 
+        
+                <div class="viewmodal" id="viewmodal">
+                    <div class="modal-content" id="returnmodal">
+                        <h2>Return Books</h2>
+                        <div id="return-modal-book-list"></div>
+        
+                        <div class="overdue-container" id="modal-overdue-warning" style="display: none; margin-bottom: 10px;">
+                            <p>Please be aware that you have an overdue fine, which incurs a penalty fee that needs to be paid.</p>
+                        </div>
+        
+                        <div class="buttonmodal">
+                            <button type="button" class="modalbtn proceed" id="return-modal-proceed-button">Proceed</button>
+                            <button type="button" class="modalbtn close">Close</button>
+                        </div>
+                    </div>
+        
+                    <div class="modal-content" id="paymentMethodModal" style="display: none;">
+                        <div class="modal-header">
+                            <h2 style="font-size: 24px;">Payment Method</h2>
+                        </div>
+                        <p class="modal-description">You have overdue items. Please select a payment method for the penalty fees:</p>
+                        <div class="payment-options">
+                            <button class="payment-option-button" id="selectGcash">
+                                <img src="/images/GCash.svg"> 
+                                <span>GCash</span>
+                            </button>
+                            <button class="payment-option-button" id="selectPayAtLibrary">
+                                <img src="/images/PayLibrary.svg">
+                                <span>Pay at Library</span>
+                            </button>
+                        </div>
+                        <div class="buttonmodal" style="margin-top: 20px;">
+                            <button type="button" class="modalbtn close">Cancel</button>
+                        </div>
+                    </div>
+        
 
-        <div class="viewmodal" id="viewmodal">
-            <div class="modal-content" id="returnmodal">
-                <h2>Return Books</h2>
-                <table>
-                    <tr class="book-row">
-                        <td>
-                            <div class="modalbookinfo">
-                                <img src="/images/image 47.svg" alt="The Calculating Stars " class="book-cover">
-                                <div class="modalbookdetails">
-                                    <h4>The Calculating Stars</h4>
-                                    <p>Mary Robinette Kowal</p>
-                                    <p>Date Due: May 1, 2024 </p>
-                                    <p>Status: <span class="overdue">3 Days Overdue</span></p>
-                                    <p>Penalty Fee: PHP 60.00</p>
-                                </div>
+                    <div class="modal-content" id="payAtLibraryModal" style="display: none;">
+                        <div class="modal-header">
+                            <h2>Payment Method</h2>
+                        </div>
+                        <div class="centered-content">
+                            <h3>Pay at Library</h3>
+                            <img src="/images/logov4.svg" class="modal-icon-large">
+                            <p>Visit the library counter to complete your payment in person. Thank you!</p>
+                        </div>
+                        <div class="buttonmodal">
+                            <button type="button" class="modalbtn proceed" id="proceedPayAtLibrary">Proceed</button>
+                            <button type="button" class="modalbtn close">Close</button> 
+                        </div>
+                    </div>
+        
+                    <div class="modal-content" id="gcashPaymentModal" style="display: none;">
+                        <div class="modal-header">
+                            <h2>Payment Method</h2>
+                        </div>
+                        <div class="centered-content">
+                            <h3>GCash</h3>
+                            <h4>Scan to Pay</h4>
+                            <img src="/images/qrfake.svg" class="qr-code">
+                            <p style="font-weight: bold;">SCRIPTORIUM HUB</p>
+                        </div>
+                        <div class="buttonmodal">
+                            <button type="button" class="modalbtn proceed" id="proceedGcash">Proceed</button>
+                            <button type="button" class="modalbtn close">Close</button> 
+                        </div>
+                    </div>
+        
+                    <div class="modal-content" id="authenticationModal" style="display: none;">
+                        <div class="modal-header">
+                            <h2>Authentication</h2>
+                        </div>
+                        <div class="centered-content">
+                            <img src="/images/shield.svg" style="height: 40px; margin-top: 10px;">
+                            <h3>Verify via text</h3>
+                            <p>Please enter the 6-digit authentication code sent to 0915 **** 8642.</p> 
+                            <div class="auth-code-inputs">
+                                <input type="text" maxlength="1" class="auth-input">
+                                <input type="text" maxlength="1" class="auth-input">
+                                <input type="text" maxlength="1" class="auth-input">
+                                <input type="text" maxlength="1" class="auth-input">
+                                <input type="text" maxlength="1" class="auth-input">
+                                <input type="text" maxlength="1" class="auth-input">
                             </div>
-                        </td>
-                    </tr>
-                    <tr class="book-row">    
-                        <td>
-                            <div class="modalbookinfo">
-                                <img src="/images/image 25.svg" alt="Harry Potter and the Sorcerer's Stone" class="book-cover">
-                                <div class="modalbookdetails">
-                                    <h4>Harry Potter and the Sorcerer's Stone</h4>
-                                    <p> J. K. Rowling</p>
-                                    <p>Date Due: May 1, 2024 </p>
-                                    <p>Status: <span class="pending">Pending</span></p>
-                                    <p>Penalty Fee: N/A</p>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+                            <button class="resend-code-button">Resend code</button>
+                        </div>
+                        <div class="buttonmodal proceed-footer">
+                            <button type="button" class="modalbtn proceed" id="proceedAuth">Proceed <img src="/images/arrow-right.svg" alt=""></button>
+                            <button type="button" class="modalbtn close">Close</button> 
+                        </div>
+                    </div>
+        
+                    <div class="modal-content2" id="verifiedModal" style="display: none;"> 
+                        <img src="/images/logov4.svg" class="modal-logo">
+                        <h2>Success!</h2>
+                        <p>Thank you!</p>
+                        <img  src="/images/check.svg" class="checkimg">
+                        <div class="buttonmodal">
+                            <button type="button" class="modalbtn close" id="proceedVerified">Close</button>
+                        </div>
+                    </div>
 
-                <div class="overdue-container">
-                    <p>Please be aware that you have an overdue fine, which incurs a penalty fee that needs to be paid.</p>
-                </div>
-                
-                <div class="buttonmodal">
-                    <button type="submit" class="modalbtn proceed" id="return">Return</button>
-                    <button class="modalbtn close">Close</button>
-                </div>
-            </div>
-
-    
-            <div class="modal-content2" id="confirmationModal" style="display: none;">
-                <img src="/images/logov4.svg" class="modal-logo">
-                <h2>Confirm</h2>
-                <h4>Are you sure you want to return books?</h4>
-                <div class="buttonmodal">
-                <button type="button" class="modalbtn confirm" id="confirm">Confirm</button>
-                <button type="button" class="modalbtn close">Close</button> 
-                </div>
-            </div>
-            
-
-            <div class="modal-content2" id="successModal" style="display: none;">
-                <img src="/images/logov4.svg" class="modal-logo">
-                <h2>Success!</h2>
-                <p>Thank you!</p>
-                <img  src="/images/check.svg" class="checkimg">
-                <div class="buttonmodal">
-                    <button type="button" class="modalbtn close">Close</button> 
-                </div>
-            </div>
-        </div>
+                    <div class="modal-content2" id="successNoOverdueModal" style="display: none;">
+                        <img src="/images/logov4.svg" class="modal-logo">
+                        <h2>Success!</h2>
+                        <p>Thank you! Please wait for the Librarian to verify returned books</p>
+                        <img  src="/images/check.svg" class="checkimg">
+                        <div class="buttonmodal">
+                            <button type="button" class="modalbtn close">Close</button>
+                        </div> 
+                    </div>
+                </div> 
 
 
     
