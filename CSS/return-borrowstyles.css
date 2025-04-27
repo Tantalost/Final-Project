@@ -490,3 +490,15 @@
     color: #0D3958;
    
 }
+
+.active-filter {
+    box-shadow: 0px 0px 8px rgba(13, 57, 88, 0.6);
+    transform: scale(1.02); 
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
+}
+
+
+.filter-button.active-filter {
+    background-color: #a9d9ff; 
+    font-weight: 700;
+}
