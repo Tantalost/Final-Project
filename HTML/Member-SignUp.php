@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Member Signup Page</title>
+    <link rel="stylesheet" href="/css/signup-style.css" />
+</head>
+<body>
+    <div class="container">
+        <div style="font-family: Montserrat;  ">
+            <img class="logo" src="/images/logo (3).svg"  alt="Logo">
+            <h3 style="color: #ffffff; font-size: larger; margin: 0;">Welcome !</h3>
+            <h2 style="color: #ffffff; font-weight: 400; font-size: medium; margin: 0;">SIGN UP</h2>
+        </div>
+
+    <form class="form">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Enter your name" required />
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Enter your email" required />
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password" required />
+        </div>
+
+        <div class="remember-forgot">
+            <label for="remember">
+                <input type="checkbox" id="remember"> Remember me
+            </label>
+        </div>
+
+        <button type="submit" class="btn">Sign Up</button>
+
+    </form>
+
+        <p>Already have an account? <a href="/html/Member-Login.html">Sign Up</a></p>
+    </div>
+</body>
+</html>
