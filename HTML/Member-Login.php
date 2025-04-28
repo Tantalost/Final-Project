@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Login Page</title>
+    <link rel="stylesheet" href="/css/login-style.css">
+</head>
+<body>
+    <div class="container">
+        <div style="font-family: Montserrat; padding: 0%; margin: 0%;">
+            <img class="logo" src="/images/logo (3).svg"  alt="Logo">
+            <h3 style="color: #0D3958; font-size: larger;">Welcome Back !</h3>
+            <h2 style="color: #0D3958; font-weight: 400; font-size: medium;">LOG IN</h2>
+        </div>
+        
+        <form class="form">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+
+            <div class="remember-forgot">
+                <label for="remember">
+                    <input type="checkbox" id="remember"> Remember me
+                </label>
+                <a href="#">Forgot Password?</a>
+            </div>
+
+            <button type="button" class="btn" id="gotomember">Log In</button>
+        </form>
+
+        <p>Don't have an account? <a href="/html/Member-SignUp.html">Sign Up</a></p>
+    </div>
+
+    <script src="/js/login_signup.js"></script>
+</body>
+</html>
