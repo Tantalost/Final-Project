@@ -1,0 +1,561 @@
+/* Import the correct font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700&display=swap');
+
+:root {
+    /* Variables from the Blue Theme */
+    --sidebar-width: 250px;
+    --topbar-height: 60px; /* Adjusted to match blue theme */
+    --transition-speed: 0.3s;
+    --primary-blue: #6AB0E3; /* Main blue color */
+    --light-background: #EAF6FF; /* Light background for hover/alt */
+    --background-body: #f5f5f5; /* Main body background */
+    --background-content: white; /* Content area background */
+    --text-primary-blue: #1D3774; /* Dark blue text */
+    --text-secondary-blue: #0D3958; /* Slightly darker blue */
+    --text-light: white; /* Light text color */
+    --text-medium: #555; /* Medium gray text */
+    --border-light: #d8e2f0; /* Light border color */
+    --border-medium: #a8bce0; /* Medium border for inputs */
+    --placeholder-text: #6a8ac8; /* Placeholder text color */
+    --warning-red: #dc3545;
+    --warning-yellow-bg: #fef9e7;
+    --warning-yellow-border: #f1c40f;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-body); /* Use blue theme background */
+    color: var(--text-secondary-blue); /* Use blue theme text */
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- Sidebar Styles (Adapted to Blue Theme) --- */
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    background-color: var(--primary-blue); /* Use blue */
+    color: var(--text-light);
+    padding: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    /* Start hidden for toggle functionality */
+    left: calc(-1 * var(--sidebar-width));
+    transition: left var(--transition-speed) ease;
+    z-index: 900;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Make sidebar visible when active class is added */
+.sidebar.active {
+    left: 0;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px 20px 20px; /* Adjusted padding */
+    margin-bottom: 1rem;
+}
+
+.logo {
+    width: 60%; /* Use blue theme size */
+    max-width: 150px;
+    height: auto;
+    /* Filter might not be needed if SVG uses fill="currentColor" or is already white */
+    /* filter: brightness(0) invert(1);  */
+}
+
+.menu {
+    flex-grow: 1;
+    width: 100%;
+    text-align: left;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    padding: 15px 30px; /* Use blue theme padding */
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 400; /* Use blue theme weight */
+    font-size: 1em; /* Use blue theme size */
+    transition: background-color var(--transition-speed);
+    gap: 15px; /* Use blue theme gap */
+    opacity: 1; /* Remove opacity from brown theme */
+}
+
+.menu a:hover,
+.menu a.active {
+    background: rgba(255, 255, 255, 0.2); /* Use blue theme hover */
+}
+
+.menu a img {
+    width: 20px; /* Use blue theme icon size */
+    height: 20px;
+    flex-shrink: 0;
+    /* Filter might not be needed if SVG uses fill="currentColor" or is already white */
+     /* filter: brightness(0) invert(1); */
+}
+
+.footer-sidebar {
+    width: 100%;
+    text-align: left;
+    padding: 20px 30px; /* Use blue theme padding */
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Use blue theme border */
+}
+
+.footer-sidebar a {
+    display: block;
+    padding: 5px 0;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: opacity var(--transition-speed);
+    font-size: 0.8em; /* Adjusted size */
+    opacity: 0.8; /* Use blue theme opacity */
+}
+.footer-sidebar a:hover {
+    opacity: 1;
+}
+
+/* --- Main Content Area Styles (Adapted to Blue Theme) --- */
+.main-content {
+    margin-left: 0; /* Start unshifted */
+    width: 100%;
+    transition: margin-left var(--transition-speed) ease; /* Only need margin transition */
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* Remove background image from brown theme */
+    background-color: var(--background-body); /* Use light page background */
+}
+
+/* Shift content when sidebar is active */
+.main-content.shifted {
+    margin-left: var(--sidebar-width);
+}
+
+/* --- Topbar Styles (Adapted to Blue Theme) --- */
+.topbar {
+    width: 100%; /* Full width initially */
+    height: var(--topbar-height);
+    background-color: var(--primary-blue); /* Use blue */
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px; /* Use blue theme padding */
+    box-sizing: border-box;
+    z-index: 100; /* Lower than sidebar */
+    color: var(--text-light);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+    /* No margin-left needed initially */
+    /* transition: margin-left var(--transition-speed) ease, width var(--transition-speed) ease; */
+}
+
+/* No transition needed for topbar if it's always full width when sidebar overlays */
+
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    /* padding-left: 20px; (Handled by topbar padding) */
+}
+
+/* Show hamburger toggle based on blue theme structure */
+.menu-toggle {
+   display: flex; /* Show the toggle */
+   background: none;
+   border: none;
+   cursor: pointer;
+   padding: 8px;
+   align-items: center;
+   justify-content: center;
+   margin-right: 15px;
+}
+.menu-toggle img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Use blue theme gap */
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.profile img {
+    width: 35px; /* Use blue theme icon size */
+    height: 35px;
+    border-radius: 50%;
+    /* No filter needed if image is already correct */
+}
+
+.profile div {
+    line-height: 1.3;
+    font-size: 0.9em; /* Use blue theme size */
+}
+.profile span { /* Style for 'Student' text */
+    font-size: 0.8em; /* Match blue theme */
+    opacity: 0.8;
+    font-weight: 400;
+}
+
+/* Logout Button and Dropdown Styles (Use Blue Theme Styles) */
+.logout {
+    position: relative;
+    margin-right: 10px; /* Adjusted margin */
+}
+
+.menu-button {
+    background: none; border: none; cursor: pointer; padding: 8px;
+    display: flex; align-items: center; justify-content: center;
+}
+
+.logout-icon {
+    width: 24px; /* Use blue theme size */
+    height: auto;
+    filter: brightness(0) invert(1);
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none; position: absolute; top: calc(100% + 8px); right: 0;
+    background: var(--background-content); /* White background */
+    border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-width: 220px; padding: 8px; z-index: 1000;
+    color: var(--text-secondary-blue); /* Dark blue text */
+}
+
+.dropdown-menu.show { display: block; }
+
+.menu-item {
+    display: flex; align-items: center; gap: 12px; padding: 12px;
+    cursor: pointer; color: var(--text-secondary-blue); transition: background-color 0.2s;
+    border-radius: 8px; font-size: 14px; font-weight: 500;
+}
+.menu-item:hover { background-color: var(--light-background); } /* Light blue hover */
+.menu-item img { width: 20px; height: 20px; filter: none; }
+.logout-option { border-top: 1px solid var(--light-background); margin-top: 8px; padding-top: 12px; }
+.logout-option span { color: var(--warning-red); } /* Use warning red */
+.logout-option img { filter: invert(36%) sepia(51%) saturate(3731%) hue-rotate(337deg) brightness(87%) contrast(111%); }
+
+
+/* --- Page Specific Content Styles (Adapted to Blue Theme) --- */
+.page-specific-content {
+    padding: 20px 40px; /* Use blue theme padding */
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    background-color: var(--background-body); /* Ensure correct background */
+}
+
+/* Remove the dark overlay */
+.page-specific-content::before {
+    display: none;
+}
+
+.content-wrapper {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    position: relative;
+    z-index: 1; /* Reset z-index */
+    align-items: flex-start;
+}
+
+.form-section {
+    flex: 1;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Use blue theme margin */
+    gap: 15px;
+    color: var(--text-primary-blue); /* Use dark blue text */
+}
+
+.back-button {
+    background: none; border: none; cursor: pointer; padding: 5px; display: flex;
+}
+.back-button img {
+    width: 30px;
+    height: 30px;
+    filter: none; /* Remove filter if SVG matches blue theme */
+    /* Or apply filter if SVG is black: filter: invert(18%) sepia(30%) saturate(2500%) hue-rotate(190deg) brightness(90%) contrast(90%); */
+}
+
+.page-header h1 {
+    font-size: 1.8em; /* Use blue theme size */
+    margin: 0;
+    font-weight: 600;
+    color: var(--text-primary-blue); /* Use dark blue */
+}
+
+.form-container {
+    background-color: var(--background-content); /* White background */
+    padding: 30px; /* Use blue theme padding */
+    border-radius: 15px; /* Use blue theme radius */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Use blue theme shadow */
+    color: var(--text-primary-blue); /* Use dark blue text */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Adjusted margin */
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600; /* Match blue theme */
+    margin-bottom: 8px;
+    color: var(--text-primary-blue); /* Dark blue labels */
+    font-size: 0.9em; /* Adjusted size */
+}
+
+.form-group.static-info {
+    display: flex; align-items: baseline; gap: 10px;
+}
+
+.form-group.static-info .isbn-value {
+    font-weight: 500;
+    color: var(--text-medium); /* Use medium gray text */
+}
+
+input[type="text"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px 12px; /* Use blue theme padding */
+    border: 1px solid var(--border-medium); /* Use medium blue border */
+    border-radius: 5px; /* Use blue theme radius */
+    background-color: #eef2f7; /* Use light input background from blue theme */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9em; /* Use blue theme size */
+    color: var(--text-primary-blue); /* Dark blue text */
+    transition: border-color 0.2s;
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+    color: var(--placeholder-text); /* Use blue theme placeholder color */
+    opacity: 1;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary-blue); /* Highlight with main blue */
+    box-shadow: 0 0 0 2px rgba(106, 176, 227, 0.2); /* Blue focus shadow */
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px; /* Match blue theme height */
+}
+
+.date-select-group {
+    display: flex;
+    gap: 10px; /* Adjusted gap */
+}
+
+.date-select-group select {
+    flex: 1; /* Let them share space */
+    appearance: none;
+    /* Update arrow color to match blue theme */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%231D3774' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 0.8em; /* Adjusted size */
+    padding-right: 25px;
+}
+
+.form-actions {
+    margin-top: 25px; /* Adjusted margin */
+    text-align: right; /* Align button right like blue theme */
+}
+
+.submit-button {
+    background-color: var(--primary-blue); /* Use main blue */
+    color: var(--text-light);
+    padding: 10px 25px; /* Use blue theme padding */
+    border: none;
+    border-radius: 5px; /* Use blue theme radius */
+    font-weight: bold; /* Match blue theme */
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.submit-button:hover {
+    background-color: #599cd1; /* Darker blue hover */
+}
+
+/* --- Reports Section Styles (Adapted to Blue Theme) --- */
+.reports-section {
+    background-color: var(--background-content); /* White background */
+    padding: 20px; /* Adjusted padding */
+    border-radius: 15px; /* Use blue theme radius */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Use blue theme shadow */
+    width: 320px;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 0; /* Remove margin added for brown theme */
+    color: var(--text-primary-blue); /* Use dark blue text */
+}
+
+.reports-section h2 {
+    font-size: 1.2em; /* Adjusted size */
+    font-weight: bold; /* Match blue theme */
+    color: var(--text-primary-blue);
+    margin-bottom: 15px; /* Adjusted margin */
+    text-align: left; /* Align left */
+    padding-bottom: 10px; /* Add padding bottom */
+    border-bottom: 1px solid var(--border-light); /* Add border */
+}
+
+.report-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px; /* Adjusted gap */
+    padding: 12px 0; /* Adjust padding, remove horizontal */
+    background-color: transparent; /* Remove inner background */
+    border-radius: 0; /* Remove inner radius */
+    margin-bottom: 10px; /* Adjusted margin */
+    border: none; /* Remove inner border */
+    border-bottom: 1px solid var(--border-light); /* Add bottom border */
+}
+.report-item:last-child {
+    border-bottom: none; /* Remove border for last item */
+    margin-bottom: 0;
+}
+
+
+.report-item.placeholder {
+    background-color: transparent;
+    min-height: 40px;
+    border: none;
+    border-bottom: 1px dashed var(--border-medium); /* Dashed border for placeholder */
+}
+.report-item.placeholder:last-child {
+    border-bottom: none;
+}
+
+
+.report-icon {
+    width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px;
+    /* Update icon path/color if needed */
+    content: url('warning-icon-blue-theme.svg'); /* Use a different icon if needed */
+    color: var(--warning-red); /* Keep red for warning */
+}
+
+.report-item p {
+    font-size: 0.85em; /* Use blue theme size */
+    line-height: 1.5; /* Use blue theme line height */
+    color: var(--text-medium); /* Use medium gray text */
+    margin: 0;
+}
+
+.report-item p a {
+    color: var(--text-primary-blue); /* Dark blue link */
+    font-weight: bold; /* Match blue theme */
+    text-decoration: underline;
+}
+.report-item p a:hover {
+     color: var(--primary-blue); /* Lighter blue hover */
+     text-decoration: none;
+}
+
+/* --- Responsive Adjustments (Keep structure, adapt styles if needed) --- */
+
+@media (max-width: 1200px) {
+    .content-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    .form-section {
+        max-width: 90%; /* Allow slightly wider */
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    .reports-section {
+        width: 90%;
+        max-width: 600px; /* Allow wider reports */
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    /* Use toggle behaviour from blue theme */
+     .sidebar { left: calc(-1 * var(--sidebar-width)); }
+     .main-content { margin-left: 0; width: 100%; }
+     .topbar { margin-left: 0; width: 100%; padding: 0 15px;}
+     .main-content.shifted {
+         margin-left: 0; /* Sidebar overlays, content doesn't shift */
+     }
+
+     /* .menu-toggle { display: flex; } /* Already displayed by default now */
+     .profile div { display: none; } /* Hide user name text */
+
+
+    .page-specific-content {
+        padding: 20px 15px;
+    }
+    .content-wrapper {
+         gap: 20px;
+    }
+     .form-section {
+        max-width: 100%;
+    }
+     .reports-section {
+        width: 100%;
+    }
+    .form-container {
+        padding: 20px; /* Reduce padding */
+    }
+    .date-select-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .date-select-group select {
+        width: 100%;
+    }
+
+     .page-header h1 {
+        font-size: 1.5em;
+    }
+     .back-button img {
+         width: 25px; height: 25px;
+     }
+}
