@@ -1,3 +1,30 @@
+<?php
+session_start();
+require_once '../db_connect.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    try {
+        $stmt = $pdo->prepare("SELECT * FROM admin WHERE email = ?");
+        $stmt->execute([$email]);
+        $user = $stmt->fetch();
+
+        if ($user && password_verify($password, $user['password'])) {
+            $_SESSION['admin_id'] = $user['id'];
+            $_SESSION['admin_name'] = $user['name'];
+            header("Location: admindash.html");
+            exit();
+        } else {
+            $error = "Invalid email or password";
+        }
+    } catch(PDOException $e) {
+        $error = "Login failed: " . $e->getMessage();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,15 +41,19 @@
             <h2 style="color: #0D3958; font-weight: 400; font-size: medium;">LOG IN</h2>
         </div>
 
-        <form class="form">
+        <?php if(isset($error)) { ?>
+            <div style="color: red; margin-bottom: 10px;"><?php echo $error; ?></div>
+        <?php } ?>
+
+        <form method="POST" action="">
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Enter your email" required>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
             </div>
 
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Enter your password" required>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
             </div>
 
             <div class="remember-forgot">
@@ -35,9 +66,7 @@
             <button type="button" class="btn" id="gotoadmin">Sign Up</button>
         </form>
 
-        <p>Don't have an account? <a href="/html/Admin-SignUp.html">Sign Up</a></p>
+        <p>Don't have an account? <a href="/html/Admin-SignUp.php">Sign Up</a></p>
     </div>
-
-    <script src="/js/login_signup.js"></script>
 </body>
 </html>

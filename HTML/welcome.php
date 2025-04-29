@@ -35,12 +35,12 @@
         <div class="role-content"> 
         <h2>Select Role</h2>
         <div class="role-selection">
-            <div class="role-box" onclick="redirectTo('Admin-Login.html')">
+            <div class="role-box" onclick="redirectTo('Admin-Login.php')">
                 <p><img class="admin" src="/images/Group 3.svg" alt="admin"></p>
                 <h3>ADMIN</h3>
             </div>
             
-            <div class="role-box" onclick="redirectTo('Member-Login.html')">
+            <div class="role-box" onclick="redirectTo('Member-Login.php')">
                 <p><img class="Member" src="/images/🦆 icon _group students_.svg" alt="Member"></p>
                 <h3>STUDENT</h3>
             </div>
