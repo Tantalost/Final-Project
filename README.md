@@ -1,4 +1,4 @@
 # Final-Project
 
 
-Will be used for the final presentation
+This is our groups final output, and will be presented on a later date.
