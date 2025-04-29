@@ -2,12 +2,14 @@
 session_start();
 require_once '../db_connect.php';
 
+$error = '';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     try {
-        $stmt = $pdo->prepare("SELECT * FROM admin WHERE email = ?");
+        $stmt = $pdo->prepare("SELECT * FROM admins WHERE email = ?");
         $stmt->execute([$email]);
         $user = $stmt->fetch();
 
@@ -42,8 +44,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <?php if(isset($error)) { ?>
-            <div style="color: red; margin-bottom: 10px;"><?php echo $error; ?></div>
+            <div style="color: red; margin-bottom: 10px;"><?php echo htmlspecialchars($error); ?></div>
         <?php } ?>
+        
 
         <form method="POST" action="">
             <div class="form-group">
@@ -63,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a href="#">Forgot Password?</a>
             </div>
 
-            <button type="button" class="btn" id="gotoadmin">Sign Up</button>
+            <button type="submit" class="btn" id="gotoadmin">Log In</button>
         </form>
 
         <p>Don't have an account? <a href="/html/Admin-SignUp.php">Sign Up</a></p>

@@ -36,7 +36,7 @@
         </label>
       </div>
 
-      <button type="submit" class="btn" id="gotoadmin">Log In</b utton>
+      <button type="submit" class="btn" id="gotoadmin">Sign Up</b utton>
     </form>
 
     <p>Already have an account? <a href="/html/Member-Login.html">Sign in</a></p>
