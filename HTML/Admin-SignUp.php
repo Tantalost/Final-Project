@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <?php if(isset($error)) { ?>
             <div style="color: red; margin-bottom: 10px;"><?php echo htmlspecialchars($error); ?></div>
-        <?php } ?>
+    <?php } ?>
 
     <form method="POST" action="">
       <div class="form-group">
