@@ -41,6 +41,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h2 style="color: #ffffff; font-weight: 400; font-size: medium; margin: 0;">SIGN UP</h2>
     </div>
 
+    <?php if(isset($error)) { ?>
+            <div style="color: red; margin-bottom: 10px;"><?php echo htmlspecialchars($error); ?></div>
+        <?php } ?>
+
     <form method="POST" action="">
       <div class="form-group">
         <label for="name">Name</label>

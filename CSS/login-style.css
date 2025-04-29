@@ -133,6 +133,7 @@ input:focus {
     border-radius: 10px;
     cursor: pointer;
     margin-top: 0px;
+    width: 20rem;
 }
 
 .btn:hover {
