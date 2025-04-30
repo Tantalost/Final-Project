@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (goToAdminBtn) {
         goToAdminBtn.addEventListener('click', function () {
-            window.location.href = '/HTML/admindash.html';
+            window.location.href = '/HTML/admindash.php';
         });
     }
 
