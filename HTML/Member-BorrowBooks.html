@@ -11,7 +11,7 @@
 <body>
     <aside class="sidebar" id="sidebar">
         <div class="logo-container">
-            <img class="logo" src="/images/logov5.svg" alt="Logo">
+            <img class="logo" src="/images/logo (3).svg" alt="Logo">
         </div>
 
         <nav class="menu">
@@ -258,6 +258,15 @@
     <script src="/js/sidebar.js"></script>
     <script src="/js/bookselection.js"></script>
     <script src="/js/borrowReturnModals.js"></script>
+    <script>
+        const logout = document.querySelectorAll('.dropdown-menu .menu-item')
+        logout.forEach(card => {
+            card.addEventListener('click', function () {
+                const link = this.getAttribute('data-link');
+                if (link) window.location.href = link;
+            });
+        });
+    </script>
 
     
 </body>
