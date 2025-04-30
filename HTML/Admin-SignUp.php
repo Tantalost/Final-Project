@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
           $stmt = $pdo->prepare("INSERT INTO admins (name, email, password) VALUES (?, ?, ?)");
             $stmt->execute([$name, $email, $password]);
-            header("Location: admindash.html");
+            header("Location: admindash.php");
             exit();
         }
     } catch(PDOException $e) {

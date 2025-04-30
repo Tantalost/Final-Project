@@ -21,7 +21,7 @@ session_start();
             <img src="/images//logo.svg" alt="Library Logo">
         </div>
         <div class="menu">
-            <a href="/HTML/admindash.html" class="active">
+            <a href="/HTML/admindash.php" class="active">
                 <img src="/images/dashboard_vector.svg" alt="Dashboard">
                 Dashboard
             </a>
