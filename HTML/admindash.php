@@ -192,11 +192,11 @@ session_start();
                 </div>
 
                 <div class="fines-section">
-                <div id="total-fines" style="margin-top: 20px; font-weight: bold;">
-                    Total Fines Collected: PHP 0.00
-                </div>
                     <h2>Fines Collected</h2>
                     <canvas id="lineChart"></canvas>
+                    <div id="total-fines" style="margin-top: 20px; font-weight: bold;">
+                    Total Fines Collected: PHP 0.00
+                    </div>
                 </div>
 
                 <div class="reports-section">
