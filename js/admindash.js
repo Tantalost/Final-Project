@@ -57,44 +57,32 @@ document.addEventListener('DOMContentLoaded', function () {
     // Magic Chart Lines
     const lineChartEl = document.getElementById('lineChart');
     if (lineChartEl) {
-        const ctx = lineChartEl.getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-                datasets: [{
+    const ctx = lineChartEl.getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+            datasets: [
+                {
                     label: 'Books Borrowed',
                     data: [12, 19, 3, 5, 2],
                     fill: false,
                     borderColor: 'rgb(75, 192, 192)',
                     tension: 0.4
-                }]
-            },
-            options: {
-                responsive: false,
-                maintainAspectRatio: false
-            }
-        });
-    }
-    function calculateTotalFines() {
-        let total = 0;
-        const rows = document.querySelectorAll("table tbody tr");
-    
-        rows.forEach(row => {
-          const fineCell = row.children[3]; // 4th column = Overdue Fined
-          if (fineCell && fineCell.textContent.includes("PHP")) {
-            const amount = parseFloat(fineCell.textContent.replace("PHP", "").trim());
-            if (!isNaN(amount)) {
-              total += amount;
-            }
-          }
-        });
-    
-        // Show total
-        document.getElementById("total-fines").textContent =
-          `Total Fines Collected: PHP ${total.toFixed(2)}`;
-      }
-    
-      // Run it when page loads
-      window.addEventListener("DOMContentLoaded", calculateTotalFines);
+                },
+                {
+                    label: 'Fines Collected',
+                    data: [0, 109, 50, 30, 70],
+                    fill: false,
+                    borderColor: 'rgb(255, 99, 132)',
+                    tension: 0.4
+                }
+            ]
+        },
+        options: {
+            responsive: false,
+            maintainAspectRatio: false
+        }
+    });
+}
 });
