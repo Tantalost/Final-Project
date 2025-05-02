@@ -76,4 +76,25 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+    function calculateTotalFines() {
+        let total = 0;
+        const rows = document.querySelectorAll("table tbody tr");
+    
+        rows.forEach(row => {
+          const fineCell = row.children[3]; // 4th column = Overdue Fined
+          if (fineCell && fineCell.textContent.includes("PHP")) {
+            const amount = parseFloat(fineCell.textContent.replace("PHP", "").trim());
+            if (!isNaN(amount)) {
+              total += amount;
+            }
+          }
+        });
+    
+        // Show total
+        document.getElementById("total-fines").textContent =
+          `Total Fines Collected: PHP ${total.toFixed(2)}`;
+      }
+    
+      // Run it when page loads
+      window.addEventListener("DOMContentLoaded", calculateTotalFines);
 });
