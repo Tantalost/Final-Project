@@ -1,0 +1,593 @@
+:root {
+    --sidebar-width: 250px;
+    --topbar-height: 60px;
+    --transition-speed: 0.3s;
+    --primary-color: #6AB0E3;
+    --primary-text-color: #0D3958;
+    --secondary-color: #442200;
+    --background-color: #f5f5f5;
+    --brown-color: #8B5A2B;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--primary-text-color);
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Sidebar Styles (kept from original) */
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    left: calc(-1 * var(--sidebar-width));
+    transition: left var(--transition-speed) ease;
+    z-index: 900;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin-bottom: 1rem;
+}
+
+.logo {
+    width: 60%;
+    max-width: 150px;
+    height: auto;
+}
+
+.menu {
+    flex-grow: 1;
+    width: 100%;
+    text-align: left;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    padding: 15px 30px;
+    color: white;
+    text-decoration: none;
+    font-weight: 400;
+    transition: background-color var(--transition-speed);
+    gap: 15px;
+}
+
+.menu a:hover,
+.menu a.active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.menu a img {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.footer-sidebar {
+    width: 100%;
+    text-align: left;
+    padding: 20px 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-sidebar a {
+    display: block;
+    padding: 5px 0;
+    color: white;
+    text-decoration: none;
+    transition: opacity var(--transition-speed);
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.footer-sidebar a:hover {
+    opacity: 1;
+}
+
+/* Main Content Styles */
+.main-content {
+    margin-left: 0;
+    width: 100%;
+    transition: margin-left var(--transition-speed) ease;
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content.shifted {
+    margin-left: var(--sidebar-width);
+}
+
+/* Topbar Styles (kept from original) */
+.topbar {
+    width: 100%;
+    height: var(--topbar-height);
+    background-color: var(--primary-color);
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    box-sizing: border-box;
+    z-index: 100;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-left: 20px;
+}
+
+.menu-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.menu-toggle img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: white;
+}
+
+.profile img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.profile div {
+    line-height: 1.3;
+}
+
+.logout {
+    position: relative;
+    margin-right: 30px;
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-icon {
+    width: 24px;
+    height: auto;
+    filter: brightness(0) invert(1);
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-width: 220px;
+    padding: 8px;
+    z-index: 1000;
+    color: var(--primary-text-color);
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    cursor: pointer;
+    color: var(--primary-text-color);
+    transition: background-color 0.2s;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.menu-item:hover {
+    background-color: #EAF6FF;
+}
+
+.menu-item img {
+    width: 20px;
+    height: 20px;
+    filter: none;
+}
+
+.logout-option {
+    border-top: 1px solid #EAF6FF;
+    margin-top: 8px;
+    padding-top: 12px;
+}
+
+.logout-option span {
+    color: #d32f2f;
+}
+
+.logout-option img {
+    filter: invert(36%) sepia(51%) saturate(3731%) hue-rotate(337deg) brightness(87%) contrast(111%);
+}
+
+/* Page-specific content styles (based on image) */
+.page-specific-content {
+    padding: 0;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hero Section with brown background */
+.hero-section {
+    background-color: #8B5A2B;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-avatar img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.user-details h2 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.user-details span {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+}
+
+.logout-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.logout-button img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+/* Search section styles */
+.search-section {
+    padding: 20px;
+    position: relative;
+}
+
+.search-header h1 {
+    color: #6AB0E3;
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.search-container {
+    max-width: 600px;
+    margin: 0 auto 20px;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    border: 1px solid #ccc;
+}
+
+.search-tabs {
+    display: flex;
+}
+
+.tab {
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+}
+
+.tab.active {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    color: #333;
+}
+
+.search-input {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+/* Browse dropdown */
+.browse-container {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    text-align: left;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-btn {
+    background-color: white;
+    color: #333;
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.dropdown-arrow {
+    font-size: 10px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    z-index: 10;
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown-content a {
+    padding: 10px 15px;
+    display: block;
+    color: #333;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.dropdown-content a:hover {
+    background-color: #f5f5f5;
+}
+
+/* Books table styles */
+.books-table-section {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.books-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.books-table thead {
+    background-color: #f5f5f5;
+}
+
+.books-table th {
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+.books-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.book-details {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.book-cover {
+    width: 60px;
+    height: 80px;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.book-cover img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.book-info h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.book-info p {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 2px;
+}
+
+/* Footer styles */
+.main-footer {
+    padding: 15px 20px;
+    background-color: #f5f5f5;
+    margin-top: auto;
+    border-top: 1px solid #eee;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.footer-links a {
+    color: #666;
+    font-size: 12px;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .search-header h1 {
+        font-size: 24px;
+    }
+    
+    .book-details {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .book-cover {
+        margin-bottom: 10px;
+    }
+    
+    .books-table th:nth-child(2),
+    .books-table td:nth-child(2),
+    .books-table th:nth-child(3),
+    .books-table td:nth-child(3) {
+        display: none;
+    }
+    
+    .main-content.shifted {
+        margin-left: 0;
+    }
+    
+    .sidebar {
+        box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .search-header h1 {
+        font-size: 20px;
+    }
+    
+    .search-container {
+        flex-direction: column;
+    }
+    
+    .search-tabs {
+        width: 100%;
+    }
+    
+    .tab {
+        flex: 1;
+        text-align: center;
+    }
+    
+    .book-info h3 {
+        font-size: 13px;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}
