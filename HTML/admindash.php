@@ -322,6 +322,7 @@ session_start();
             </div>
         </div>
     </div>
+    
     <div id="profileModal" class="viewmodal" role="dialog" aria-modal="true" tabindex="-1">
         <div class="modal-content">
             <div class="modal-header">
@@ -349,7 +350,21 @@ session_start();
             </div>
         </div>
     </div>
-    
+
+    <div id="logoutModal" class="viewmodal" role="dialog" aria-modal="true" tabindex="-1">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Logout Confirmation</h2>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to log out?</p>
+            </div>
+            <div class="modal-actions">
+                <button class="modalbtn proceed" id="confirmLogout">Yes</button>
+                <button class="modalbtn close">No</button>
+            </div>
+        </div>
+    </div>
     <script src="/js/timecheck.js"></script>
     <script src="/js/admindash.js"></script>
 </body>
