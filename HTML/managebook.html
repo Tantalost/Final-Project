@@ -310,6 +310,67 @@
         </div>
     </div>
 
+    <div id="deleteBookModal" class="viewmodal" role="dialog" aria-modal="true" tabindex="-1">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Delete Book</h2>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to remove this book?</p>
+            </div>
+            <div class="modal-actions">
+                <button class="modalbtn proceed" id="confirmDelete">Remove Book</button>
+                <button class="modalbtn close">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="successModal" class="viewmodal" role="dialog" aria-modal="true" tabindex="-1">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Success</h2>
+            </div>
+            <div class="modal-body">
+                <p>Book removed successfully.</p>
+            </div>
+            <div class="modal-actions">
+                <button class="modalbtn close">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const deleteBookModal = document.getElementById('deleteBookModal');
+            const successModal = document.getElementById('successModal');
+            const deleteButtons = document.querySelectorAll('.book-actions button:nth-child(2)');
+            const closeButtons = document.querySelectorAll('.modalbtn.close');
+            const confirmDeleteButton = document.getElementById('confirmDelete');
+
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    deleteBookModal.style.display = 'flex';
+                    deleteBookModal.classList.add('active');
+                });
+            });
+
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    deleteBookModal.style.display = 'none';
+                    deleteBookModal.classList.remove('active');
+                    successModal.style.display = 'none';
+                    successModal.classList.remove('active');
+                });
+            });
+
+            confirmDeleteButton.addEventListener('click', function() {
+                deleteBookModal.style.display = 'none';
+                deleteBookModal.classList.remove('active');
+                successModal.style.display = 'flex';
+                successModal.classList.add('active');
+            });
+        });
+    </script>
     <script src="/js/admindash.js"></script>
 
 </body>
