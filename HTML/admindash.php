@@ -322,7 +322,7 @@ session_start();
             </div>
         </div>
     </div>
-    
+
     <div id="profileModal" class="viewmodal" role="dialog" aria-modal="true" tabindex="-1">
         <div class="modal-content">
             <div class="modal-header">
@@ -365,6 +365,55 @@ session_start();
             </div>
         </div>
     </div>
+    <div id="logoutModal" class="viewmodal" role="dialog" aria-modal="true" tabindex="-1">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Logout Confirmation</h2>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to log out?</p>
+            </div>
+            <div class="modal-actions">
+                <button class="modalbtn proceed" id="confirmLogout">Yes</button>
+                <button class="modalbtn close">No</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileModal = document.getElementById('profileModal');
+            const logoutModal = document.getElementById('logoutModal');
+            const profileMenuItem = document.querySelector('.dropdown-menu .menu-item:nth-child(1)');
+            const logoutMenuItem = document.querySelector('.dropdown-menu .menu-item.logout-option');
+            const closeButtons = document.querySelectorAll('.modalbtn.close');
+            const confirmLogoutButton = document.getElementById('confirmLogout');
+
+            profileMenuItem.addEventListener('click', function() {
+                profileModal.style.display = 'flex';
+                profileModal.classList.add('active');
+            });
+
+            logoutMenuItem.addEventListener('click', function(e) {
+                e.preventDefault();
+                logoutModal.style.display = 'flex';
+                logoutModal.classList.add('active');
+            });
+
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    profileModal.style.display = 'none';
+                    profileModal.classList.remove('active');
+                    logoutModal.style.display = 'none';
+                    logoutModal.classList.remove('active');
+                });
+            });
+
+            confirmLogoutButton.addEventListener('click', function() {
+                window.location.href = 'welcome.php';
+            });
+        });
+    </script>
     <script src="/js/timecheck.js"></script>
     <script src="/js/admindash.js"></script>
 </body>
