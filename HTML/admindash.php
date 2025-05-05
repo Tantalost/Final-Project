@@ -10,6 +10,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library Dashboard</title>
     <link rel="stylesheet" href="/CSS/adminstyle.css">
+    <link rel="stylesheet" href="/CSS/modalstyles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -384,22 +385,22 @@ session_start();
         document.addEventListener('DOMContentLoaded', function() {
             const profileModal = document.getElementById('profileModal');
             const logoutModal = document.getElementById('logoutModal');
-            const profileMenuItem = document.querySelector('.dropdown-menu .menu-item:nth-child(1)');
-            const logoutMenuItem = document.querySelector('.dropdown-menu .menu-item.logout-option');
             const closeButtons = document.querySelectorAll('.modalbtn.close');
             const confirmLogoutButton = document.getElementById('confirmLogout');
 
-            profileMenuItem.addEventListener('click', function() {
+            // Trigger Profile Modal
+            document.querySelector('.menu-item:nth-child(1)').addEventListener('click', function() {
                 profileModal.style.display = 'flex';
                 profileModal.classList.add('active');
             });
 
-            logoutMenuItem.addEventListener('click', function(e) {
-                e.preventDefault();
+            // Trigger Logout Modal
+            document.querySelector('.logout-option').addEventListener('click', function() {
                 logoutModal.style.display = 'flex';
                 logoutModal.classList.add('active');
             });
 
+            // Close modals
             closeButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     profileModal.style.display = 'none';
@@ -409,6 +410,7 @@ session_start();
                 });
             });
 
+            // Confirm Logout
             confirmLogoutButton.addEventListener('click', function() {
                 window.location.href = 'welcome.php';
             });
