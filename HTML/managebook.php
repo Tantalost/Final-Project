@@ -205,11 +205,12 @@ $books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
                         <span class="status <?php echo $statusClass; ?> <?php echo htmlspecialchars($book['status']); ?>"><?php echo ucfirst(htmlspecialchars($book['status'])); ?></span>
                         <div class="book-actions">
                             <a href="editBook.php?book_id=<?php echo $book['book_id']; ?>">
-                                <img src="/images/Edit button.svg" alt="Edit">
+                                <img src="/images/editbtn.svg" alt="Edit"></button>
                             </a>
                             <button onclick="deleteBook(<?php echo $book['book_id']; ?>)">
                                 <img src="/images/Delete Button.svg" alt="Delete">
                             </button>
+                        </div>
                         </div>
                     </div>
                 </div>

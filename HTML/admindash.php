@@ -290,9 +290,9 @@ session_start();
                                 <td>11/04/24</td>
                                 <td><span class="status overdue">overdue</span></td>
                                 <td>
-                                    <div class="table-actions">
-                                        <a href="editBook.php?book_id=9780747532743"><img src="/images/Edit button.svg" alt="Edit"></a>
-                                        <button onclick="if(confirm('Are you sure you want to delete this record?')){/* add delete logic here */}"><img src="/images/Delete Button.svg" alt="Delete"></button>
+                                <div class="table-actions">
+                                        <button><img src="/images/editbtn.svg" alt="Edit"></button>
+                                        <button><img src="/images/deletebtn.svg" alt="Delete"></button>
                                         <button class="more-actions">•••</button>
                                     </div>
                                 </td>
@@ -311,9 +311,10 @@ session_start();
                                 <td><span class="status returned">returned</span></td>
                                 <td>
                                     <div class="table-actions">
-                                        <a href="editBook.php?book_id=9780747532743"><img src="/images/Edit button.svg" alt="Edit"></a>
-                                        <button onclick="if(confirm('Are you sure you want to delete this record?')){/* add delete logic here */}"><img src="/images/Delete Button.svg" alt="Delete"></button>
+                                        <button><img src="/images/editbtn.svg" alt="Edit"></button>
+                                        <button><img src="/images/deletebtn.svg" alt="Delete"></button>
                                         <button class="more-actions">•••</button>
+                                    </div>
                                     </div>
                                 </td>
                             </tr>
