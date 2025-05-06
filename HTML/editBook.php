@@ -54,6 +54,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $uploadError = $result['message'];
     }
 }
+if (isset($_POST['delete_book']) && $_POST['delete_book'] == '1') {
+    $deleteResult = $bookOps->deleteBook($bookId);
+    if ($deleteResult['status'] === 'success') {
+        header('Location: managebook.php?deleted=1');
+        exit;
+    } else {
+        $uploadError = 'Failed to delete book: ' . $deleteResult['message'];
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
