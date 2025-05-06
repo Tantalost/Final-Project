@@ -4,33 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Shelf</title>
-    <!-- Link to the updated CSS file -->
     <link rel="stylesheet" href="/CSS/myshelf-style.css">
-    <!-- Font links from the second example -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Lugrasimo&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
-<body>
-
-    <!-- Sidebar structure from the second example -->
+<body> 
     <aside class="sidebar" id="sidebar">
         <div class="logo-container">
-            <img class="logo" src="logo (3).svg" alt="Library Logo">
+            <img class="logo" src="/images/logov4.svg" alt="Library Logo">
         </div>
 
         <nav class="menu">
-            <a href="#">
-                <img src="Home.svg" width="20" height="20" alt="Home">
+            <a href="/HTML/Member-Homepage.php">
+                <img src="/images/Home.svg" width="20" height="20" alt="Home">
                 <span>Home</span>
             </a>
-            <!-- Added 'active' class here as it's the My Shelf page -->
-            <a href="#" class="active">
-                <img src="Myshelf.svg" width="20" height="20" alt="My Shelf">
+            <a href="/HTML/Myshelf.php" class="active">
+                <img src="/images/Myshelf.svg" width="20" height="20" alt="My Shelf">
                 <span>My Shelf</span>
             </a>
-            <a href="#">
-                <img src="Search.svg" width="20" height="20" alt="Search">
+            <a href="/HTML/Searchpage.php">
+                <img src="/images/Search.svg" width="20" height="20" alt="Search">
                 <span>Search</span>
             </a>
         </nav>
@@ -42,16 +37,14 @@
         </nav>
     </aside>
 
-    <!-- Main content wrapper (class needed for JS shifting) -->
     <div class="main-content">
-        <!-- Topbar structure from the second example -->
         <header class="topbar">
             <div class="topbar-left">
                 <button id="menu-toggle" class="menu-toggle">
-                    <img src="hamburgerbtn.svg" alt="Toggle Menu">
+                    <img src="/images/hamburgerbtn.svg" alt="Toggle Menu">
                 </button>
                 <div class="profile">
-                    <img src="Profile.svg" alt="User">
+                    <img src="/images/Profile (2).svg" alt="User">
                     <div>
                         BARBIE SANTOS <br>
                         <span style="font-size: 12px;">Student</span>
@@ -61,36 +54,33 @@
 
             <div class="logout">
                 <button class="menu-button">
-                    <!-- Changed icon source to match original topbar logout icon -->
-                    <img class="logout-icon" src="Log Out Button.svg" alt="User Menu">
+                    <img class="logout-icon" src="/images/LogOut_vector.svg" alt="User Menu">
                 </button>
-                 <!-- Dropdown menu from the second example -->
                 <div class="dropdown-menu">
                     <div class="menu-item">
-                        <img src="Profile (2).svg" alt="Profile">
+                        <img src="/images/Profile (2).svg" alt="Profile">
                         <span>Profile</span>
                     </div>
                     <div class="menu-item">
-                        <img src="accountsett.svg" alt="Account Settings">
+                        <img src="/images/accountsett.svg" alt="Account Settings">
                         <span>Account Settings</span>
                     </div>
                     <div class="menu-item">
-                        <img src="languageicon.svg" alt="Language">
+                        <img src="/images/languageicon.svg" alt="Language">
                         <span>Language</span>
                     </div>
                     <div class="menu-item">
-                        <img src="darktheme.svg" alt="Dark Theme">
+                        <img src="/images/darktheme.svg" alt="Dark Theme">
                         <span>Dark Theme</span>
                     </div>
                     <div class="menu-item logout-option">
-                        <img src="logout_vector.svg" alt="Log Out">
+                        <img src="/images/LogOut_vector.svg" alt="Log Out">
                         <span>Log Out</span>
                     </div>
                 </div>
             </div>
         </header>
 
-        <!-- Main content area from the *first* example -->
         <main class="page-specific-content">
             <section class="hero-section">
                 <div class="hero-text-container">
@@ -110,7 +100,7 @@
             <section class="books-grid">
                 <div class="book-card">
                     <div class="book-image">
-                        <img src="image 1.svg" alt="Harry Potter Book Cover">
+                        <img src="/images/image 1.svg" alt="Harry Potter Book Cover">
                     </div>
                     <div class="book-details">
                         <h3 class="book-title">HARRY POTTER AND THE PHILOSOPHER'S STONE</h3>
@@ -122,7 +112,7 @@
 
                 <div class="book-card">
                     <div class="book-image">
-                        <img src="image 4.svg" alt="A Brief History of Time Book Cover">
+                        <img src="/images/image 4.svg" alt="A Brief History of Time Book Cover">
                     </div>
                     <div class="book-details">
                         <h3 class="book-title">A BRIEF HISTORY OF TIME</h3>
@@ -134,7 +124,7 @@
 
                 <div class="book-card">
                     <div class="book-image">
-                        <img src="image 28.svg" alt="Thinking, Fast and Slow Book Cover">
+                        <img src="/images/image 28.svg" alt="Thinking, Fast and Slow Book Cover">
                     </div>
                     <div class="book-details">
                         <h3 class="book-title">THINKING, FAST AND SLOW</h3>
@@ -146,7 +136,7 @@
 
                 <div class="book-card">
                     <div class="book-image">
-                        <img src="image 27.svg" alt="Humpty Dumpty Book Cover">
+                        <img src="/images/image 27.svg" alt="Humpty Dumpty Book Cover">
                     </div>
                     <div class="book-details">
                         <h3 class="book-title">HUMPTY DUMPTY</h3>
@@ -158,7 +148,7 @@
 
                 <div class="book-card">
                     <div class="book-image">
-                        <img src="image 6.svg" alt="The Republic Book Cover">
+                        <img src="/images/image 6.svg" alt="The Republic Book Cover">
                     </div>
                     <div class="book-details">
                         <h3 class="book-title">THE REPUBLIC</h3>
@@ -170,7 +160,7 @@
 
                 <div class="book-card">
                     <div class="book-image">
-                        <img src="image 5.svg" alt="The History of the Ancient World Book Cover">
+                        <img src="/images/image 5.svg" alt="The History of the Ancient World Book Cover">
                     </div>
                     <div class="book-details">
                         <h3 class="book-title">THE HISTORY OF THE ANCIENT WORLD</h3>
@@ -182,7 +172,7 @@
 
                 <div class="book-card">
                     <div class="book-image">
-                        <img src="images 9.svg" alt="The Hobbit Book Cover">
+                        <img src="/images/image 9.svg" alt="The Hobbit Book Cover">
                     </div>
                     <div class="book-details">
                         <h3 class="book-title">THE HOBBIT</h3>
@@ -194,7 +184,7 @@
 
                 <div class="book-card">
                     <div class="book-image">
-                        <img src="image 22.svg" alt="Harry Potter and the Deathly Hallows Book Cover">
+                        <img src="/images/image 22.svg" alt="Harry Potter and the Deathly Hallows Book Cover">
                     </div>
                     <div class="book-details">
                         <h3 class="book-title">HARRY POTTER AND THE DEATHLY HOLLOWS</h3>
@@ -206,7 +196,7 @@
 
                 <div class="book-card">
                     <div class="book-image">
-                        <img src="images 26.svg" alt="Beginner's Step-by-Step Coding Course Book Cover">
+                        <img src="/images/image 26.svg" alt="Beginner's Step-by-Step Coding Course Book Cover">
                     </div>
                     <div class="book-details">
                         <h3 class="book-title">BEGINNER'S STEP-BY-STEP CODING COURSE: LEA...</h3>
@@ -216,28 +206,23 @@
                     </div>
                 </div>
             </section>
-        </main> <!-- End of page-specific-content -->
-
-    </div> <!-- End of main-content wrapper -->
-
-    <!-- JavaScript from the second example -->
+        </main> 
+    </div> 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.getElementById('menu-toggle');
             const sidebar = document.getElementById('sidebar');
-            const mainContent = document.querySelector('.main-content'); // Select the wrapper
+            const mainContent = document.querySelector('.main-content'); 
 
             if (menuToggle && sidebar && mainContent) {
-                // Initial state check (if sidebar should be open by default)
-                // You might want to add logic here based on screen size or user preference
-                // For now, it starts closed.
+
 
                 menuToggle.addEventListener('click', function() {
                     sidebar.classList.toggle('active');
                     mainContent.classList.toggle('shifted');
                 });
             } else {
-                 console.error("Sidebar toggle elements not found!");
+                console.error("Sidebar toggle elements not found!");
             }
 
             const menuButton = document.querySelector('.menu-button');
@@ -245,13 +230,11 @@
 
             if (menuButton && dropdownMenu) {
                 menuButton.addEventListener('click', function(e) {
-                    e.stopPropagation(); // Prevent click from immediately closing the menu
+                    e.stopPropagation(); 
                     dropdownMenu.classList.toggle('show');
                 });
 
-                // Close dropdown if clicking outside
                 document.addEventListener('click', function(event) {
-                    // Check if the click is outside the button AND outside the dropdown
                     if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
                         dropdownMenu.classList.remove('show');
                     }
