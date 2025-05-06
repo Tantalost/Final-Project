@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (goToMemberBtn) {
         goToMemberBtn.addEventListener('click', function () {
-            window.location.href = '/HTML/Member-Homepage.html';
+            window.location.href = '/HTML/Member-Homepage.php';
         });
     }
 });

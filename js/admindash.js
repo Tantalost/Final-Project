@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Back Button
     document.querySelector('.back-button').addEventListener('click', function () {
-        window.location.href = '/HTML/managebook.html'; 
+        window.location.href = '/HTML/managebook.php'; 
     });
 
     // Manage Book Add Book or Manage Fines

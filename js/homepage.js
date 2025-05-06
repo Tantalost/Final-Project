@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuBtn = document.getElementById('logout-menu');
 
     // Check if user is already logged in
-    if (localStorage.getItem('isLoggedIn') === 'true' && window.location.pathname.includes('index.html')) {
-        window.location.href = 'dashboard.html';
+    if (localStorage.getItem('isLoggedIn') === 'true' && window.location.pathname.includes('index.php')) {
+        window.location.href = 'dashboard.php';
     }
 
     // Handle login
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (email && password) {
                 localStorage.setItem('isLoggedIn', 'true');
                 localStorage.setItem('userEmail', email);
-                window.location.href = 'dashboard.html';
+                window.location.href = 'dashboard.php';
             } else {
                 alert('Please fill in all fields');
             }
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             localStorage.removeItem('isLoggedIn');
             localStorage.removeItem('userEmail');
-            window.location.href = 'index.html';
+            window.location.href = 'index.php';
         });
     }
 
