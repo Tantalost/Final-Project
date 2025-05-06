@@ -38,33 +38,6 @@
             <div class="user-name">Rashdy Arobie</div>
             <div class="user-role">Admin</div>
           </div>
-          <div class="logout">
-                <button class="menu-button">
-                    <img src="/images/logout_vector.svg" alt="Menu">
-                </button>
-                <div class="dropdown-menu">
-                    <div class="menu-item">
-                        <img src="/images/Profile (2).svg" alt="Profile">
-                        <span>Profile</span>
-                    </div>
-                    <div class="menu-item">
-                        <img src="/images/accountsett.svg" alt="Account Settings">
-                        <span>Account Settings</span>
-                    </div>
-                    <div class="menu-item">
-                        <img src="/images/languageicon.svg" alt="Language">
-                        <span>Language</span>
-                    </div>
-                    <div class="menu-item">
-                        <img src="/images/darktheme.svg" alt="Dark Theme">
-                        <span>Dark Theme</span>
-                    </div>
-                    <div class="menu-item logout-option" data-link="welcome.php">
-                        <img src="/images/logout_vector.svg" alt="Log Out">
-                        <span>Log Out</span>
-                    </div>
-                </div>
-            </div>
         </div>
       </div>
 
