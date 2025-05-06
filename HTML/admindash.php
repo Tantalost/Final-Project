@@ -331,12 +331,12 @@ session_start();
             </div>
             <div class="modal-body">
                 <div class="profile-image">
-                    <img src="/images/Profile.svg" alt="Profile" style="width: 100px; height: 100px; border-radius: 50%;">
+                    <img src="/images/Profile 1.svg" alt="Profile" style="width: 100px; height: 100px; border-radius: 50%;">
                 </div>
                 <div class="profile-details">
                     <p><strong>Username:</strong> Rashdy Arobie</p>
                     <p><strong>User ID:</strong> #12345</p>
-                    <p><strong>Status:</strong> <span class="status active">Online</span></p>
+                    <p><strong>Status:</strong> <span class="status">Online</span></p>
                 </div>
                 <div class="profile-info">
                     <p><strong>Address:</strong> 123 Library St, City</p>
@@ -353,21 +353,8 @@ session_start();
     </div>
 
     <div id="logoutModal" class="viewmodal" role="dialog" aria-modal="true" tabindex="-1">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Logout Confirmation</h2>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to log out?</p>
-            </div>
-            <div class="modal-actions">
-                <button class="modalbtn proceed" id="confirmLogout">Yes</button>
-                <button class="modalbtn close">No</button>
-            </div>
-        </div>
-    </div>
-    <div id="logoutModal" class="viewmodal" role="dialog" aria-modal="true" tabindex="-1">
-        <div class="modal-content">
+        <div class="modal-content2">
+            <img src="/images/logov4.svg" class="modal-logo">
             <div class="modal-header">
                 <h2>Logout Confirmation</h2>
             </div>
