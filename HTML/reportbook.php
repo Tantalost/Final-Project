@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Reports Available</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/CSS/reportbook.css">
 </head>
@@ -12,9 +12,9 @@
           <div class="logo">
             <img src="/images/logov5.svg" alt="Library Logo">
           </div>
-          <div class="menu-wrapper">
+          <div class="menu-wrapper"> 
             <ul class="menu">
-              <li><a href="/HTML/admindash.php"><img src="dashboard_vector.svg" alt="Dashboard"><span>Dashboard</span></a></li>
+              <li><a href="/HTML/admindash.php"><img src="/images/dashboard_vector.svg" alt="Dashboard"><span>Dashboard</span></a></li>
               <li class="active"><a href="/HTML/managebook.php"><img src="/images/manage_books_vector.svg" alt="Manage Books"><span>Manage Books</span></a></li>
               <li><a href="/HTML/manageuser.php"><img src="/images/manage_users_vector.svg" alt="Manage Users"><span>Manage Users</span></a></li>
             </ul>
@@ -30,7 +30,10 @@
             <button id="menu-toggle" class="menu-toggle">
               <img src="/images/hamburgerbtn.svg" alt="Toggle Menu">
             </button>
-            <img src="/images/Profile.svg" alt="Profile">
+            <div class="profile">
+              <img  src="/images/Profile.svg" alt="Profile">
+            </div>
+            
             <div class="user-details">
               <div class="user-name">Rashdy Arobie</div>
               <div class="user-role">Admin</div>
@@ -40,10 +43,12 @@
   
         <main class="main-content" id="mainContent">
               <div class="header-container">
+              <a href="borrowedbook.php">
                 <div class="header-title">
                 <img src="/images/backbtn.svg" class="back-button"> 
                     REPORTS AVAILABLE</div>
                 </div>
+                </a>
               </header>
     
                 <div class="content">
@@ -57,7 +62,7 @@
                                     <span class="action-label">Damaged Book Reports</span>
                                 </div>
                             </a>
-                        </div>
+                        </div> 
                         <div class="card">
                             <a href="/html/lostbookrep.php">
                                 <div class="action-box">
@@ -105,7 +110,7 @@
                       <td>The Hobbit</td>
                       <td>04/09/2024</td>
                       <td class="status review">To be Reviewed</td>
-                      <td><img src="/images/view.svg"class="icon "alt="View"></td>
+                      <td><img src="/images/view.svg" class="icon "alt="View"></td>
                     </tr>
                     <tr class="alt-row">
                       <td>Return Confirmation</td>
@@ -136,7 +141,7 @@
                       <td><img src="" class="avatar"> #011234</td>
                       <td>Harry Potter and the Deathly Hallows</td>
                       <td>04/04/2024</td>
-                      <td class="">Pending</td>
+                      <td class="status pending">Pending</td>
                       <td><img src="/images/view.svg" class="icon" alt="View"></td>
                     </tr>
                     <tr class="alt-row">
@@ -152,7 +157,7 @@
                       <td><img src="" class="avatar"> #011234</td>
                       <td>The Hobbit, The Hunger Games</td>
                       <td>04/10/2024</td>
-                      <td class="">Pending</td>
+                      <td class="status pending">Pending</td>
                       <td><img src="/images/view.svg" class="icon" alt="View"></td>
                     </tr>
                   </tbody>

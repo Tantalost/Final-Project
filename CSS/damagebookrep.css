@@ -5,7 +5,7 @@
   --light-blue: #EAF6FF;
   --primary-blue: #6AB0E3;
   --bright-blue: #9CD5FF;
-  --text-color: #1D3774;
+  --text-color: #0D3958;
   --sidebar-width: 240px;
   --sidebar-transition: 0.3s ease;
 }
@@ -50,7 +50,7 @@ body {
 
 .sidebar .logo img {
   width: 150px;
-  margin: 0 auto 30px;
+  margin: 50px auto 30px;
   display: block;
 }
 
@@ -119,10 +119,9 @@ body {
 }
 
 .menu-toggle {
-  background-color: #2980b9;
+  background-color: var(--primary-blue);
   color: #fff;
   border: none;
-  padding: 0.5rem;
   border-radius: 6px;
   cursor: pointer;
   display: flex;
@@ -136,9 +135,15 @@ body {
   filter: brightness(0) invert(1);
 }
 
+.profile img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
 .topbar {
   background-color: var(--primary-blue);
-  padding: 1rem 3rem 1rem 5rem;
+  padding: 1rem 3rem 1rem 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -326,6 +331,7 @@ body {
   padding: 15px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  color: #0D3958;
 }
 
 .table-section th {
@@ -333,20 +339,24 @@ body {
   color: var(--white);
 }
 
-.status-review {
-    color: #425a92;
-    font-weight: 600;
-  }
   
-  .status-pending {
-    color: orange;
-    font-weight: 600;
-  }
-  
-  .status-completed {
-    color: green;
-    font-weight: 600;
-  }
+
+
+.table-section td.status.review { 
+  color: #425a92; 
+  font-weight: 600;
+}
+
+.table-section td.status.pending, 
+.table-section td.pending { 
+  color: #FF8C00;
+  font-weight: 600;
+}
+
+.table-section td.status.completed { 
+  color: #28a745; 
+  font-weight: 600;
+}
   
 
 .card {
@@ -393,13 +403,13 @@ body {
   width: 90%;
   max-width: 800px;
   position: relative;
-  color: #1D3774;
+  color: #0D3958;
 }
 
 h2 {
   margin-top: 0;
   font-size: 24px;
-  color: #1D3774;
+  color: #0D3958;
 }
 
 .modal-body {
@@ -408,19 +418,25 @@ h2 {
   margin: 20px 0;
 }
 
-.left {
-  flex: 1;
-}
+
 
 .right {
   flex: 2;
 }
 
-.book-cover, .damage-img img {
+.book-cover {
+  max-height: 100%;
+  max-width: 100%;
+  width: 150px;  
+  height: 250px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.damage-img img {
   width: 50%;
   border-radius: 8px;
 }
-
 .damage-img {
   margin-top: 10px;
 }
@@ -460,12 +476,12 @@ textarea {
 }
 
 .send-btn {
-  background: #1D3774;
+  background: #0D3958;
   color: #fff;
 }
 
 .close-btn {
-  background: #1D3774;
+  background: #0D3958;
   color: #fff;
 }
 #return-confirmation-modal {
@@ -516,8 +532,8 @@ textarea {
 }
 
 #return-confirmation-modal .modal-content img {
-  width: 70px;
-  margin-bottom: 20px;
+  width: 100px;
+    margin-bottom: 10px;
 }
 
 #return-confirmation-modal p {
@@ -534,7 +550,7 @@ textarea {
 }
 
 .confirm-btn {
-  background-color: #1D3774;
+  background-color: #0D3958;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -544,7 +560,7 @@ textarea {
 }
 
 .cancel-btn {
-  background-color: #1D3774;
+  background-color:#0D3958;
   color: white;
   padding: 10px 20px;
   border: none;

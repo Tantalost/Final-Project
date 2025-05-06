@@ -12,13 +12,13 @@
   <div class="container">
       <nav class="sidebar" id="sidebar">
         <div class="logo">
-          <img src="/images/logo (3).svg" alt="Library Logo">
+          <img src="/images/logov5.svg" alt="Library Logo">
         </div>
         <div class="menu-wrapper">
           <ul class="menu">
-            <li><a href="/HTML/admindash.php"><img src="/images/dashboard_vector.svg" alt="Dashboard"><span>Dashboard</span></a></li>
-            <li class="active"><a href="/HTML/managebook.php"><img src="/images/manage_books_vector.svg" alt="Manage Books"><span>Manage Books</span></a></li>
-            <li><a href="/HTML/manageuser.php"><img src="/images/manage_users_vector.svg" alt="Manage Users"><span>Manage Users</span></a></li>
+            <li><a href="/HTML/admindash.html"><img src="/images/dashboard_vector.svg" alt="Dashboard"><span>Dashboard</span></a></li>
+            <li class="active"><a href="/HTML/managebook.html"><img src="/images/manage_books_vector.svg" alt="Manage Books"><span>Manage Books</span></a></li>
+            <li><a href="/HTML/manageuser.html"><img src="/images/manage_users_vector.svg" alt="Manage Users"><span>Manage Users</span></a></li>
           </ul>
         </div>
         <div class="footer-sidebar">
@@ -32,7 +32,10 @@
           <button id="menu-toggle" class="menu-toggle">
             <img src="/images/hamburgerbtn.svg" alt="Toggle Menu">
           </button>
-          <img src="/images/Profile.svg" alt="Profile">
+          <div class="profile">
+            <img  src="/images/Profile.svg" alt="Profile">
+          </div>
+          
           <div class="user-details">
             <div class="user-name">Rashdy Arobie</div>
             <div class="user-role">Admin</div>
@@ -41,11 +44,13 @@
       </div>
 
       <main class="main-content" id="mainContent">
+      <a href="/HTML/reportbook.php">
           <div class="header-container">
             <div class="header-title">
             <img src="/images/backbtn.svg" class="back-button"> 
                 DAMAGED BOOKS</div>
             </div>
+        </a>
           </header>
 
           <div class="header-actions">
@@ -93,7 +98,7 @@
                       <td><img src="" class="avatar"> #011234</td>
                       <td>Harry Potter and the Deathly Hallows, Humpty Dumpty, Harry Potter and th...</td>
                       <td>04/10/2024</td>
-                      <td class="status review">To be Reviewed</td>
+                      <td class="status completed">Completed</td>
                       <td><img src="/images/view.svg" class="icon view-details-icon" data-target="reportModal2" alt="View">
                       </td>
                     </tr>
@@ -102,7 +107,7 @@
                       <td><img src="" class="avatar"> #011234</td>
                       <td>Beginners Step-by-Step Coding Course: Learn Computer Programming the Easy Way</td>
                       <td>04/04/2024</td>
-                      <td class="status review">To be Reviewed</td>
+                      <td class="status completed">Completed</td>
                       <td><img src="/images/view.svg" class="icon view-details-icon" data-target="reportModal3" alt="View"></td>
                     </tr>
                     <tr class="alt-row">
@@ -110,7 +115,7 @@
                       <td><img src="" class="avatar"> #011234</td>
                       <td>The Hobbit</td>
                       <td>04/09/2024</td>
-                      <td class="status review">To be Reviewed</td>
+                      <td class="status pending">Pending</td>
                       <td><img src="/images/view.svg" class="icon view-details-icon" data-target="reportModal4" alt="View"></td>
                     </tr>
                     <tr>
@@ -118,7 +123,7 @@
                       <td><img src="" class="avatar"> #011234</td>
                       <td>Harry Potter and the Deathly Hallows</td>
                       <td>04/10/2024</td>
-                      <td class="">Pending</td>
+                      <td class="status pending">Pending</td>
                       <td><img src="/images/view.svg" class="icon view-details-icon" data-target="reportModal5" alt="View"></td>
                     </tr>
                     <tr class="alt-row">
@@ -128,14 +133,6 @@
                       <td>04/8/2024</td>
                       <td class="status completed">Completed</td>
                       <td><img src="/images/view.svg" class="icon view-details-icon" data-target="reportModal6" alt="View"></td>
-                    </tr>
-                    <tr>
-                      <td>Return Confirmation</td>
-                      <td><img src="" class="avatar"> #011234</td>
-                      <td>The Hobbit, The Hunger Games</td>
-                      <td>04/10/2024</td>
-                      <td class="">Pending</td>
-                      <td><img src="/images/view.svg"alt="View Details" class="view-details-icon" data-target="returnModal3" style="cursor: pointer; width: 30px;"></td>
                     </tr>
                   </tbody>
                 </table>
@@ -148,7 +145,7 @@
     <h2>Report Details</h2>
     <div class="modal-body">
       <div class="left">
-        <img src="imagesthehobbit.svg" alt="Book Cover" class="book-cover"/>
+        <img src="/images/image 9.svg" alt="Book Cover" class="book-cover"/>
       </div>
       <div class="right">
         <h3>The Hobbit</h3>
@@ -197,7 +194,7 @@
     <h2>Report Details</h2>
     <div class="modal-body">
       <div class="left">
-        <img src="image 3.svg" alt="Book Cover" class="book-cover"/>
+        <img src="/images/image 7.svg" alt="Book Cover" class="book-cover"/>
       </div>
       <div class="right">
         <h3>Harry Potter and the Deathly Hallows</h3>
@@ -243,10 +240,10 @@
 
 <div id="reportModal3" class="modal">
   <div class="modal-content">
-    <h2>📖 Report Details</h2>
+    <h2>Report Details</h2>
     <div class="modal-body">
       <div class="left">
-        <img src="harrypotter.jpg" alt="Book Cover" class="book-cover"/>
+        <img src="/images/image 10.svg" alt="Book Cover" class="book-cover"/>
       </div>
       <div class="right">
         <h3>Beginners Step-by-Step Coding Course: Learn Computer Programming the Easy Way</h3>
@@ -292,10 +289,10 @@
 
 <div id="reportModal4" class="modal">
   <div class="modal-content">
-    <h2>📖 Report Details</h2>
+    <h2>Report Details</h2>
     <div class="modal-body">
       <div class="left">
-        <img src="harrypotter.jpg" alt="Book Cover" class="book-cover"/>
+        <img src="/images/image 3.svg" alt="Book Cover" class="book-cover"/>
       </div>
       <div class="right">
         <h3>The Hobbit</h3>
@@ -341,10 +338,10 @@
   
 <div id="reportModal5" class="modal">
   <div class="modal-content">
-    <h2>📖 Report Details</h2>
+    <h2>Report Details</h2>
     <div class="modal-body">
       <div class="left">
-        <img src="harrypotter.jpg" alt="Book Cover" class="book-cover"/>
+        <img src="/images/image 1.svg" alt="Book Cover" class="book-cover"/>
       </div>
       <div class="right">
         <h3>Harry Potter and the Deathly Hallows</h3>
@@ -390,10 +387,10 @@
 
 <div id="reportModal6" class="modal">
   <div class="modal-content">
-    <h2>📖 Report Details</h2>
+    <h2>Report Details</h2>
     <div class="modal-body">
       <div class="left">
-        <img src="harrypotter.jpg" alt="Book Cover" class="book-cover"/>
+        <img src="/images/image 5.svg" alt="Book Cover" class="book-cover"/>
       </div>
       <div class="right">
         <h3>Beginners Step-by-Step Coding Course: Learn Computer Programming the Easy Way</h3>
@@ -441,7 +438,7 @@
         </div>
         <div id="return-confirmation-modal" class="modal">
           <div class="modal-content">
-            <img src="logo (3).svg" alt="Book Icon">
+            <img src="/images/logov4.svg" alt="Book Icon">
             <p>Are you sure you wish to confirm the return of this book?</p>
             <div class="return-buttons">
               <button id="confirm-return-btn" class="confirm-btn">Yes</button>

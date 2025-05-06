@@ -4,20 +4,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/CSS/lostbookrep.css">
+    <link rel="stylesheet" href="/css/lostbookrep.css">
     </head>
     
     <body>
       <div class="container">
           <nav class="sidebar" id="sidebar">
             <div class="logo">
-              <img src="/images/logo (3).svg" alt="Library Logo">
+              <img src="/images/logov5.svg" alt="Library Logo">
             </div>
             <div class="menu-wrapper">
               <ul class="menu">
                 <li><a href="/HTML/admindash.php"><img src="/images/dashboard_vector.svg" alt="Dashboard"><span>Dashboard</span></a></li>
-                <li class="active"><a href="/HTML/managebook.php"><img src="/images/manage_books_vector.svg" alt="Manage Books"><span>Manage Books</span></a></li>
-                <li><a href="/HTML/manageuser.php"><img src="/images/manage_users_vector.svg" alt="Manage Users"><span>Manage Users</span></a></li>
+                <li class="active"><a href="/HTML/managebook.html"><img src="/images/manage_books_vector.svg" alt="Manage Books"><span>Manage Books</span></a></li>
+                <li><a href="/HTML/manageuser.html"><img src="/images/manage_users_vector.svg" alt="Manage Users"><span>Manage Users</span></a></li>
               </ul>
             </div>
             <div class="footer-sidebar">
@@ -31,7 +31,10 @@
               <button id="menu-toggle" class="menu-toggle">
                 <img src="/images/hamburgerbtn.svg" alt="Toggle Menu">
               </button>
-              <img src="/images/Profile 1.svg" alt="Profile">
+              <div class="profile">
+                <img  src="/images/Profile.svg" alt="Profile">
+              </div>
+              
               <div class="user-details">
                 <div class="user-name">Rashdy Arobie</div>
                 <div class="user-role">Admin</div>
@@ -41,10 +44,12 @@
     
           <main class="main-content" id="mainContent">
             <div class="header-container">
+            <a href="reportbook.php">
                 <div class="header-title">
                 <img src="/images/backbtn.svg" class="back-button"> 
                     LOST BOOKS</div>
                 </div>
+              </a>
               </header>
 
               <div class="header-actions">
@@ -80,7 +85,7 @@
         <td>The Hobbit</td>
         <td>04/04/2024</td>
         <td>--</td>
-        <td class="status-review">To be Reviewed</td>
+        <td class="status review">To be Reviewed</td>
         <td><img src="/images/view.svg" class="icon view-details-icon" data-target="reportModal" alt="View">
         </td>
       </tr>
@@ -89,7 +94,7 @@
         <td> Harry Potter and the Deathly Hallows</td>
         <td>04/04/2024</td>
         <td>--</td>
-        <td class="status-review">To be Reviewed</td>
+        <td class="status review">To be Reviewed</td>
         <td><img src="/images/view.svg" class="icon view-details-icon" data-target="reportModal2" alt="View"></td>
       </tr>
       <tr>
@@ -97,7 +102,7 @@
         <td> Beginner's Step-by-Step Coding Course</td>
         <td>04/04/2024</td>
         <td>--</td>
-        <td class="status-review">To be Reviewed</td>
+        <td class="status review">To be Reviewed</td>
         <td><img src="/images/view.svg" class="icon view-details-icon" data-target="reportModal3" alt="View"></td>
       </tr>
       <tr>
@@ -105,7 +110,7 @@
         <td>The Hobbit</td>
         <td>04/04/2024</td>
         <td>PHP 949.00</td>
-        <td class="status-pending">Pending</td>
+        <td class="status pending">Pending</td>
         <td><img src="/images/view.svg" class="icon view-details-icon" data-target="reportModal4" alt="View"></td>
       </tr>
       <tr>
@@ -113,7 +118,7 @@
         <td>Harry Potter and the Deathly Hallows</td>
         <td>04/04/2024</td>
         <td>PHP 899.00</td>
-        <td class="status-pending">Pending</td>
+        <td class="status pending">Pending</td>
         <td><img src="/images/view.svg" class="icon view-details-icon" data-target="reportModal5" alt="View"></td>
       </tr>
       <tr>
@@ -121,7 +126,7 @@
         <td>Beginner's Step-by-Step Coding Course</td>
         <td>04/04/2024</td>
         <td>PHP 1990.00</td>
-        <td class="status-completed">Completed</td>
+        <td class="status completed">Completed</td>
         <td><img src="/images/view.svg" class="icon view-details-icon" data-target="reportModal6" alt="View"></td>
       </tr>
     </tbody>
@@ -134,23 +139,20 @@
     <h2>Report Details</h2>
     <div class="modal-body">
       <div class="left">
-        <img src="imagesthehobbit.svg" alt="Book Cover" class="book-cover"/>
+        <img src="/images/image 9.svg" alt="Book Cover" class="book-cover"/>
       </div>
       <div class="right">
         <h3>The Hobbit</h3>
         <p>By J.R.R. Tolkien</p>
         <p>978-0-345-33968-3</p>
         <p><strong>Reported by:</strong> Barbie Santos #08923</p>
+        <p><strong>Reported by:</strong> Barbie Santos #08923</p>
         <p><strong>Date Borrowed:</strong> 03/03/24</p>
         <p><strong>Due Date:</strong> 03/03/24</p>
-        <p><strong>Date Damaged:</strong> 03/01/24</p>
-        <p><strong>Damaged Description:</strong> Was drenched in water because of the flood. Some pages can’t be read. Very damaged.</p>
+        <p><strong>Date Lost:</strong> 03/01/24</p>
+        <p><strong>Lost Description:</strong> Was drenched in juice because of the flood.</p>
         <p><strong>Days Overdue:</strong> 4 Days</p>
         <p><strong>Status:</strong> To be Reviewed</p>
-        <div class="damage-img">
-          <p><strong>Image of the damage:</strong></p>
-          <img src="damaged-book.jpg" alt="Damaged book"/>
-        </div>
       </div>
     </div>
 
@@ -183,23 +185,20 @@
     <h2> Report Details</h2>
     <div class="modal-body">
       <div class="left">
-        <img src="image 3.svg" alt="Book Cover" class="book-cover"/>
+        <img src="/images/image 3.svg" alt="Book Cover" class="book-cover"/>
       </div>
       <div class="right">
         <h3>Harry Potter and the Deathly Hallows</h3>
         <p>By J.K. Rowling</p>
         <p>978-0-7475-3269-9</p>
         <p><strong>Reported by:</strong> Barbie Santos #08923</p>
+        <p><strong>Reported by:</strong> Barbie Santos #08923</p>
         <p><strong>Date Borrowed:</strong> 03/03/24</p>
         <p><strong>Due Date:</strong> 03/03/24</p>
-        <p><strong>Date Damaged:</strong> 03/01/24</p>
-        <p><strong>Damaged Description:</strong> Was drenched in water because of the flood. Some pages can’t be read. Very damaged.</p>
+        <p><strong>Date Lost:</strong> 03/01/24</p>
+        <p><strong>Lost Description:</strong> Was drenched in juice because of the flood.</p>
         <p><strong>Days Overdue:</strong> 4 Days</p>
         <p><strong>Status:</strong> To be Reviewed</p>
-        <div class="damage-img">
-          <p><strong>Image of the damage:</strong></p>
-          <img src="" alt="Damaged book"/>
-        </div>
       </div>
     </div>
 
@@ -232,23 +231,20 @@
     <h2> Report Details</h2>
     <div class="modal-body">
       <div class="left">
-        <img src="harrypotter.jpg" alt="Book Cover" class="book-cover"/>
+        <img src="/images/image 1.svg" alt="Book Cover" class="book-cover"/>
       </div>
       <div class="right">
         <h3>Beginners Step-by-Step Coding Course: Learn Computer Programming the Easy Way</h3>
         <p>By DK Publishing</p>
         <p>978-1-4654-7673-9</p>
         <p><strong>Reported by:</strong> Barbie Santos #08923</p>
+        <p><strong>Reported by:</strong> Barbie Santos #08923</p>
         <p><strong>Date Borrowed:</strong> 03/03/24</p>
         <p><strong>Due Date:</strong> 03/03/24</p>
-        <p><strong>Date Damaged:</strong> 03/01/24</p>
-        <p><strong>Damaged Description:</strong> Was drenched in juice because of the flood. Some pages can’t be read. Very damaged.</p>
+        <p><strong>Date Lost:</strong> 03/01/24</p>
+        <p><strong>Lost Description:</strong> Was drenched in juice because of the flood.</p>
         <p><strong>Days Overdue:</strong> 4 Days</p>
         <p><strong>Status:</strong> To be Reviewed</p>
-        <div class="damage-img">
-          <p><strong>Image of the damage:</strong></p>
-          <img src="damaged-book.jpg" alt="Damaged book"/>
-        </div>
       </div>
     </div>
 
@@ -281,23 +277,20 @@
     <h2>Report Details</h2>
     <div class="modal-body">
       <div class="left">
-        <img src="harrypotter.jpg" alt="Book Cover" class="book-cover"/>
+        <img src="/images/image 2.svg" alt="Book Cover" class="book-cover"/>
       </div>
       <div class="right">
         <h3>The Hobbit</h3>
         <p>By J.R.R. Tolkien</p>
         <p>978-0-345-33968-3</p>
         <p><strong>Reported by:</strong> Barbie Santos #08923</p>
+        <p><strong>Reported by:</strong> Barbie Santos #08923</p>
         <p><strong>Date Borrowed:</strong> 03/03/24</p>
         <p><strong>Due Date:</strong> 03/03/24</p>
-        <p><strong>Date Damaged:</strong> 03/01/24</p>
-        <p><strong>Damaged Description:</strong> Was drenched in water because of the flood. Some pages can’t be read. Very damaged.</p>
+        <p><strong>Date Lost:</strong> 03/01/24</p>
+        <p><strong>Lost Description:</strong> Was drenched in juice because of the flood.</p>
         <p><strong>Days Overdue:</strong> 4 Days</p>
         <p><strong>Status:</strong> To be Reviewed</p>
-        <div class="damage-img">
-          <p><strong>Image of the damage:</strong></p>
-          <img src="damaged-book.jpg" alt="Damaged book"/>
-        </div>
       </div>
     </div>
     <div class="admin-review">
@@ -330,23 +323,20 @@
         <h2> Report Details</h2>
         <div class="modal-body">
           <div class="left">
-            <img src="harrypotter.jpg" alt="Book Cover" class="book-cover"/>
+            <img src="/images/image 41.svg" alt="Book Cover" class="book-cover"/>
           </div>
           <div class="right">
             <h3>Harry Potter and the Deathly Hallows</h3>
             <p>By J.K. Rowling</p>
             <p>978-0-7475-3269-9</p>
             <p><strong>Reported by:</strong> Barbie Santos #08923</p>
+            <p><strong>Reported by:</strong> Barbie Santos #08923</p>
             <p><strong>Date Borrowed:</strong> 03/03/24</p>
             <p><strong>Due Date:</strong> 03/03/24</p>
-            <p><strong>Date Damaged:</strong> 03/01/24</p>
-            <p><strong>Damaged Description:</strong> Was drenched in water because of the flood. Some pages can’t be read. Very damaged.</p>
+            <p><strong>Date Lost:</strong> 03/01/24</p>
+            <p><strong>Lost Description:</strong> Was drenched in juice because of the flood.</p>
             <p><strong>Days Overdue:</strong> 4 Days</p>
             <p><strong>Status:</strong> To be Reviewed</p>
-            <div class="damage-img">
-              <p><strong>Image of the damage:</strong></p>
-              <img src="damaged-book.jpg" alt="Damaged book"/>
-            </div>
           </div>
           
         </div>
@@ -379,7 +369,7 @@
         <h2> Report Details</h2>
         <div class="modal-body">
           <div class="left">
-            <img src="harrypotter.jpg" alt="Book Cover" class="book-cover"/>
+            <img src="/images/image 36.svg" alt="Book Cover" class="book-cover"/>
           </div>
           <div class="right">
             <h3>Beginners Step-by-Step Coding Course: Learn Computer Programming the Easy Way</h3>
@@ -388,14 +378,10 @@
             <p><strong>Reported by:</strong> Barbie Santos #08923</p>
             <p><strong>Date Borrowed:</strong> 03/03/24</p>
             <p><strong>Due Date:</strong> 03/03/24</p>
-            <p><strong>Date Damaged:</strong> 03/01/24</p>
-            <p><strong>Damaged Description:</strong> Was drenched in juice because of the flood. Some pages can’t be read. Very damaged.</p>
+            <p><strong>Date Lost:</strong> 03/01/24</p>
+            <p><strong>Lost Description:</strong> Was drenched in juice because of the flood.</p>
             <p><strong>Days Overdue:</strong> 4 Days</p>
             <p><strong>Status:</strong> To be Reviewed</p>
-            <div class="damage-img">
-              <p><strong>Image of the damage:</strong></p>
-              <img src="damaged-book.jpg" alt="Damaged book"/>
-            </div>
           </div>
         </div>
     
@@ -424,7 +410,7 @@
     </div>
 <div id="return-confirmation-modal" class="modal">
   <div class="modal-content">
-    <img src="logo (3).svg" alt="Book Icon">
+    <img src="/images/logov4.svg" alt="Book Icon">
     <p>Are you sure you wish to confirm the return of this book?</p>
     <div class="return-buttons">
       <button id="confirm-return-btn" class="confirm-btn">Yes</button>

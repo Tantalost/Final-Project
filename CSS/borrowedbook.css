@@ -6,7 +6,7 @@
     --light-blue: #EAF6FF;
     --primary-blue: #6AB0E3;
     --bright-blue: #9CD5FF;
-    --text-color: #1D3774;
+    --text-color: #0D3958;
     --sidebar-width: 240px;
     --sidebar-transition: 0.3s ease;
   }
@@ -15,6 +15,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    
   }
 
   h1 {
@@ -55,7 +56,7 @@
   
   .sidebar .logo img {
     width: 150px;
-    margin: 0 auto 30px;
+    margin: 50px auto 30px;
     display: block;
   }
   
@@ -124,10 +125,9 @@
   }
   
   .menu-toggle {
-    background-color: #2980b9;
+    background-color: var(--primary-blue);
     color: #fff;
     border: none;
-    padding: 0.5rem;
     border-radius: 6px;
     cursor: pointer;
     display: flex;
@@ -140,10 +140,17 @@
     height: 24px;
     filter: brightness(0) invert(1);
   }
+
+  .profile img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
   
   .topbar {
     background-color: var(--primary-blue);
-    padding: 1rem 3rem 1rem 5rem;
+    padding: 1rem 3rem 1rem 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -381,6 +388,7 @@
     padding: 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    color: #0D3958;
   }
   
   .table-section th {
@@ -477,7 +485,7 @@
     position: absolute;
     top: 12px;
     right: 20px;
-    font-size: 24px;
+    font-size: 14px;
     color: #aaa;
     cursor: pointer;
   }

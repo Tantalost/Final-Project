@@ -39,10 +39,12 @@
       </div>
 
       <main class="main-content" id="mainContent">
+      <a href="borrowedbook.php">
           <div class="header-container">
             <div class="header-title">
             <img src="/images/backbtn.svg" class="back-button"> 
                 RETURNED BOOKS</div>
+        </a>
             </div>
           </header>
 

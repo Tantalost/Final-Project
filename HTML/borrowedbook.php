@@ -13,7 +13,7 @@
   <div class="container">
       <nav class="sidebar" id="sidebar">
         <div class="logo">
-          <img src="/images/logo (3).svg" alt="Library Logo">
+          <img src="/images/logov5.svg" alt="Library Logo">
         </div>
         <div class="menu-wrapper">
           <ul class="menu">
@@ -33,7 +33,10 @@
           <button id="menu-toggle" class="menu-toggle">
             <img src="/images/hamburgerbtn.svg" alt="Toggle Menu">
           </button>
-          <img src="/images/Profile.svg" alt="Profile">
+          <div class="profile">
+            <img  src="/images/Profile.svg" alt="Profile">
+          </div>
+          
           <div class="user-details">
             <div class="user-name">Rashdy Arobie</div>
             <div class="user-role">Admin</div>
@@ -43,10 +46,12 @@
 
       <main class="main-content" id="mainContent">
         <div class="header-container">
+        <a href="returnbook.php">
             <div class="header-title">
             <img src="/images/backbtn.svg" class="back-button"> 
                 BORROWED BOOKS</div>
             </div>
+          </a>
           </header>
 
             <div class="content">
@@ -62,7 +67,7 @@
                         </a>
                     </div>
                     <div class="card">
-                        <a href="reportbook.php">
+                        <a href="reportbook.php ">
                             <div class="action-box">
                                 <img src="/images/report.svg" alt="Reports" class="action-icon">
                                 <span class="action-count">16</span>
@@ -83,6 +88,9 @@
                 <button>Search</button>
               </div>
             </div>
+            
+         
+        
 
         <section class="table-section">
           <table>
@@ -172,11 +180,10 @@
   <div class="modal-content">
     <span class="close-btn">&times;</span>
     <div class="modal-header">
-      <img src="logo (3).svg" alt="Return Icon">
       <h2>Borrow Details</h2>
     </div>
     <div class="modal-body">
-      <img class="book-cover" src="image 10.svg" alt="Book Cover">
+      <img class="book-cover" src="/images/image 10.svg" alt="Book Cover">
       <div class="book-info">
         <h3>A Court of Wings and Ruin</h3>
         <p><strong>By</strong> Sarah J. Maas<br>978-0-7475-3269-9</p>
@@ -200,11 +207,10 @@
   <div class="modal-content">
     <span class="close-btn">&times;</span>
     <div class="modal-header">
-      <img src="logo (3).svg" alt="Return Icon">
       <h2>Borrow Details</h2>
     </div>
     <div class="modal-body">
-      <img class="book-cover" src="image 3.svg" alt="Book Cover">
+      <img class="book-cover" src="/images/image 3.svg" alt="Book Cover">
       <div class="book-info">
         <h3>Harry Potter and the Deathly Hallows</h3>
         <p><strong>By</strong> Charles Dickens<br>978-1-56619-909-4</p>
@@ -228,13 +234,12 @@
   <div class="modal-content">
     <span class="close-btn">&times;</span>
     <div class="modal-header">
-      <img src="/logo (3).svg" alt="Return Icon">
       <h2>Borrow Details</h2>
     </div>
     <div class="modal-body">
-      <img class="book-cover" src="/images/wizard_of_oz.jpg" alt="Book Cover">
+      <img class="book-cover" src="/images/image 14.svg" alt="Book Cover">
       <div class="book-info">
-        <h3>A Christmas Caro</h3>
+        <h3>A Christmas Carol</h3>
         <p><strong>By</strong> L. Frank Baum<br>978-0-14-132102-8</p>
         <p><strong>Borrowed by:</strong> Barbie Santos #011234</p>
         <p><strong>Date Borrowed:</strong> 04/04/24</p>
@@ -256,11 +261,10 @@
   <div class="modal-content">
     <span class="close-btn">&times;</span>
     <div class="modal-header">
-      <img src="logo (3).svg" alt="Return Icon">
       <h2>Borrow Details</h2>
     </div>
     <div class="modal-body">
-      <img class="book-cover" src="image 22.svg" alt="Book Cover">
+      <img class="book-cover" src="/images/image 22.svg" alt="Book Cover">
       <div class="book-info">
         <h3>	The Wizard of Oz</h3>
         <p><strong>By</strong> J.K. Rowling<br>978-0-545-01022-1</p>
@@ -283,11 +287,10 @@
 <div id="returnModal5" class="modal">
   <div class="modal-content">
     <div class="modal-header">
-      <img src="logo (3).svg" alt="Return Icon">
       <h2>Borrow Details</h2>
     </div>
     <div class="modal-body">
-      <img class="book-cover" src="image 22.svg" alt="Book Cover">
+      <img class="book-cover" src="/images/image 22.svg" alt="Book Cover">
       <div class="book-info">
         <h3>Harry Potter and the Deathly Hallows</h3>
         <p><strong>By</strong> DK Publishing <br>978-1-4654-8083-7</p>
@@ -306,16 +309,15 @@
   </div>
 </div>
 
-<!-- Modal 6 -->
+
 <div id="returnModal6" class="modal">
   <div class="modal-content">
     <span class="close-btn">&times;</span>
     <div class="modal-header">
-      <img src="logo (3).svg" alt="Return Icon">
       <h2>Borrow Details</h2>
     </div>
     <div class="modal-body">
-      <img class="book-cover" src="/images/the_hobbit.jpg" alt="Book Cover">
+      <img class="book-cover" src="/images/image 9.svg" alt="Book Cover">
       <div class="book-info">
         <h3>Beginner's Step-by-Step Coding Course: Learn Computer Programming the Easy Way</h3>
         <p><strong>By</strong> J.R.R. Tolkien<br>978-0-618-00221-3</p>
@@ -337,12 +339,10 @@
 <div id="returnModal7" class="modal">
   <div class="modal-content">
     <span class="close-btn">&times;</span>
-    <div class="modal-header">
-      <img src="logo (3).svg" alt="Return Icon">
       <h2>Borrow Details</h2>
     </div>
     <div class="modal-body">
-      <img class="book-cover" src="/images/ugly_love.jpg" alt="Book Cover">
+      <img class="book-cover" src="/images/image 9" alt="Book Cover">
       <div class="book-info">
         <h3>The Hobbit</h3>
         <p><strong>By</strong> Colleen Hoover<br>978-1-4767-6611-2</p>
@@ -365,11 +365,10 @@
   <div class="modal-content">
     <span class="close-btn">&times;</span>
     <div class="modal-header">
-      <img src="logo (3).svg" alt="Return Icon">
       <h2>Borrow Details</h2>
     </div>
     <div class="modal-body">
-      <img class="book-cover" src="image 22.svg" alt="Book Cover">
+      <img class="book-cover" src="/images/image 22.svg" alt="Book Cover">
       <div class="book-info">
         <h3>Harry Potter and the Deathly Hallows</h3>
         <p><strong>By</strong> Alice Oseman<br>978-1-338-54056-6</p>
