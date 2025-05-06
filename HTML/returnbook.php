@@ -39,26 +39,37 @@
       </div>
 
       <main class="main-content" id="mainContent">
-          <header class="header">
+          <div class="header-container">
             <div class="header-title">
-              <h1>RETURNED BOOKS</h1>
-              <div class="count-display"><span class="count">3</span>  Returned Book Confirmation</div>
+            <img src="/images/backbtn.svg" class="back-button"> 
+                RETURNED BOOKS</div>
             </div>
           </header>
+
             <div class="content">
               <div class="header-actions">
-                <div class="card">
-                  <a href="borrowedbook.php">
-                    <div class="action-box"><img src="/images/borrow_book_vector.svg" alt="Return Confirmations"><br>190<br>Borrowed Books </div>
-                </a>
-                </div>
-                <div class="card">
-                  <a href="reportbook.php">
-                    <div class="action-box"><img src="/images/report.svg" alt="Reports"><br>16<br>Reports Available</div>
-                  </a>
-
-                </div>
+                <div class="count-display"><span class="count">190</span> Returned Books</div>
+                    <div class="card">
+                        <a href="borrowedbook.php">
+                            <div class="action-box">
+                                <img src="/images/borrow_book_vector.svg" alt="borrowed books" class="action-icon">
+                                <span class="action-count">6</span>
+                                <span class="action-label">Borrowed Books</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="reportbook.php">
+                            <div class="action-box">
+                                <img src="/images/report.svg" alt="Reports" class="action-icon">
+                                <span class="action-count">30</span>
+                                <span class="action-label">Reports Available</span>
+                            </div>
+                        </a>
+                    </div>
             </div>
+
+
             <div class="search-bar">
               <select>
                 <option>All</option>
@@ -91,7 +102,7 @@
                   <td>04/10/2024</td>
                   <td>--</td>
                   <td class="status return">To be returned</td>
-                  <td><img src="view_details.svg" alt="View Details" class="view-details-icon" data-target="returnModal1" style="cursor: pointer; width: 30px;"></td>
+                  <td><img src="/images/view.svg"alt="View Details" class="view-details-icon" data-target="returnModal1" style="cursor: pointer; width: 30px;"></td>
                 </tr>
                 <tr>
                   <td>#011234</td>
@@ -99,7 +110,7 @@
                   <td>04/14/2024</td>
                   <td>PHP 109.00 </td>
                   <td class="status overdue">Overdue</td>
-                  <td><img src="view_details.svg" alt="View Details" class="view-details-icon" data-target="returnModal2" style="cursor: pointer; width: 30px;"></td>
+                  <td><img src="/images/view.svg" alt="View Details" class="view-details-icon" data-target="returnModal2" style="cursor: pointer; width: 30px;"></td>
     </tr>
                 </tr>
                 <tr>
@@ -108,7 +119,7 @@
                   <td>04/09/2024</td>
                   <td>--</td>
                   <td class="status return">To be returned</td>
-                  <td><img src="view_details.svg" alt="View Details" class="view-details-icon" data-target="returnModal3" style="cursor: pointer; width: 30px;"></td>
+                  <td><img src="/images/view.svg" alt="View Details" class="view-details-icon" data-target="returnModal3" style="cursor: pointer; width: 30px;"></td>
                 </tr>
 
         </tbody>
@@ -116,11 +127,11 @@
           <div class="modal-content">
             <span class="close-btn">&times;</span>
             <div class="modal-header">
-              <img src="logo (3).svg" alt="Return Icon">
+              <img src="/images/logo (3).svg" alt="Return Icon">
               <h2>Return Details</h2>
             </div>
             <div class="modal-body">
-              <img class="book-cover" src="image 10.svg" alt="Book Cover">
+              <img class="book-cover" src="/images/image 10.svg" alt="Book Cover">
               <div class="book-info">
                 <h3>A Court of Wings and Ruin</h3>
                 <p><strong>By</strong> Sarah J. Maas<br> 978-0-7475-3269-9</p>
@@ -198,7 +209,7 @@
           </div>
           <div id="return-confirmation-modal" class="modal">
             <div class="modal-content">
-              <img src="logo (3).svg" alt="Book Icon">
+              <img src="/images/logo (3).svg" alt="Book Icon">
               <p>Are you sure you wish to confirm the return of this book?</p>
               <div class="return-buttons">
                 <button id="confirm-return-btn" class="confirm-btn">Yes</button>

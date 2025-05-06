@@ -103,7 +103,7 @@
                 <td>04/04/2024</td>
                 <td>04/10/2024</td>
                 <td class="status return">To be returned</td>
-                <td><img src="/images/view_details.svg" alt="View Details" class="view-details-icon" data-target="returnModal1" style="cursor: pointer; width: 30px;"></td>
+                <td><img src="/images/view.svg" alt="View Details" class="view-details-icon" data-target="returnModal1" style="cursor: pointer; width: 30px;"></td>
               </tr>
               <tr>
                 <td>#011234</td>
@@ -111,7 +111,7 @@
                 <td>04/02/2024</td>
                 <td>04/10/2024</td>
                 <td class="status overdue">Overdue</td>
-                <td><img src="view_details.svg" alt="View Details" class="view-details-icon" data-target="returnModal2" style="cursor: pointer; width: 30px;"></td>
+                <td><img src="/images/view.svg" alt="View Details" class="view-details-icon" data-target="returnModal2" style="cursor: pointer; width: 30px;"></td>
   </tr>
               </tr>
               <tr>
@@ -120,7 +120,7 @@
                 <td>04/03/2024</td>
                 <td>04/10/2024</td>
                 <td class="status return">To be returned</td>
-                <td><img src="view_details.svg" alt="View Details" class="view-details-icon" data-target="returnModal3" style="cursor: pointer; width: 30px;"></td>
+                <td><img src="/images/view.svg" alt="View Details" class="view-details-icon" data-target="returnModal3" style="cursor: pointer; width: 30px;"></td>
               </tr>
               <tr>
                 <td>#011234</td>
@@ -128,7 +128,7 @@
                 <td>04/05/2024</td>
                 <td>04/10/2024</td>
                 <td class="status overdue">Overdue</td>
-                <td><img src="view_details.svg" alt="View Details" class="view-details-icon" data-target="returnModal4" style="cursor: pointer; width: 30px;"></td>
+                <td><img src="/images/view.svg" alt="View Details" class="view-details-icon" data-target="returnModal4" style="cursor: pointer; width: 30px;"></td>
               </tr>
               <tr>
                 <td>#011234</td>
@@ -136,7 +136,7 @@
                 <td>04/04/2024</td>
                 <td>04/10/2024</td>
                 <td class="status return">To be returned</td>
-                <td><img src="view_details.svg" alt="View Details" class="view-details-icon" data-target="returnModal5" style="cursor: pointer; width: 30px;"></td>
+                <td><img src="/images/view.svg" alt="View Details" class="view-details-icon" data-target="returnModal5" style="cursor: pointer; width: 30px;"></td>
               </tr>
               <tr>
                 <td>#011234</td>
@@ -144,7 +144,7 @@
                 <td>04/04/2024</td>
                 <td>04/10/2024</td>
                 <td class="status return">To be returned</td>
-                <td><img src="view_details.svg" alt="View Details" class="view-details-icon" data-target="returnModal6" style="cursor: pointer; width: 30px;"></td>
+                <td><img src="/images/view.svg" alt="View Details" class="view-details-icon" data-target="returnModal6" style="cursor: pointer; width: 30px;"></td>
               </tr>
               <tr>
                 <td>#011234</td>
@@ -152,7 +152,7 @@
                 <td>04/01/2024</td>
                 <td>04/10/2024</td>
                 <td class="status return">To be returned</td>
-                <td><img src="view_details.svg" alt="View Details" class="view-details-icon" data-target="returnModal7" style="cursor: pointer; width: 30px;"></td>
+                <td><img src="/images/view.svg" alt="View Details" class="view-details-icon" data-target="returnModal7" style="cursor: pointer; width: 30px;"></td>
               </tr>
               <tr>
                 <td>#011234</td>
@@ -160,7 +160,7 @@
                 <td>04/02/2024</td>
                 <td>04/10/2024</td>
                 <td class="status return">To be returned</td>
-                <td><img src="view_details.svg" alt="View Details" class="view-details-icon" data-target="returnModal8" style="cursor: pointer; width: 30px;"></td>
+                <td><img src="/images/view.svg" alt="View Details" class="view-details-icon" data-target="returnModal8" style="cursor: pointer; width: 30px;"></td>
               </tr>
             </tbody>
           </table>
