@@ -141,6 +141,10 @@ body {
     margin-left: var(--sidebar-width);
 }
 
+.main-content.shifted .topbar {
+    padding-left: calc(5rem + var(--sidebar-width));
+}
+
 .topbar {
     background-color: var(--primary-blue);
     padding: 1rem 3rem 1rem 5rem;
@@ -151,6 +155,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
+    transition: padding-left 0.3s ease;
 }
 
 .user-info {
@@ -446,7 +451,7 @@ nav{
     position: fixed;
     left: 20px;
     top: 25px;
-    z-index: 1000;
+    z-index: 1100;
     background: none;
     border: none;
     cursor: pointer;
@@ -456,13 +461,11 @@ nav{
     justify-content: center;
     transition: left 0.3s ease;
 }
-
 .menu-toggle img {
     width: 24px;
     height: 24px;
     filter: brightness(0) invert(1);
 }
-
 .menu-toggle.active {
     left: calc(var(--sidebar-width) + 20px);
 }
@@ -508,4 +511,8 @@ nav{
         flex-direction: column;
         gap: 1.5rem;
     }
+}
+
+.menu-toggle.shifted {
+    left: calc(var(--sidebar-width) + 20px);
 }

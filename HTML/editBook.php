@@ -92,7 +92,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a href="#">Terms & condition</a>
         </div>
     </div>
-
     <div class="main-content">
         <div class="topbar">
             <div class="user-info">
@@ -133,9 +132,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="content">
             <div class="header-container">
-                <div class="header-title">
+                <div class="header-title" style="display: flex; align-items: center; gap: 10px;">
                     <img src="/images/backbtn.svg" class="back-button" onclick="window.location.href='managebook.php'"> 
-                    EDIT BOOK
+                    <span style="font-size: 2rem; font-weight: 700; vertical-align: middle;">Edit Book</span>
+                    <img src="/images/deletebtn.svg" alt="Delete" style="vertical-align: middle; width: 28px; height: 28px; margin-left: 8px; cursor: pointer; display: inline-block;">
                 </div>
             </div>
             
@@ -146,63 +146,66 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div style="color:green; text-align:center; margin-bottom:10px;"> <?php echo htmlspecialchars($successMsg); ?> </div>
             <?php endif; ?>
 
-            <div class="book-section">
-                <form id="editBookForm" method="POST" enctype="multipart/form-data" style="width:100%;">
-                    <div class="book-form" style="margin-bottom:24px;">
-                        <input type="hidden" id="book_id" name="book_id" value="<?php echo htmlspecialchars($book['book_id']); ?>">
+            <div class="book-section" style="display: flex; gap: 2rem; align-items: flex-start;">
+                <form id="editBookForm" method="POST" enctype="multipart/form-data" style="flex: 2; max-width: 600px; display: flex; flex-direction: column; gap: 18px;">
+                    <input type="hidden" id="book_id" name="book_id" value="<?php echo htmlspecialchars($book['book_id']); ?>">
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
                         <label>Book Title</label>
-                        <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($book['title']); ?>" required>
-
+                        <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($book['title']); ?>" required style="height: 48px; font-size: 1.15rem; padding: 0 14px;">
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
                         <label>Author(s)</label>
-                        <input type="text" id="authors" name="authors" value="<?php echo htmlspecialchars($book['authors']); ?>" required>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="isbn">ISBN</label>
-                                <input type="text" id="isbn" name="isbn" value="<?php echo htmlspecialchars($book['isbn']); ?>" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="edition">Book Edition</label>
-                                <input type="text" id="edition" name="edition" value="<?php echo htmlspecialchars($book['edition']); ?>">
-                            </div>
+                        <input type="text" id="authors" name="authors" value="<?php echo htmlspecialchars($book['authors']); ?>" required style="height: 48px; font-size: 1.15rem; padding: 0 14px;">
+                    </div>
+                    <div style="display: flex; gap: 1.5rem;">
+                        <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                            <label for="isbn">ISBN</label>
+                            <input type="text" id="isbn" name="isbn" value="<?php echo htmlspecialchars($book['isbn']); ?>" required style="height: 48px; font-size: 1.15rem; padding: 0 14px;">
                         </div>
-
+                        <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                            <label for="edition">Book Edition</label>
+                            <input type="text" id="edition" name="edition" value="<?php echo htmlspecialchars($book['edition']); ?>" style="height: 48px; font-size: 1.15rem; padding: 0 14px;">
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
                         <label>Genre</label>
-                        <input type="text" id="genre" name="genre" value="<?php echo htmlspecialchars($book['genre']); ?>">
-
+                        <input type="text" id="genre" name="genre" value="<?php echo htmlspecialchars($book['genre']); ?>" style="height: 48px; font-size: 1.15rem; padding: 0 14px;">
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
                         <label>Publisher</label>
-                        <input type="text" id="publisher" name="publisher" value="<?php echo htmlspecialchars($book['publisher']); ?>">
-
-                        <div class="form-row">
-                            <div class="form-groups">
-                                <label for="published_date">Published Date</label>
-                                <input type="date" id="published_date" name="published_date" value="<?php echo htmlspecialchars($book['published_date']); ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="stock">Stocks: <span id="stockDisplay"><?php echo htmlspecialchars($book['stock']); ?></span></label>
-                                <img src="/images/addbutton.svg" alt="add-button" onclick="showQuantityModal()">
-                            </div>
-                        </div>
-
-                        <div class="image-add" style="margin-top:16px;">
-                            <?php if (!empty($book['image_url'])): ?>
-                                <img src="<?php echo htmlspecialchars($book['image_url'] ?? '/images/books/default_book.svg'); ?>" alt="<?php echo htmlspecialchars($book['title']); ?>">
-                            <?php endif; ?>
-                            <input type="file" id="book-image" name="book_image" accept="image/svg+xml,image/png,image/jpeg">
-                        </div>
-                        <input type="hidden" id="image_url" name="image_url" value="<?php echo htmlspecialchars($book['image_url']); ?>">
+                        <input type="text" id="publisher" name="publisher" value="<?php echo htmlspecialchars($book['publisher']); ?>" style="height: 48px; font-size: 1.15rem; padding: 0 14px;">
                     </div>
-                    <div class="book-desc" style="margin-bottom:24px;">
-                        <h3>Book Description</h3>
-                        <div class="description">
-                            <textarea id="description" name="description" placeholder="Enter Book Description" style="width:100%;min-height:100px;"><?php echo htmlspecialchars($book['description']); ?></textarea>
+                    <div style="display: flex; gap: 1.5rem;">
+                        <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                            <label for="published_date">Published Date</label>
+                            <input type="date" id="published_date" name="published_date" value="<?php echo htmlspecialchars($book['published_date']); ?>" style="height: 48px; font-size: 1.15rem; padding: 0 14px;">
                         </div>
-                        <input type="hidden" id="stock" name="stock" value="<?php echo htmlspecialchars($book['stock']); ?>">
+                        <div style="flex: 1; display: flex; align-items: center; gap: 0.5rem; margin-top: 24px;">
+                            <label for="stock" style="margin-bottom: 0;">Stocks:</label>
+                            <input type="number" id="stock" name="stock" value="<?php echo htmlspecialchars($book['stock']); ?>" min="0" style="width: 90px; height: 48px; font-size: 1.15rem; padding: 0 14px;">
+                            <img src="/images/addbutton.svg" alt="add-button" onclick="showQuantityModal()" style="width: 28px; height: 28px; cursor: pointer; align-self: center;">
+                        </div>
                     </div>
-                    <div style="text-align:center;margin-top:16px;">
-                        <button class="submit" type="submit" style="padding:12px 32px;font-size:1.1rem;">Save Changes</button>
+                    <div style="display: flex; gap: 2rem; margin-top: 1rem; margin-bottom: 0;">
+                        <div style="flex: 1;">
+                            <span>Borrowed: <?php echo htmlspecialchars($book['borrowed'] ?? 0); ?></span>
+                        </div>
+                        <div style="flex: 1;">
+                            <span>Remaining: <?php echo htmlspecialchars(($book['stock'] ?? 0) - ($book['borrowed'] ?? 0)); ?></span>
+                        </div>
                     </div>
+                    <div style="margin-top: 0.5rem; margin-bottom: 0;">
+                        <span>Status: <span style="font-weight: bold; color: #8BC34A;">Available</span></span>
+                    </div>
+                    <button type="submit" class="submit" style="margin-top: 2rem; align-self: center; font-size: 1.2rem; height: 54px; width: 60%;">Save</button>
                 </form>
+                <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 24px;">
+                    <img src="<?php echo htmlspecialchars($book['image_url'] ?? '/images/books/default_book.svg'); ?>" alt="<?php echo htmlspecialchars($book['title']); ?>" style="width: 220px; height: 320px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); margin-bottom: 1.5rem;">
+                    <div style="width: 100%;">
+                        <h3 style="margin-bottom: 0.5rem;">Book Description</h3>
+                        <textarea id="description" name="description" placeholder="Enter Book Description" style="width: 100%; min-height: 100px; border-radius: 8px; padding: 16px; border: 1px solid #ccc; font-size: 1.1rem; margin-top: 8px;"><?php echo htmlspecialchars($book['description']); ?></textarea>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -222,9 +225,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.querySelector('.main-content');
+            menuToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('active');
+                mainContent.classList.toggle('shifted');
+                menuToggle.classList.toggle('shifted'); // <-- Add this line
+            });
+        });
         let currentQuantity = <?php echo (int)$book['stock']; ?>;
         document.getElementById('quantity').textContent = currentQuantity;
-
         function showQuantityModal() {
             document.getElementById('quantityModal').style.display = 'flex';
             document.getElementById('quantity').textContent = currentQuantity;
@@ -243,7 +255,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
         function confirmQuantity() {
-            document.getElementById('stockDisplay').textContent = currentQuantity;
             document.getElementById('stock').value = currentQuantity;
             closeQuantityModal();
         }
