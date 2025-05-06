@@ -116,14 +116,14 @@ $books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
                 <div class="card" data-link="borrowedbook.php">
                     <img src="/images/borrow_book_vector.svg" alt="Borrowed Books">
                     <div class="stat-info">
-                        <h3><?php echo count($borrowedBooks); ?></h3>
+                        <h3>190</h3>
                         <p>Borrowed Books</p>
                     </div>
                 </div>
                 <div class="card" data-link="returnbook.php">
                     <img src="/images/return_book_vector.svg" alt="Return Confirmations">
                     <div class="stat-info">
-                        <h3><?php echo count($overdueBooks); ?></h3>
+                        <h3>20</h3>
                         <p>Overdue Books</p>
                     </div>
                 </div>
