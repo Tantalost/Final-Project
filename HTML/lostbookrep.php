@@ -11,11 +11,11 @@
       <div class="container">
           <nav class="sidebar" id="sidebar">
             <div class="logo">
-              <img src="logo (3).svg" alt="Library Logo">
+              <img src="/images/logo (3).svg" alt="Library Logo">
             </div>
             <div class="menu-wrapper">
               <ul class="menu">
-                <li><a href="/HTML/admindash.php"><img src="dashboard_vector.svg" alt="Dashboard"><span>Dashboard</span></a></li>
+                <li><a href="/HTML/admindash.php"><img src="/images/dashboard_vector.svg" alt="Dashboard"><span>Dashboard</span></a></li>
                 <li class="active"><a href="/HTML/managebook.html"><img src="/images/manage_books_vector.svg" alt="Manage Books"><span>Manage Books</span></a></li>
                 <li><a href="/HTML/manageuser.html"><img src="/images/manage_users_vector.svg" alt="Manage Users"><span>Manage Users</span></a></li>
               </ul>
@@ -29,9 +29,9 @@
           <div class="topbar" id="topbar">
             <div class="user-info">
               <button id="menu-toggle" class="menu-toggle">
-                <img src="logo (3).svg" alt="Toggle Menu">
+                <img src="/images/hamburgerbtn.svg" alt="Toggle Menu">
               </button>
-              <img src=" " alt="Profile">
+              <img src="/images/Profile 1.svg" alt="Profile">
               <div class="user-details">
                 <div class="user-name">Rashdy Arobie</div>
                 <div class="user-role">Admin</div>
@@ -40,17 +40,17 @@
           </div>
     
           <main class="main-content" id="mainContent">
-              <header class="header">
+            <div class="header-container">
                 <div class="header-title">
-                  <h1>Lost Books</h1>
-                  <div class="count-display"><span class="count">5</span> Lost Books Reports</div>
-                </div>
-                <div>
-                  <a href="reportbook.html">
-                  <img src="backbutton.svg" alt="back">
-                </a>
+                <img src="/images/backbtn.svg" class="back-button"> 
+                    LOST BOOKS</div>
                 </div>
               </header>
+
+              <div class="header-actions">
+                <div class="count-display"><span class="count">5</span> Lost Books Reports</div>
+                </div>
+
     
                   <div class="search-bar">
                     <select>
@@ -81,7 +81,7 @@
         <td>04/04/2024</td>
         <td>--</td>
         <td class="status-review">To be Reviewed</td>
-        <td><img src="view_details.svg" class="icon view-details-icon" data-target="reportModal" alt="View">
+        <td><img src="/images/view.svg" class="icon view-details-icon" data-target="reportModal" alt="View">
         </td>
       </tr>
       <tr>
@@ -90,7 +90,7 @@
         <td>04/04/2024</td>
         <td>--</td>
         <td class="status-review">To be Reviewed</td>
-        <td><img src="view_details.svg" class="icon view-details-icon" data-target="reportModal2" alt="View"></td>
+        <td><img src="/images/view.svg" class="icon view-details-icon" data-target="reportModal2" alt="View"></td>
       </tr>
       <tr>
         <td> #011234</td>
@@ -98,7 +98,7 @@
         <td>04/04/2024</td>
         <td>--</td>
         <td class="status-review">To be Reviewed</td>
-        <td><img src="view_details.svg" class="icon view-details-icon" data-target="reportModal3" alt="View"></td>
+        <td><img src="/images/view.svg" class="icon view-details-icon" data-target="reportModal3" alt="View"></td>
       </tr>
       <tr>
         <td> #011234</td>
@@ -106,7 +106,7 @@
         <td>04/04/2024</td>
         <td>PHP 949.00</td>
         <td class="status-pending">Pending</td>
-        <td><img src="view_details.svg" class="icon view-details-icon" data-target="reportModal4" alt="View"></td>
+        <td><img src="/images/view.svg" class="icon view-details-icon" data-target="reportModal4" alt="View"></td>
       </tr>
       <tr>
         <td> #011234</td>
@@ -114,7 +114,7 @@
         <td>04/04/2024</td>
         <td>PHP 899.00</td>
         <td class="status-pending">Pending</td>
-        <td><img src="view_details.svg" class="icon view-details-icon" data-target="reportModal5" alt="View"></td>
+        <td><img src="/images/view.svg" class="icon view-details-icon" data-target="reportModal5" alt="View"></td>
       </tr>
       <tr>
         <td>#011234</td>
@@ -122,7 +122,7 @@
         <td>04/04/2024</td>
         <td>PHP 1990.00</td>
         <td class="status-completed">Completed</td>
-        <td><img src="view_details.svg" class="icon view-details-icon" data-target="reportModal6" alt="View"></td>
+        <td><img src="/images/view.svg" class="icon view-details-icon" data-target="reportModal6" alt="View"></td>
       </tr>
     </tbody>
   </table>

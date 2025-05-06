@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Shelf</title>
+    <!-- Link to the updated CSS file -->
+    <link rel="stylesheet" href="/CSS/myshelf-style.css">
+    <!-- Font links from the second example -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Lugrasimo&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Sidebar structure from the second example -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo-container">
+            <img class="logo" src="logo (3).svg" alt="Library Logo">
+        </div>
+
+        <nav class="menu">
+            <a href="#">
+                <img src="Home.svg" width="20" height="20" alt="Home">
+                <span>Home</span>
+            </a>
+            <!-- Added 'active' class here as it's the My Shelf page -->
+            <a href="#" class="active">
+                <img src="Myshelf.svg" width="20" height="20" alt="My Shelf">
+                <span>My Shelf</span>
+            </a>
+            <a href="#">
+                <img src="Search.svg" width="20" height="20" alt="Search">
+                <span>Search</span>
+            </a>
+        </nav>
+
+        <nav class="footer-sidebar">
+            <a href="#">About</a>
+            <a href="#">Support</a>
+            <a href="#">Terms & Conditions</a>
+        </nav>
+    </aside>
+
+    <!-- Main content wrapper (class needed for JS shifting) -->
+    <div class="main-content">
+        <!-- Topbar structure from the second example -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button id="menu-toggle" class="menu-toggle">
+                    <img src="hamburgerbtn.svg" alt="Toggle Menu">
+                </button>
+                <div class="profile">
+                    <img src="Profile.svg" alt="User">
+                    <div>
+                        BARBIE SANTOS <br>
+                        <span style="font-size: 12px;">Student</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="logout">
+                <button class="menu-button">
+                    <!-- Changed icon source to match original topbar logout icon -->
+                    <img class="logout-icon" src="Log Out Button.svg" alt="User Menu">
+                </button>
+                 <!-- Dropdown menu from the second example -->
+                <div class="dropdown-menu">
+                    <div class="menu-item">
+                        <img src="Profile (2).svg" alt="Profile">
+                        <span>Profile</span>
+                    </div>
+                    <div class="menu-item">
+                        <img src="accountsett.svg" alt="Account Settings">
+                        <span>Account Settings</span>
+                    </div>
+                    <div class="menu-item">
+                        <img src="languageicon.svg" alt="Language">
+                        <span>Language</span>
+                    </div>
+                    <div class="menu-item">
+                        <img src="darktheme.svg" alt="Dark Theme">
+                        <span>Dark Theme</span>
+                    </div>
+                    <div class="menu-item logout-option">
+                        <img src="logout_vector.svg" alt="Log Out">
+                        <span>Log Out</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main content area from the *first* example -->
+        <main class="page-specific-content">
+            <section class="hero-section">
+                <div class="hero-text-container">
+                    <div class="text">EXPLORE YOUR</div>
+                    <div class="text">BOOK TREASURES!</div>
+                </div>
+
+                <div class="search-container">
+                    <div class="search-tabs">
+                        <div class="tab active">All</div>
+                        <div class="tab">User</div>
+                    </div>
+                    <input type="text" class="search-input" placeholder="Search...">
+                </div>
+            </section>
+
+            <section class="books-grid">
+                <div class="book-card">
+                    <div class="book-image">
+                        <img src="image 1.svg" alt="Harry Potter Book Cover">
+                    </div>
+                    <div class="book-details">
+                        <h3 class="book-title">HARRY POTTER AND THE PHILOSOPHER'S STONE</h3>
+                        <p class="book-author">By J.K. Rowling</p>
+                        <p class="book-isbn">ISBN: 978-0747532699</p>
+                        <p class="book-remaining">Remaining: 8</p>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-image">
+                        <img src="image 4.svg" alt="A Brief History of Time Book Cover">
+                    </div>
+                    <div class="book-details">
+                        <h3 class="book-title">A BRIEF HISTORY OF TIME</h3>
+                        <p class="book-author">By Stephen Hawking</p>
+                        <p class="book-isbn">ISBN: 978-0553380163</p>
+                        <p class="book-remaining">Remaining: 8</p>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-image">
+                        <img src="image 28.svg" alt="Thinking, Fast and Slow Book Cover">
+                    </div>
+                    <div class="book-details">
+                        <h3 class="book-title">THINKING, FAST AND SLOW</h3>
+                        <p class="book-author">By Daniel Kahneman</p>
+                        <p class="book-isbn">ISBN: 978-0374533557</p>
+                        <p class="book-remaining">Remaining: 8</p>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-image">
+                        <img src="image 27.svg" alt="Humpty Dumpty Book Cover">
+                    </div>
+                    <div class="book-details">
+                        <h3 class="book-title">HUMPTY DUMPTY</h3>
+                        <p class="book-author">By Charles Reasoner</p>
+                        <p class="book-isbn">ISBN: 978-0843178835</p>
+                        <p class="book-remaining">Remaining: 8</p>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-image">
+                        <img src="image 6.svg" alt="The Republic Book Cover">
+                    </div>
+                    <div class="book-details">
+                        <h3 class="book-title">THE REPUBLIC</h3>
+                        <p class="book-author">By Plato</p>
+                        <p class="book-isbn">ISBN: 978-0140455113</p>
+                        <p class="book-remaining">Remaining: 8</p>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-image">
+                        <img src="image 5.svg" alt="The History of the Ancient World Book Cover">
+                    </div>
+                    <div class="book-details">
+                        <h3 class="book-title">THE HISTORY OF THE ANCIENT WORLD</h3>
+                        <p class="book-author">By Susan Wise Bauer</p>
+                        <p class="book-isbn">ISBN: 978-0393059748</p>
+                        <p class="book-remaining">Remaining: 8</p>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-image">
+                        <img src="images 9.svg" alt="The Hobbit Book Cover">
+                    </div>
+                    <div class="book-details">
+                        <h3 class="book-title">THE HOBBIT</h3>
+                        <p class="book-author">By Charles Reasoner</p>
+                        <p class="book-isbn">ISBN: 978-0843178835</p>
+                        <p class="book-remaining">Remaining: 8</p>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-image">
+                        <img src="image 22.svg" alt="Harry Potter and the Deathly Hallows Book Cover">
+                    </div>
+                    <div class="book-details">
+                        <h3 class="book-title">HARRY POTTER AND THE DEATHLY HOLLOWS</h3>
+                        <p class="book-author">By J.K. Rowling</p>
+                        <p class="book-isbn">ISBN: 978-0747532699</p>
+                        <p class="book-remaining">Remaining: 8</p>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-image">
+                        <img src="images 26.svg" alt="Beginner's Step-by-Step Coding Course Book Cover">
+                    </div>
+                    <div class="book-details">
+                        <h3 class="book-title">BEGINNER'S STEP-BY-STEP CODING COURSE: LEA...</h3>
+                        <p class="book-author">By Daniel Kahneman</p>
+                        <p class="book-isbn">ISBN: 978-0374533557</p>
+                        <p class="book-remaining">Remaining: 8</p>
+                    </div>
+                </div>
+            </section>
+        </main> <!-- End of page-specific-content -->
+
+    </div> <!-- End of main-content wrapper -->
+
+    <!-- JavaScript from the second example -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.querySelector('.main-content'); // Select the wrapper
+
+            if (menuToggle && sidebar && mainContent) {
+                // Initial state check (if sidebar should be open by default)
+                // You might want to add logic here based on screen size or user preference
+                // For now, it starts closed.
+
+                menuToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('active');
+                    mainContent.classList.toggle('shifted');
+                });
+            } else {
+                 console.error("Sidebar toggle elements not found!");
+            }
+
+            const menuButton = document.querySelector('.menu-button');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+
+            if (menuButton && dropdownMenu) {
+                menuButton.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent click from immediately closing the menu
+                    dropdownMenu.classList.toggle('show');
+                });
+
+                // Close dropdown if clicking outside
+                document.addEventListener('click', function(event) {
+                    // Check if the click is outside the button AND outside the dropdown
+                    if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                        dropdownMenu.classList.remove('show');
+                    }
+                });
+            } else {
+                console.error("Logout dropdown elements not found!");
+            }
+        });
+    </script>
+
+</body>
+</html>

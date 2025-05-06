@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Lugrasimo&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
 :root {
     --white: #FFFFFF;
     --light-blue: #EAF6FF;
@@ -175,28 +179,62 @@
     opacity: 0.8;
   }
   
-  .header {
-    background: var(--primary-blue);
-    padding: 20px;
-    border-radius: 10px;
-    color: var(--white);
-    margin-bottom: 20px;
-  }
-  
-  .header-title {
+  .header-container {
+    position: relative;
+    height: 90px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-  }
-  
-  .count-display {
-    font-size: 24px;
-    font-weight: bold;
-    background: var(--white);
-    color: var(--text-color);
-    padding: 10px 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-  }
+    background: linear-gradient(150deg,
+        #EAF6FF,
+        #C1E5FF,
+        #9CD5FF
+    );
+    justify-content: space-between;
+    margin: 0 0 20px 0;/
+}
+
+.back-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-right: 10px; 
+}
+
+.header-title {
+    display: flex; 
+    align-items: center; 
+    font-size: 25px;
+    font-weight: 700;
+    color:  #0D3958;
+    margin-left: 20px;
+    letter-spacing: 1px;
+}
+  
+.count-display {
+  font-size: 16px;
+  font-weight: 500;
+  background: var(--white);
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: var(--text-color);
+  padding: 10px 20px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  width: 400px;
+}
+
+.count-display span { 
+font-weight: 900; 
+font-size: 42px;
+}
   
   .header-actions {
     display: flex;
@@ -295,15 +333,26 @@
   background: var(--primary-blue);
   color: var(--white);
 }
-.status.return {
-  color: var(--text-color);
-  font-weight: bold;
+
+
+
+
+.status-review {
+  color: #425a92;
+  font-weight: 600;
 }
 
-.status.overdue {
-  color: red;
-  font-weight: bold;
+.status-pending {
+  color: orange;
+  font-weight: 600;
 }
+
+.status-completed {
+  color: green;
+  font-weight: 600;
+}
+
+
 
 .card {
   background-color: var(--white);
@@ -328,7 +377,7 @@
 .modal {
   display: none;
   position: fixed;
-  z-index: 10;
+  z-index: 1000;
   left: 0;
   top: 0;
   width: 100%;

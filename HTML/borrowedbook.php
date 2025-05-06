@@ -62,7 +62,7 @@
                         </a>
                     </div>
                     <div class="card">
-                        <a href="reportbook.html">
+                        <a href="reportbook.php">
                             <div class="action-box">
                                 <img src="/images/report.svg" alt="Reports" class="action-icon">
                                 <span class="action-count">16</span>

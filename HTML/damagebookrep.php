@@ -84,7 +84,7 @@
                       <td>04/10/2024</td>
                       <td class="status review">To be Reviewed</td>
                       <td>
-                        <img src="view_details.svg" class="icon view-details-icon" data-target="reportModal" alt="View">
+                        <img src="/images/view.svg" class="icon view-details-icon" data-target="reportModal" alt="View">
 
                       </td>
                     </tr>
@@ -94,7 +94,7 @@
                       <td>Harry Potter and the Deathly Hallows, Humpty Dumpty, Harry Potter and th...</td>
                       <td>04/10/2024</td>
                       <td class="status review">To be Reviewed</td>
-                      <td><img src="view_details.svg" class="icon view-details-icon" data-target="reportModal2" alt="View">
+                      <td><img src="/images/view.svg" class="icon view-details-icon" data-target="reportModal2" alt="View">
                       </td>
                     </tr>
                     <tr>
@@ -103,7 +103,7 @@
                       <td>Beginners Step-by-Step Coding Course: Learn Computer Programming the Easy Way</td>
                       <td>04/04/2024</td>
                       <td class="status review">To be Reviewed</td>
-                      <td><img src="view_details.svg" class="icon view-details-icon" data-target="reportModal3" alt="View"></td>
+                      <td><img src="/images/view.svg" class="icon view-details-icon" data-target="reportModal3" alt="View"></td>
                     </tr>
                     <tr class="alt-row">
                       <td>Return Confirmation</td>
@@ -111,7 +111,7 @@
                       <td>The Hobbit</td>
                       <td>04/09/2024</td>
                       <td class="status review">To be Reviewed</td>
-                      <td><img src="view_details.svg" class="icon view-details-icon" data-target="reportModal4" alt="View"></td>
+                      <td><img src="/images/view.svg" class="icon view-details-icon" data-target="reportModal4" alt="View"></td>
                     </tr>
                     <tr>
                       <td>Damaged Book Report</td>
@@ -119,7 +119,7 @@
                       <td>Harry Potter and the Deathly Hallows</td>
                       <td>04/10/2024</td>
                       <td class="">Pending</td>
-                      <td><img src="view_details.svg" class="icon view-details-icon" data-target="reportModal5" alt="View"></td>
+                      <td><img src="/images/view.svg" class="icon view-details-icon" data-target="reportModal5" alt="View"></td>
                     </tr>
                     <tr class="alt-row">
                       <td>Lost Book Report</td>
@@ -127,7 +127,7 @@
                       <td>Beginners Step-by-Step Coding Course: Learn Computer Programming the Easy Way</td>
                       <td>04/8/2024</td>
                       <td class="status completed">Completed</td>
-                      <td><img src="view_details.svg" class="icon view-details-icon" data-target="reportModal6" alt="View"></td>
+                      <td><img src="/images/view.svg" class="icon view-details-icon" data-target="reportModal6" alt="View"></td>
                     </tr>
                     <tr>
                       <td>Return Confirmation</td>
@@ -135,7 +135,7 @@
                       <td>The Hobbit, The Hunger Games</td>
                       <td>04/10/2024</td>
                       <td class="">Pending</td>
-                      <td><img src="view_details.svg" alt="View Details" class="view-details-icon" data-target="returnModal3" style="cursor: pointer; width: 30px;"></td>
+                      <td><img src="/images/view.svg"alt="View Details" class="view-details-icon" data-target="returnModal3" style="cursor: pointer; width: 30px;"></td>
                     </tr>
                   </tbody>
                 </table>
