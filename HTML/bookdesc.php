@@ -30,7 +30,7 @@
         <nav class="nav-menu">
             <ul>
                 <li class="nav-item">
-                    <a href="/HTML/Member-Homepage.html">
+                    <a href="/HTML/Member-Homepage.php">
                         <img src="/images/Home.svg" alt="Home" class="nav-icon" width="20" height="20">
                         <span>Home</span>
                     </a>

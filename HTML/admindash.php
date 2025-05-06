@@ -92,7 +92,7 @@ session_start();
             </div>
 
             <div class="stats-cards">
-                <div class="stat-card" data-link="managebook.html">
+                <div class="stat-card" data-link="managebook.php">
                     <img src="/images/manage_books_vector.svg" alt="Total Books">
                     <div class="stat-info">
                         <h3>1090</h3>

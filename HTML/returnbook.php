@@ -15,8 +15,8 @@
         <div class="menu-wrapper">
           <ul class="menu">
             <li><a href="/HTML/admindash.php"><img src="/images/dashboard_vector.svg" alt="Dashboard"><span>Dashboard</span></a></li>
-            <li class="active"><a href="/HTML/managebook.html"><img src="/images/manage_books_vector.svg" alt="Manage Books"><span>Manage Books</span></a></li>
-            <li><a href="/HTML/manageuser.html"><img src="/images/manage_users_vector.svg" alt="Manage Users"><span>Manage Users</span></a></li>
+            <li class="active"><a href="/HTML/managebook.php"><img src="/images/manage_books_vector.svg" alt="Manage Books"><span>Manage Books</span></a></li>
+            <li><a href="/HTML/manageuser.php"><img src="/images/manage_users_vector.svg" alt="Manage Users"><span>Manage Users</span></a></li>
           </ul>
         </div>
         <div class="footer-sidebar">
@@ -48,12 +48,12 @@
             <div class="content">
               <div class="header-actions">
                 <div class="card">
-                  <a href="borrowedbook.html">
+                  <a href="borrowedbook.php">
                     <div class="action-box"><img src="/images/borrow_book_vector.svg" alt="Return Confirmations"><br>190<br>Borrowed Books </div>
                 </a>
                 </div>
                 <div class="card">
-                  <a href="reportbook.html">
+                  <a href="reportbook.php">
                     <div class="action-box"><img src="/images/report.svg" alt="Reports"><br>16<br>Reports Available</div>
                   </a>
 
