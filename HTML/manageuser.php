@@ -21,11 +21,11 @@
                 <img src="/images/dashboard_vector.svg" alt="Dashboard">
                 Dashboard
             </a>
-            <a href="/HTML/managebook.php">
+            <a href="/HTML/managebook.html">
                 <img src="/images/manage_books_vector.svg" alt="Manage Books">
                 Manage Books
             </a>
-            <a href="/HTML/manageuser.php" class="active">
+            <a href="/HTML/manageuser.html" class="active">
                 <img src="/images/manage_users_vector.svg" alt="Manage Users">
                 Manage Users
             </a>
@@ -88,12 +88,12 @@
                     <input type="text" class="search-input" placeholder="Search...">
                 </div>
 
-                <a href="/HTML/" class="browse">
+                <a href="/html/" class="browse">
                     Browse
                     <img src="/images/browse.svg">
                 </a>
 
-                <a href="/HTML/" class="browse">
+                <a href="/html/" class="browse">
                     Send
                     <img src="/images/browse.svg">
                 </a>
@@ -230,33 +230,33 @@
 
     <!-- User Details Modal (hidden by default) -->
     <div id="userDetailsModal" class="viewmodal" role="dialog" aria-modal="true" tabindex="-1">
-        <div class="modal-content" style="max-width:420px;width:95%;padding:32px 24px;align-items:center;">
-            <div class="modal-header" style="border:none;margin-bottom:0;padding-bottom:0;">
-                <h2 style="font-size:2rem;font-weight:800;color:#0D3958;text-align:center;margin-bottom:16px;">User Information</h2>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>User Information</h2>
             </div>
             <div class="modal-body">
-                <div class="profile-image" style="display:flex;justify-content:center;align-items:center;margin-bottom:20px;">
-                    <img id="modalUserAvatar" src="/images/Profile.svg" alt="User" style="width:100px;height:100px;border-radius:50%;background:#6AB0E3;object-fit:cover;border:6px solid #EAF6FF;">
+                <div class="profile-image">
+                    <img id="modalUserAvatar" src="/images/Profile.svg" alt="User">
                 </div>
-                <div class="profile-details" style="text-align:center;margin-bottom:10px;">
-                    <p id="modalUserName" style="margin:0;font-size:1.1rem;color:#0D3958;font-weight:600;"></p>
-                    <p id="modalUserId" style="margin:0;font-size:1rem;color:#0D3958;font-weight:500;"></p>
-                    <p id="modalUserStatus" style="margin:0;font-size:1rem;font-weight:700;"></p>
+                <div class="profile-details">
+                    <p id="modalUserName"></p>
+                    <p id="modalUserId"></p>
+                    <p id="modalUserStatus" class="status"></p>
                 </div>
-                <div class="profile-info" style="width:100%;margin-top:16px;display:flex;flex-direction:column;gap:12px;">
+                <div class="profile-info">
                     <p><strong>Address :</strong> <span id="modalUserAddress" class="info-box"></span></p>
                     <p><strong>Date of Birth :</strong> <span id="modalUserDOB" class="info-box"></span></p>
                     <p><strong>Phone Number :</strong> <span id="modalUserPhone" class="info-box"></span></p>
                     <p><strong>Email :</strong> <span id="modalUserEmail" class="info-box"></span></p>
                     <p><strong>Date Joined :</strong> <span id="modalUserJoined" class="info-box"></span></p>
                 </div>
-                <div class="action-buttons" style="margin-top:24px;display:flex;gap:12px;justify-content:center;">
+                <div class="action-buttons">
                     <button class="user-activity">User Activity</button>
                     <button class="reports">Reports</button>
                     <button class="restrict">Restrict</button>
                 </div>
             </div>
-            <div class="modal-actions" style="margin-top:24px;width:100%;display:flex;justify-content:center;">
+            <div class="modal-actions">
                 <button class="modalbtn close">Close</button>
             </div>
         </div>
@@ -274,8 +274,7 @@
             const confirmNotificationButton = document.getElementById('confirmNotification');
 
             // Trigger Send Notification Modal
-            document.querySelector('.browse:nth-child(2)').addEventListener('click', function(e) {
-                e.preventDefault(); // prevent the link from navigating
+            document.querySelector('.browse:nth-child(2)').addEventListener('click', function() {
                 sendNotificationModal.style.display = 'flex';
                 sendNotificationModal.classList.add('active');
             });

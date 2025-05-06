@@ -163,9 +163,11 @@ $books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
                     <a href="addBook.php" class="cardbutton">
                         <img src="/images/addnew.svg" alt="Add">
                     </a>
-                    <button class="cardbutton" onclick="showManageFinesModal()">
-                        <img src="/images/ManagefINES.svg" alt="Fines">
-                    </button>
+                    <a href="manageFines.php" class="cardbutton">
+                        <button class="cardbutton">
+                            <img src="/images/ManagefINES.svg" alt="Fines">
+                        </button>
+                    </a>
                 </div>
             </div>
 
@@ -205,12 +207,11 @@ $books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
                         <span class="status <?php echo $statusClass; ?> <?php echo htmlspecialchars($book['status']); ?>"><?php echo ucfirst(htmlspecialchars($book['status'])); ?></span>
                         <div class="book-actions">
                             <a href="editBook.php?book_id=<?php echo $book['book_id']; ?>">
-                                <img src="/images/editbtn.svg" alt="Edit"></button>
+                                <img src="/images/editbtn.svg" alt="Edit">
                             </a>
                             <button onclick="deleteBook(<?php echo $book['book_id']; ?>)">
-                                <img src="/images/Delete Button.svg" alt="Delete">
+                                <img src="/images/deletebtn.svg" alt="Delete">
                             </button>
-                        </div>
                         </div>
                     </div>
                 </div>
