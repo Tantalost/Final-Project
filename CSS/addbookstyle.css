@@ -182,6 +182,9 @@ body {
     flex: 1;
     overflow-y: hidden;
     height: calc(100vh - 64px); 
+    overflow-y: auto;
+    height: auto;
+    min-height: 100vh;
 }
 
 .dashboard-grid {
@@ -462,4 +465,47 @@ nav{
 
 .menu-toggle.active {
     left: calc(var(--sidebar-width) + 20px);
+}
+
+/* Ensure Save Changes button is visible and prominent */
+#editBookForm .submit {
+    display: block;
+    margin: 32px auto 0 auto;
+    padding: 14px 40px;
+    font-size: 1.15rem;
+    background: #0D3958;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(13,57,88,0.08);
+    transition: background 0.2s;
+}
+#editBookForm .submit:hover {
+    background: #1565a5;
+}
+
+#editBookForm .book-form,
+#editBookForm .book-desc {
+    margin-bottom: 32px;
+}
+
+#editBookForm {
+    padding-bottom: 40px;
+}
+
+@media (max-width: 700px) {
+    #editBookForm .submit {
+        width: 90%;
+        font-size: 1rem;
+        padding: 12px 0;
+    }
+}
+
+/* Responsive column layout for book-section on small screens */
+@media (max-width: 900px) {
+    .book-section {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
 }

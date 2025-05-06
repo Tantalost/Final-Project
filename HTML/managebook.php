@@ -158,7 +158,7 @@ $books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
                     $reportCount = $bookOps->getReportCount($book['book_id']);
                 ?>
                 <div class="book <?php echo $book['status'] === 'unavailable' ? 'unavailable' : ''; ?>">
-                    <img src="<?php echo htmlspecialchars($book['image_url'] ?? '/images/default_book.svg'); ?>" alt="<?php echo htmlspecialchars($book['title']); ?>">
+                    <img src="<?php echo htmlspecialchars($book['image_url'] ?? '/images/books/default_book.svg'); ?>" alt="<?php echo htmlspecialchars($book['title']); ?>">
                     <h3><?php echo htmlspecialchars($book['title']); ?></h3>
                     <p>By <?php echo htmlspecialchars($book['authors']); ?></p>
                     <p>ISBN: <?php echo htmlspecialchars($book['isbn']); ?></p>
@@ -180,83 +180,6 @@ $books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
                     </div>
                 </div>
                 <?php endforeach; ?>
-            </div>
-        </div>
-    </div>
-
-    <!-- Add Book Modal -->
-    <div id="addBookModal" class="viewmodal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Add New Book</h2>
-            </div>
-            <div class="modal-body">
-                <form id="addBookForm">
-                    <div class="form-group">
-                        <label for="title">Title:</label>
-                        <input type="text" id="title" name="title" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="authors">Authors:</label>
-                        <input type="text" id="authors" name="authors" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="isbn">ISBN:</label>
-                        <input type="text" id="isbn" name="isbn" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="edition">Edition:</label>
-                        <input type="text" id="edition" name="edition">
-                    </div>
-                    <div class="form-group">
-                        <label for="genre">Genre:</label>
-                        <input type="text" id="genre" name="genre">
-                    </div>
-                    <div class="form-group">
-                        <label for="publisher">Publisher:</label>
-                        <input type="text" id="publisher" name="publisher">
-                    </div>
-                    <div class="form-group">
-                        <label for="published_date">Published Date:</label>
-                        <input type="date" id="published_date" name="published_date">
-                    </div>
-                    <div class="form-group">
-                        <label for="stock">Stock:</label>
-                        <input type="number" id="stock" name="stock" min="0" value="0">
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Description:</label>
-                        <textarea id="description" name="description"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="image_url">Image URL:</label>
-                        <input type="text" id="image_url" name="image_url">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-actions">
-                <button class="modalbtn proceed" onclick="submitAddBook()">Add Book</button>
-                <button class="modalbtn close" onclick="closeAddBookModal()">Cancel</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Edit Book Modal -->
-    <div id="editBookModal" class="viewmodal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Edit Book</h2>
-            </div>
-            <div class="modal-body">
-                <form id="editBookForm">
-                    <input type="hidden" id="edit_book_id" name="book_id">
-                    <!-- Same form fields as Add Book Modal -->
-                    // ... existing form fields ...
-                </form>
-            </div>
-            <div class="modal-actions">
-                <button class="modalbtn proceed" onclick="submitEditBook()">Save Changes</button>
-                <button class="modalbtn close" onclick="closeEditBookModal()">Cancel</button>
             </div>
         </div>
     </div>

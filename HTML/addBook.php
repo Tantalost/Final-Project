@@ -1,6 +1,46 @@
 <?php
 require_once "book_operations.php";
 session_start();
+
+$uploadError = '';
+$successMsg = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $image_url = null;
+    if (isset($_FILES['book_image']) && $_FILES['book_image']['error'] === UPLOAD_ERR_OK) {
+        $allowedTypes = ['image/svg+xml', 'image/png', 'image/jpeg'];
+        $fileType = mime_content_type($_FILES['book_image']['tmp_name']);
+        if (in_array($fileType, $allowedTypes)) {
+            $ext = pathinfo($_FILES['book_image']['name'], PATHINFO_EXTENSION);
+            $filename = uniqid('book_', true) . '.' . $ext;
+            $targetPath = __DIR__ . '/../images/books/' . $filename;
+            if (move_uploaded_file($_FILES['book_image']['tmp_name'], $targetPath)) {
+                $image_url = '/images/books/' . $filename;
+            } else {
+                $uploadError = 'Failed to move uploaded file.';
+            }
+        } else {
+            $uploadError = 'Invalid file type. Only SVG, PNG, JPG, JPEG allowed.';
+        }
+    }
+    $bookData = [
+        'title' => $_POST['title'] ?? '',
+        'authors' => $_POST['authors'] ?? '',
+        'isbn' => $_POST['isbn'] ?? '',
+        'edition' => $_POST['edition'] ?? '',
+        'genre' => $_POST['genre'] ?? '',
+        'publisher' => $_POST['publisher'] ?? '',
+        'published_date' => $_POST['published_date'] ?? '',
+        'stock' => $_POST['stock'] ?? 0,
+        'description' => $_POST['description'] ?? '',
+        'image_url' => $image_url ?? ($_POST['image_url'] ?? null),
+    ];
+    $result = $bookOps->addBook($bookData);
+    if ($result['status'] === 'success') {
+        $successMsg = 'Book added successfully!';
+    } else {
+        $uploadError = $result['message'];
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,13 +122,19 @@ session_start();
             <div class="header-container">
                 <div class="header-title">
                     <img src="/images/backbtn.svg" class="back-button" onclick="window.location.href='managebook.php'"> 
-                    ADD NEW BOOKS
-                </div>
+                    ADD NEW BOOKS</div>
             </div>
             
+            <?php if ($uploadError): ?>
+                <div style="color:red; text-align:center; margin-bottom:10px;"> <?php echo htmlspecialchars($uploadError); ?> </div>
+            <?php endif; ?>
+            <?php if ($successMsg): ?>
+                <div style="color:green; text-align:center; margin-bottom:10px;"> <?php echo htmlspecialchars($successMsg); ?> </div>
+            <?php endif; ?>
+
             <div class="book-section">
                 <div class="book-form">
-                    <form id="bookInfo" onsubmit="return submitBook(event)">
+                    <form id="bookInfo" method="POST" enctype="multipart/form-data">
                         <label>Book Title</label>
                         <input type="text" id="title" name="title" placeholder="Enter Book Title" required>
 
@@ -124,23 +170,20 @@ session_start();
                                 <img src="/images/addbutton.svg" alt="add-button" onclick="showQuantityModal()">
                             </div>
                         </div>
-                    </form>
-                </div>
 
-                <div class="book-desc">
-                    <div class="image-add">
-                        <input type="file" id="book-image" name="book-image" accept="image/*" onchange="handleImageUpload(event)" hidden>
-                        <label for="book-image" class="image-upload">
-                            <img src="/images/addBookImage.svg" alt="Upload Icon">
-                        </label>
+                        <div class="image-add">
+                            <input type="file" id="book-image" name="book_image" accept="image/svg+xml,image/png,image/jpeg">
+                        </div>
                         <input type="hidden" id="image_url" name="image_url">
-                    </div>
-                    <h3>Book Description</h3>
-                    <div class="description">
-                        <textarea id="description" name="description" placeholder="Enter Book Description"></textarea>
-                    </div>
 
-                    <button class="submit" type="submit">Save</button>
+                        <h3>Book Description</h3>
+                        <div class="description">
+                            <textarea id="description" name="description" placeholder="Enter Book Description"></textarea>
+                        </div>
+
+                        <input type="hidden" id="stock" name="stock" value="0">
+                        <button class="submit" type="submit">Save</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -198,60 +241,12 @@ session_start();
 
         function confirmQuantity() {
             document.getElementById('stockDisplay').textContent = currentQuantity;
+            document.getElementById('stock').value = currentQuantity;
             closeQuantityModal();
         }
 
         function closeConfirmationModal() {
             document.getElementById('confirmationModal').style.display = 'none';
-        }
-
-        function handleImageUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                // For now, we'll just store the file name
-                // In a real application, you would upload this to a server
-                uploadedImageUrl = '/images/books/' + file.name;
-                document.getElementById('image_url').value = uploadedImageUrl;
-            }
-        }
-
-        function submitBook(event) {
-            if (event) {
-                event.preventDefault();
-            }
-
-            const formData = new FormData();
-            formData.append('action', 'add');
-            formData.append('title', document.getElementById('title').value);
-            formData.append('authors', document.getElementById('authors').value);
-            formData.append('isbn', document.getElementById('isbn').value);
-            formData.append('edition', document.getElementById('edition').value);
-            formData.append('genre', document.getElementById('genre').value);
-            formData.append('publisher', document.getElementById('publisher').value);
-            formData.append('published_date', document.getElementById('published_date').value);
-            formData.append('stock', currentQuantity);
-            formData.append('description', document.getElementById('description').value);
-            formData.append('image_url', document.getElementById('image_url').value);
-
-            fetch('book_ajax.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    alert('Book added successfully!');
-                    window.location.href = 'managebook.php';
-                } else {
-                    alert('Error: ' + data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred while adding the book');
-            });
-
-            return false;
         }
     </script>
 </body>
