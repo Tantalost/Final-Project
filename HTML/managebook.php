@@ -4,11 +4,28 @@ session_start();
 
 // Get books with optional filters
 $filters = [
-    'title' => $_GET['title'] ?? null,
-    'author' => $_GET['author'] ?? null,
-    'isbn' => $_GET['isbn'] ?? null,
+    'title' => null,
+    'author' => null,
+    'isbn' => null,
     'status' => $_GET['status'] ?? null
 ];
+
+// Apply filter based on selected filter type
+$filterType = $_GET['filter'] ?? 'all';
+$searchTerm = trim($_GET['search'] ?? '');
+
+if ($searchTerm !== '') {
+    if ($filterType === 'all') {
+        // Search across all fields
+        $filters['title'] = $searchTerm;
+        $filters['author'] = $searchTerm;
+        $filters['isbn'] = $searchTerm;
+    } else {
+        // Search in specific field
+        $filters[$filterType] = $searchTerm;
+    }
+}
+
 $booksResponse = $bookOps->getBooks($filters);
 $books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
 ?>
@@ -132,12 +149,12 @@ $books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
             <div class="search-section">
                 <form method="GET" class="search-bar">
                     <select name="filter">
-                        <option value="all">All</option>
-                        <option value="title">Title</option>
-                        <option value="author">Author</option>
-                        <option value="isbn">ISBN</option>
+                        <option value="all" <?php echo ($_GET['filter'] ?? 'all') === 'all' ? 'selected' : ''; ?>>All</option>
+                        <option value="title" <?php echo ($_GET['filter'] ?? '') === 'title' ? 'selected' : ''; ?>>Title</option>
+                        <option value="author" <?php echo ($_GET['filter'] ?? '') === 'author' ? 'selected' : ''; ?>>Author</option>
+                        <option value="isbn" <?php echo ($_GET['filter'] ?? '') === 'isbn' ? 'selected' : ''; ?>>ISBN</option>
                     </select>
-                    <input type="text" name="search" placeholder="Search..." value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
+                    <input type="text" name="search" placeholder="Search..." value="<?php echo htmlspecialchars($searchTerm); ?>">
                     <button type="submit">
                         <img src="/images/Search.svg" alt="Search">
                     </button>
@@ -158,17 +175,34 @@ $books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
                     $reportCount = $bookOps->getReportCount($book['book_id']);
                 ?>
                 <div class="book <?php echo $book['status'] === 'unavailable' ? 'unavailable' : ''; ?>">
+                <a href="bookdesc_admin.php?book_id=<?php echo $book['book_id']; ?>">
                 <img src="<?php echo htmlspecialchars($book['image_url'] ?? '/images/books/default_book.svg'); ?>" alt="<?php echo htmlspecialchars($book['title']); ?>">
+                </a>
                     <h3><?php echo htmlspecialchars($book['title']); ?></h3>
                     <p>By <?php echo htmlspecialchars($book['authors']); ?></p>
                     <p>ISBN: <?php echo htmlspecialchars($book['isbn']); ?></p>
                     <div class="book-stats">
-                        <p>Stock: <?php echo htmlspecialchars($book['stock']); ?></p>
-                        <p>Remaining: <?php echo htmlspecialchars($book['stock'] - $borrowedCount); ?></p>
-                        <p>Reports: <?php echo $reportCount; ?></p>
+                        <p>Stock:<br><?php echo htmlspecialchars($book['stock']); ?></p>
+                        <p>Remaining:<br><?php echo htmlspecialchars($book['stock'] - $borrowedCount); ?></p>
+                        <p>Reports:<br><?php echo $reportCount; ?></p>
                     </div>
                     <div class="book-footer">
-                        <span class="status <?php echo htmlspecialchars($book['status']); ?>"><?php echo ucfirst(htmlspecialchars($book['status'])); ?></span>
+                        <?php
+                        $remaining = $book['stock'] - $borrowedCount;
+                        $stock = $book['stock'];
+                        $percent = $stock > 0 ? ($remaining / $stock) : 0;
+                        $statusClass = '';
+                        if ($remaining == $stock) {
+                            $statusClass = 'status-green';
+                        } elseif ($remaining == 0) {
+                            $statusClass = 'status-red';
+                        } elseif ($percent < 0.4) {
+                            $statusClass = 'status-yellow';
+                        } else {
+                            $statusClass = 'status-green';
+                        }
+                        ?>
+                        <span class="status <?php echo $statusClass; ?> <?php echo htmlspecialchars($book['status']); ?>"><?php echo ucfirst(htmlspecialchars($book['status'])); ?></span>
                         <div class="book-actions">
                             <a href="editBook.php?book_id=<?php echo $book['book_id']; ?>">
                                 <img src="/images/Edit button.svg" alt="Edit">

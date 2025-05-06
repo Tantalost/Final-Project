@@ -99,21 +99,21 @@ session_start();
                         <p>Total Books</p>
                     </div>
                 </div>
-                <div class="stat-card" data-link="managebook.html">
+                <div class="stat-card" data-link="managebook.php">
                     <img src="/images/borrow_book_vector.svg" alt="Borrowed Books">
                     <div class="stat-info">
                         <h3>190</h3>
                         <p>Borrowed Books</p>
                     </div>
                 </div>
-                <div class="stat-card" data-link="managebook.html">
+                <div class="stat-card" data-link="managebook.php">
                     <img src="/images/return_book_vector.svg" alt="Overdue Books">
                     <div class="stat-info">
                         <h3>20</h3>
                         <p>Overdue Books</p>
                     </div>
                 </div>
-                <div class="stat-card" data-link="manageuser.html">
+                <div class="stat-card" data-link="manageuser.php">
                     <img src="/images/manage_users_vector.svg" alt="Total Users">
                     <div class="stat-info">
                         <h3>980</h3>
@@ -291,8 +291,8 @@ session_start();
                                 <td><span class="status overdue">overdue</span></td>
                                 <td>
                                     <div class="table-actions">
-                                        <button><img src="/images/Edit button.svg" alt="Edit"></button>
-                                        <button><img src="/images/Delete Button.svg" alt="Delete"></button>
+                                        <a href="editBook.php?book_id=9780747532743"><img src="/images/Edit button.svg" alt="Edit"></a>
+                                        <button onclick="if(confirm('Are you sure you want to delete this record?')){/* add delete logic here */}"><img src="/images/Delete Button.svg" alt="Delete"></button>
                                         <button class="more-actions">•••</button>
                                     </div>
                                 </td>
@@ -311,8 +311,8 @@ session_start();
                                 <td><span class="status returned">returned</span></td>
                                 <td>
                                     <div class="table-actions">
-                                        <button>a<img src="/images/Edit button.svg" alt="Edit"></button>
-                                        <button><img src="/images/Delete Button.svg" alt="Delete"></button>
+                                        <a href="editBook.php?book_id=9780747532743"><img src="/images/Edit button.svg" alt="Edit"></a>
+                                        <button onclick="if(confirm('Are you sure you want to delete this record?')){/* add delete logic here */}"><img src="/images/Delete Button.svg" alt="Delete"></button>
                                         <button class="more-actions">•••</button>
                                     </div>
                                 </td>
@@ -418,5 +418,73 @@ session_start();
     </script>
     <script src="/js/timecheck.js"></script>
     <script src="/js/admindash.js"></script>
+    <script>
+        // Generate random fines data for the last 7 days
+        const generateFinesData = () => {
+            const data = [];
+            let totalFines = 0;
+            for (let i = 0; i < 7; i++) {
+                const fine = Math.floor(Math.random() * 5000) + 1000; // Random amount between 1000 and 6000
+                data.push(fine);
+                totalFines += fine;
+            }
+            return { data, totalFines };
+        };
+
+        // Create line chart for fines
+        const createFinesChart = () => {
+            const ctx = document.getElementById('lineChart').getContext('2d');
+            const { data, totalFines } = generateFinesData();
+            
+            // Update total fines display
+            document.getElementById('total-fines').textContent = 
+                `Total Fines Collected: PHP ${totalFines.toLocaleString()}.00`;
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                    datasets: [{
+                        label: 'Fines Collected (PHP)',
+                        data: data,
+                        borderColor: '#4CAF50',
+                        backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `PHP ${context.raw.toLocaleString()}.00`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return 'PHP ' + value.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        };
+
+        // Initialize the chart when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createFinesChart();
+        });
+    </script>
 </body>
 </html>
