@@ -170,9 +170,9 @@ $books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
                     <div class="book-footer">
                         <span class="status <?php echo htmlspecialchars($book['status']); ?>"><?php echo ucfirst(htmlspecialchars($book['status'])); ?></span>
                         <div class="book-actions">
-                            <button onclick="editBook(<?php echo $book['book_id']; ?>)">
+                            <a href="editBook.php?book_id=<?php echo $book['book_id']; ?>">
                                 <img src="/images/Edit button.svg" alt="Edit">
-                            </button>
+                            </a>
                             <button onclick="deleteBook(<?php echo $book['book_id']; ?>)">
                                 <img src="/images/Delete Button.svg" alt="Delete">
                             </button>
