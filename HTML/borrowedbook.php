@@ -38,30 +38,66 @@
             <div class="user-name">Rashdy Arobie</div>
             <div class="user-role">Admin</div>
           </div>
+          <div class="logout">
+                <button class="menu-button">
+                    <img src="/images/logout_vector.svg" alt="Menu">
+                </button>
+                <div class="dropdown-menu">
+                    <div class="menu-item">
+                        <img src="/images/Profile (2).svg" alt="Profile">
+                        <span>Profile</span>
+                    </div>
+                    <div class="menu-item">
+                        <img src="/images/accountsett.svg" alt="Account Settings">
+                        <span>Account Settings</span>
+                    </div>
+                    <div class="menu-item">
+                        <img src="/images/languageicon.svg" alt="Language">
+                        <span>Language</span>
+                    </div>
+                    <div class="menu-item">
+                        <img src="/images/darktheme.svg" alt="Dark Theme">
+                        <span>Dark Theme</span>
+                    </div>
+                    <div class="menu-item logout-option" data-link="welcome.php">
+                        <img src="/images/logout_vector.svg" alt="Log Out">
+                        <span>Log Out</span>
+                    </div>
+                </div>
+            </div>
         </div>
       </div>
 
       <main class="main-content" id="mainContent">
-          <header class="header">
+        <div class="header-container">
             <div class="header-title">
-              <h1>BORROWED BOOKS</h1>
-              <div class="count-display"><span class="count">190</span> Borrowed Books</div>
+            <img src="/images/backbtn.svg" class="back-button"> 
+                BORROWED BOOKS</div>
             </div>
           </header>
-        
+
             <div class="content">
-              <div class="header-actions">
-                <div class="card">
-                  <a href="returnbook.html">
-                    <div class="action-box"><img src="/images/return_book_vector.svg" alt="Return Confirmations"><br>3<br>Return Confirmation</div>
-                  </a>
+                <div class="header-actions">
+                    <div class="count-display"><span class="count">78</span> Borrowed Books</div>
+                    <div class="card">
+                        <a href="returnbook.html">
+                            <div class="action-box">
+                                <img src="/images/return_book_vector.svg" alt="Return Confirmations" class="action-icon">
+                                <span class="action-count">3</span>
+                                <span class="action-label">Return Confirmation</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="reportbook.html">
+                            <div class="action-box">
+                                <img src="/images/report.svg" alt="Reports" class="action-icon">
+                                <span class="action-count">16</span>
+                                <span class="action-label">Reports Available</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-                <div class="card">
-                  <a href="reportbook.html">
-                    <div class="action-box"><img src="/images/report.svg" alt="Reports"><br>16<br>Reports Available</div>
-                </div>
-                  </a>
-               </div>
 
               <div class="search-bar">
                 <select>
@@ -74,9 +110,6 @@
                 <button>Search</button>
               </div>
             </div>
-            
-         
-        
 
         <section class="table-section">
           <table>
@@ -97,7 +130,7 @@
                 <td>04/04/2024</td>
                 <td>04/10/2024</td>
                 <td class="status return">To be returned</td>
-                <td><img src="view_details.svg" alt="View Details" class="view-details-icon" data-target="returnModal1" style="cursor: pointer; width: 30px;"></td>
+                <td><img src="/images/view_details.svg" alt="View Details" class="view-details-icon" data-target="returnModal1" style="cursor: pointer; width: 30px;"></td>
               </tr>
               <tr>
                 <td>#011234</td>
