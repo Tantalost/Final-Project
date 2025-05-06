@@ -158,7 +158,7 @@ $books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
                     $reportCount = $bookOps->getReportCount($book['book_id']);
                 ?>
                 <div class="book <?php echo $book['status'] === 'unavailable' ? 'unavailable' : ''; ?>">
-                    <img src="<?php echo htmlspecialchars($book['image_url'] ?? '/images/books/default_book.svg'); ?>" alt="<?php echo htmlspecialchars($book['title']); ?>">
+                <img src="<?php echo htmlspecialchars($book['image_url'] ?? '/images/books/default_book.svg'); ?>" alt="<?php echo htmlspecialchars($book['title']); ?>">
                     <h3><?php echo htmlspecialchars($book['title']); ?></h3>
                     <p>By <?php echo htmlspecialchars($book['authors']); ?></p>
                     <p>ISBN: <?php echo htmlspecialchars($book['isbn']); ?></p>

@@ -186,7 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                         <div class="image-add" style="margin-top:16px;">
                             <?php if (!empty($book['image_url'])): ?>
-                                <img src="<?php echo htmlspecialchars($book['image_url']); ?>" alt="Current Book Image" style="max-width:100px;max-height:100px;display:block;margin-bottom:8px;">
+                                <img src="<?php echo htmlspecialchars($book['image_url'] ?? '/images/books/default_book.svg'); ?>" alt="<?php echo htmlspecialchars($book['title']); ?>">
                             <?php endif; ?>
                             <input type="file" id="book-image" name="book_image" accept="image/svg+xml,image/png,image/jpeg">
                         </div>
