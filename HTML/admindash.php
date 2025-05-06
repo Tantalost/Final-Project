@@ -72,7 +72,7 @@ session_start();
                         <img src="/images/darktheme.svg" alt="Dark Theme">
                         <span>Dark Theme</span>
                     </div>
-                    <div class="menu-item logout-option" data-link="welcome.php">
+                    <div class="menu-item logout-option">
                         <img src="/images/logout_vector.svg" alt="Log Out">
                         <span>Log Out</span>
                     </div>

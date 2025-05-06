@@ -1,0 +1,417 @@
+<?php
+require_once "book_operations.php";
+session_start();
+
+// Get books with optional filters
+$filters = [
+    'title' => $_GET['title'] ?? null,
+    'author' => $_GET['author'] ?? null,
+    'isbn' => $_GET['isbn'] ?? null,
+    'status' => $_GET['status'] ?? null
+];
+$booksResponse = $bookOps->getBooks($filters);
+$books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Books</title>
+    <link rel="stylesheet" href="/CSS/managestyle.css">
+    <link rel="stylesheet" href="/CSS/modalstyles.css">
+</head>
+<body>
+    <button id="menu-toggle" class="menu-toggle">
+        <img src="/images/hamburgerbtn.svg" alt="Toggle Menu">
+    </button>
+    <div class="sidebar" id="sidebar">
+        <div class="logo-container">
+            <img src="/images/logo.svg" alt="Library Logo">
+        </div>
+        <div class="menu">
+            <a href="/HTML/admindash.php">
+                <img src="/images/dashboard_vector.svg" alt="Dashboard">
+                Dashboard
+            </a>
+            <a href="/HTML/managebook.php" class="active">
+                <img src="/images/manage_books_vector.svg" alt="Manage Books">
+                Manage Books
+            </a>
+            <a href="/HTML/manageuser.php">
+                <img src="/images/manage_users_vector.svg" alt="Manage Users">
+                Manage Users
+            </a>
+        </div>
+        <div class="footer-sidebar">
+            <a href="#">About</a>
+            <a href="#">Support</a>
+            <a href="#">Terms & condition</a>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="topbar">
+            <div class="user-info">
+                <img src="/images/Profile.svg" alt="Profile">
+                <div class="user-details">
+                    <div class="user-name"><?php echo htmlspecialchars($_SESSION['username'] ?? 'Admin'); ?></div>
+                    <div class="user-role">Admin</div>
+                </div>
+            </div>
+            <div class="logout">
+                <button class="menu-button">
+                    <img src="/images/logout_vector.svg" alt="Menu">
+                </button>
+                <div class="dropdown-menu">
+                    <div class="menu-item">
+                        <img src="/images/Profile (2).svg" alt="Profile">
+                        <span>Profile</span>
+                    </div>
+                    <div class="menu-item">
+                        <img src="/images/accountsett.svg" alt="Account Settings">
+                        <span>Account Settings</span>
+                    </div>
+                    <div class="menu-item">
+                        <img src="/images/languageicon.svg" alt="Language">
+                        <span>Language</span>
+                    </div>
+                    <div class="menu-item">
+                        <img src="/images/darktheme.svg" alt="Dark Theme">
+                        <span>Dark Theme</span>
+                    </div>
+                    <div class="menu-item logout-option" data-link="welcome.php">
+                        <img src="/images/logout_vector.svg" alt="Log Out">
+                        <span>Log Out</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="header-container">
+                <div class="header-title">
+                    <img src="/images/backbtn.svg" class="back-button"> 
+                    MANAGE BOOKS
+                </div>
+            </div>
+
+            <div class="stats">
+                <?php
+                // Get book statistics
+                $totalBooks = count($books);
+                $borrowedBooks = array_filter($books, function($book) {
+                    return $book['status'] === 'borrowed';
+                });
+                $overdueBooks = array_filter($books, function($book) {
+                    return $book['status'] === 'overdue';
+                });
+                ?>
+                <div class="card" data-link="managebook.php">
+                    <img src="/images/manage_books_vector.svg" alt="Total Books">
+                    <div class="stat-info">
+                        <h3><?php echo $totalBooks; ?></h3>
+                        <p>Total Books</p>
+                    </div>
+                </div>
+                <div class="card" data-link="borrowedbook.php">
+                    <img src="/images/borrow_book_vector.svg" alt="Borrowed Books">
+                    <div class="stat-info">
+                        <h3><?php echo count($borrowedBooks); ?></h3>
+                        <p>Borrowed Books</p>
+                    </div>
+                </div>
+                <div class="card" data-link="returnbook.php">
+                    <img src="/images/return_book_vector.svg" alt="Return Confirmations">
+                    <div class="stat-info">
+                        <h3><?php echo count($overdueBooks); ?></h3>
+                        <p>Overdue Books</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="search-section">
+                <form method="GET" class="search-bar">
+                    <select name="filter">
+                        <option value="all">All</option>
+                        <option value="title">Title</option>
+                        <option value="author">Author</option>
+                        <option value="isbn">ISBN</option>
+                    </select>
+                    <input type="text" name="search" placeholder="Search..." value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
+                    <button type="submit">
+                        <img src="/images/Search.svg" alt="Search">
+                    </button>
+                </form>
+                <div class="action-buttons">
+                    <a href="addBook.php" class="cardbutton">
+                        <img src="/images/addnew.svg" alt="Add">
+                    </a>
+                    <button class="cardbutton" onclick="showManageFinesModal()">
+                        <img src="/images/ManagefINES.svg" alt="Fines">
+                    </button>
+                </div>
+            </div>
+
+            <div class="book-list">
+                <?php foreach ($books as $book): 
+                    $borrowedCount = $bookOps->getBorrowedCount($book['book_id']);
+                    $reportCount = $bookOps->getReportCount($book['book_id']);
+                ?>
+                <div class="book <?php echo $book['status'] === 'unavailable' ? 'unavailable' : ''; ?>">
+                    <img src="<?php echo htmlspecialchars($book['image_url'] ?? '/images/default_book.svg'); ?>" alt="<?php echo htmlspecialchars($book['title']); ?>">
+                    <h3><?php echo htmlspecialchars($book['title']); ?></h3>
+                    <p>By <?php echo htmlspecialchars($book['authors']); ?></p>
+                    <p>ISBN: <?php echo htmlspecialchars($book['isbn']); ?></p>
+                    <div class="book-stats">
+                        <p>Stock: <?php echo htmlspecialchars($book['stock']); ?></p>
+                        <p>Remaining: <?php echo htmlspecialchars($book['stock'] - $borrowedCount); ?></p>
+                        <p>Reports: <?php echo $reportCount; ?></p>
+                    </div>
+                    <div class="book-footer">
+                        <span class="status <?php echo htmlspecialchars($book['status']); ?>"><?php echo ucfirst(htmlspecialchars($book['status'])); ?></span>
+                        <div class="book-actions">
+                            <button onclick="editBook(<?php echo $book['book_id']; ?>)">
+                                <img src="/images/Edit button.svg" alt="Edit">
+                            </button>
+                            <button onclick="deleteBook(<?php echo $book['book_id']; ?>)">
+                                <img src="/images/Delete Button.svg" alt="Delete">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Book Modal -->
+    <div id="addBookModal" class="viewmodal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Book</h2>
+            </div>
+            <div class="modal-body">
+                <form id="addBookForm">
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="authors">Authors:</label>
+                        <input type="text" id="authors" name="authors" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="isbn">ISBN:</label>
+                        <input type="text" id="isbn" name="isbn" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edition">Edition:</label>
+                        <input type="text" id="edition" name="edition">
+                    </div>
+                    <div class="form-group">
+                        <label for="genre">Genre:</label>
+                        <input type="text" id="genre" name="genre">
+                    </div>
+                    <div class="form-group">
+                        <label for="publisher">Publisher:</label>
+                        <input type="text" id="publisher" name="publisher">
+                    </div>
+                    <div class="form-group">
+                        <label for="published_date">Published Date:</label>
+                        <input type="date" id="published_date" name="published_date">
+                    </div>
+                    <div class="form-group">
+                        <label for="stock">Stock:</label>
+                        <input type="number" id="stock" name="stock" min="0" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea id="description" name="description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="image_url">Image URL:</label>
+                        <input type="text" id="image_url" name="image_url">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-actions">
+                <button class="modalbtn proceed" onclick="submitAddBook()">Add Book</button>
+                <button class="modalbtn close" onclick="closeAddBookModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Book Modal -->
+    <div id="editBookModal" class="viewmodal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Book</h2>
+            </div>
+            <div class="modal-body">
+                <form id="editBookForm">
+                    <input type="hidden" id="edit_book_id" name="book_id">
+                    <!-- Same form fields as Add Book Modal -->
+                    // ... existing form fields ...
+                </form>
+            </div>
+            <div class="modal-actions">
+                <button class="modalbtn proceed" onclick="submitEditBook()">Save Changes</button>
+                <button class="modalbtn close" onclick="closeEditBookModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteBookModal" class="viewmodal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Delete Book</h2>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this book?</p>
+                <input type="hidden" id="delete_book_id">
+            </div>
+            <div class="modal-actions">
+                <button class="modalbtn proceed" onclick="confirmDeleteBook()">Delete</button>
+                <button class="modalbtn close" onclick="closeDeleteBookModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Show/Hide Modals
+        function showAddBookModal() {
+            document.getElementById('addBookModal').style.display = 'flex';
+        }
+
+        function closeAddBookModal() {
+            document.getElementById('addBookModal').style.display = 'none';
+        }
+
+        function showEditBookModal() {
+            document.getElementById('editBookModal').style.display = 'flex';
+        }
+
+        function closeEditBookModal() {
+            document.getElementById('editBookModal').style.display = 'none';
+        }
+
+        function showDeleteBookModal() {
+            document.getElementById('deleteBookModal').style.display = 'flex';
+        }
+
+        function closeDeleteBookModal() {
+            document.getElementById('deleteBookModal').style.display = 'none';
+        }
+
+        // Book Operations
+        function submitAddBook() {
+            const form = document.getElementById('addBookForm');
+            const formData = new FormData(form);
+            formData.append('action', 'add');
+
+            fetch('book_ajax.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Book added successfully');
+                    location.reload();
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while adding the book');
+            });
+        }
+
+        function editBook(bookId) {
+            fetch(`book_ajax.php?action=get&book_id=${bookId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    const book = data.data;
+                    const form = document.getElementById('editBookForm');
+                    form.book_id.value = book.book_id;
+                    form.title.value = book.title;
+                    form.authors.value = book.authors;
+                    form.isbn.value = book.isbn;
+                    form.edition.value = book.edition || '';
+                    form.genre.value = book.genre || '';
+                    form.publisher.value = book.publisher || '';
+                    form.published_date.value = book.published_date || '';
+                    form.stock.value = book.stock;
+                    form.description.value = book.description || '';
+                    form.image_url.value = book.image_url || '';
+                    showEditBookModal();
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while fetching book details');
+            });
+        }
+
+        function submitEditBook() {
+            const form = document.getElementById('editBookForm');
+            const formData = new FormData(form);
+            formData.append('action', 'update');
+
+            fetch('book_ajax.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Book updated successfully');
+                    location.reload();
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while updating the book');
+            });
+        }
+
+        function deleteBook(bookId) {
+            document.getElementById('delete_book_id').value = bookId;
+            showDeleteBookModal();
+        }
+
+        function confirmDeleteBook() {
+            const bookId = document.getElementById('delete_book_id').value;
+            const formData = new FormData();
+            formData.append('action', 'delete');
+            formData.append('book_id', bookId);
+
+            fetch('book_ajax.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Book deleted successfully');
+                    location.reload();
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while deleting the book');
+            });
+        }
+    </script>
+    <script src="/js/admindash.js"></script>
+</body>
+</html> 
