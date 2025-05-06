@@ -21,11 +21,11 @@
                 <img src="/images/dashboard_vector.svg" alt="Dashboard">
                 Dashboard
             </a>
-            <a href="/HTML/managebook.html">
+            <a href="/HTML/managebook.php">
                 <img src="/images/manage_books_vector.svg" alt="Manage Books">
                 Manage Books
             </a>
-            <a href="/HTML/manageuser.html" class="active">
+            <a href="/HTML/manageuser.php" class="active">
                 <img src="/images/manage_users_vector.svg" alt="Manage Users">
                 Manage Users
             </a>
@@ -93,10 +93,10 @@
                     <img src="/images/browse.svg">
                 </a>
 
-                <a href="/html/" class="browse">
+                <button type="button" class="browse" id="openSendNotification">
                     Send
                     <img src="/images/browse.svg">
-                </a>
+                </button>
             </div>
 
             <div class="users-container">
@@ -129,6 +129,7 @@
                                             <button class="edit"><span class="material-icons">edit</span></button>
                                             <button class="delete"><span class="material-icons">delete</span></button>
                                             <button class="more"><span class="material-icons">more_vert</span></button>
+                                            <button class="send-notification"><span class="material-icons">notifications</span></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -146,6 +147,7 @@
                                             <button class="edit"><span class="material-icons">edit</span></button>
                                             <button class="delete"><span class="material-icons">delete</span></button>
                                             <button class="more"><span class="material-icons">more_vert</span></button>
+                                            <button class="send-notification"><span class="material-icons">notifications</span></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -163,6 +165,7 @@
                                             <button class="edit"><span class="material-icons">edit</span></button>
                                             <button class="delete"><span class="material-icons">delete</span></button>
                                             <button class="more"><span class="material-icons">more_vert</span></button>
+                                            <button class="send-notification"><span class="material-icons">notifications</span></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -273,10 +276,13 @@
             const sendNotificationButton = document.getElementById('sendNotification');
             const confirmNotificationButton = document.getElementById('confirmNotification');
 
-            // Trigger Send Notification Modal
-            document.querySelector('.browse:nth-child(2)').addEventListener('click', function() {
-                sendNotificationModal.style.display = 'flex';
-                sendNotificationModal.classList.add('active');
+            // Fix: Add event listeners to all send-notification buttons
+            document.querySelectorAll('.send-notification').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    sendNotificationModal.style.display = 'flex';
+                    sendNotificationModal.classList.add('active');
+                });
             });
 
             // User Details Modal logic
@@ -316,6 +322,22 @@
                 notificationConfirmationModal.classList.remove('active');
                 notificationSuccessModal.style.display = 'flex';
                 notificationSuccessModal.classList.add('active');
+            });
+
+            document.getElementById('openSendNotification').addEventListener('click', function() {
+                sendNotificationModal.style.display = 'flex';
+                sendNotificationModal.classList.add('active');
+            });
+
+            // Fix: Add event listeners to all modal close buttons
+            document.querySelectorAll('.modalbtn.close').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    const modal = btn.closest('.viewmodal');
+                    if (modal) {
+                        modal.style.display = 'none';
+                        modal.classList.remove('active');
+                    }
+                });
             });
         });
     </script>

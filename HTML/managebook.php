@@ -71,7 +71,7 @@ $books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
             <div class="user-info">
                 <img src="/images/Profile.svg" alt="Profile">
                 <div class="user-details">
-                    <div class="user-name"><?php echo htmlspecialchars($_SESSION['username'] ?? 'Admin'); ?></div>
+                    <div class="user-name"><?php echo htmlspecialchars($_SESSION['admin_name'] ?? 'Admin'); ?></div>
                     <div class="user-role">Admin</div>
                 </div>
             </div>
