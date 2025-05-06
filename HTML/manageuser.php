@@ -21,11 +21,11 @@
                 <img src="/images/dashboard_vector.svg" alt="Dashboard">
                 Dashboard
             </a>
-            <a href="/HTML/managebook.html">
+            <a href="/HTML/managebook.php">
                 <img src="/images/manage_books_vector.svg" alt="Manage Books">
                 Manage Books
             </a>
-            <a href="/HTML/manageuser.html" class="active">
+            <a href="/HTML/manageuser.php" class="active">
                 <img src="/images/manage_users_vector.svg" alt="Manage Users">
                 Manage Users
             </a>

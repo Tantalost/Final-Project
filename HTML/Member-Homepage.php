@@ -14,19 +14,19 @@
         </div>
 
         <nav class="menu">
-            <a href="/html/Member-Homepage.html" class="active">
+            <a href="/html/Member-Homepage.php" class="active">
                 <img src="/images/Home.svg" width="20" height="20" alt="Home">
                 <span>Home</span>
             </a>
-            <a href="/HTML/Searchpage.html">
+            <a href="/HTML/Searchpage.php">
                 <img src="/images/Search.svg" width="20" height="20" alt="Search">
                 <span>Search</span>
             </a>
-            <a href="/HTML/Myshelf.html">
+            <a href="/HTML/Myshelf.php">
                 <img src="/images/Myshelf.svg" width="20" height="20" alt="My Shelf">
                 <span>My Shelf</span>
             </a>
-            <a href="/HTML/Member-History.html">
+            <a href="/HTML/Member-History.php">
                 <img src="/images/history_vector.svg" width="20" height="20" alt="History">
                 <span>History</span>
             </a>
@@ -100,19 +100,19 @@
             <div class="dashboard">
                 <div class="upper-dashboard">
                     <div class="actions-grid">
-                        <a href="/html/Member-BorrowBooks.html" class="action-button">
+                        <a href="/html/Member-BorrowBooks.php" class="action-button">
                             <img class="action-icon" src="/images/borrow_book_vector.svg" alt="Borrow Book">
                             <div class="action-text">Borrow Book</div>
                         </a>
-                        <a href="/html/Member-ReturnBooks.html" class="action-button">
+                        <a href="/html/Member-ReturnBooks.php" class="action-button">
                             <img class="action-icon" src="/images/return_book_vector.svg" alt="Return Book" width="50" height="50">
                             <div class="action-text">Return Book</div>
                         </a>
-                        <a href="/html/Report Lost Book.html" class="action-button">
+                        <a href="/html/Report Lost Book.php" class="action-button">
                             <img class="action-icon" src="/images/lost_book_vector.svg" alt="Report a Lost Book" width="50" height="50">
                             <div class="action-text">Report a Lost Book</div>
                         </a>
-                        <a href="/html/Damage Books Rep.html" class="action-button">
+                        <a href="/html/Damage Books Rep.php" class="action-button">
                             <img class="action-icon" src="/images/damaged_book_vector.svg" alt="Report a Damaged Book" width="50" height="50">
                             <div class="action-text">Report a Damaged Book</div>
                         </a>

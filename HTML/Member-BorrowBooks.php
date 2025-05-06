@@ -15,7 +15,7 @@
         </div>
 
         <nav class="menu">
-            <a href="/html/Member-Homepage.html" class="active">
+            <a href="/html/Member-Homepage.php" class="active">
                 <img src="/images/Home.svg" width="20" height="20" alt="Home">
                 <span>Home</span>
             </a>
@@ -23,11 +23,11 @@
                 <img src="/images/Search.svg" width="20" height="20" alt="Search">
                 <span>Search</span>
             </a>
-            <a href="/HTML/Myshelf.html">
+            <a href="/HTML/Myshelf.php">
                 <img src="/images/Myshelf.svg" width="20" height="20" alt="My Shelf">
                 <span>My Shelf</span>
             </a>
-            <a href="/html/Member-History.html">
+            <a href="/html/Member-History.php">
                 <img src="/images/history_vector.svg" width="20" height="20" alt="History">
                 <span>History</span>
             </a>

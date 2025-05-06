@@ -18,8 +18,8 @@
         <div class="menu-wrapper">
           <ul class="menu">
             <li><a href="/HTML/admindash.php"><img src="/images/dashboard_vector.svg" alt="Dashboard"><span>Dashboard</span></a></li>
-            <li class="active"><a href="/HTML/managebook.html"><img src="/images/manage_books_vector.svg" alt="Manage Books"><span>Manage Books</span></a></li>
-            <li><a href="/HTML/manageuser.html"><img src="/images/manage_users_vector.svg" alt="Manage Users"><span>Manage Users</span></a></li>
+            <li class="active"><a href="/HTML/managebook.php"><img src="/images/manage_books_vector.svg" alt="Manage Books"><span>Manage Books</span></a></li>
+            <li><a href="/HTML/manageuser.php"><img src="/images/manage_users_vector.svg" alt="Manage Users"><span>Manage Users</span></a></li>
           </ul>
         </div>
         <div class="footer-sidebar">
@@ -53,7 +53,7 @@
                 <div class="header-actions">
                     <div class="count-display"><span class="count">78</span> Borrowed Books</div>
                     <div class="card">
-                        <a href="returnbook.html">
+                        <a href="returnbook.php">
                             <div class="action-box">
                                 <img src="/images/return_book_vector.svg" alt="Return Confirmations" class="action-icon">
                                 <span class="action-count">3</span>
