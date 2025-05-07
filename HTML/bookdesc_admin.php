@@ -92,8 +92,8 @@ if ($bookId) {
             <div class="book-info">
                 <h1 class="book-title">
                     <?php echo htmlspecialchars($book['title'] ?? 'Book Not Found'); ?>
-                    <a href="editBook.php?book_id=<?php echo $bookId; ?>"><img src="/images/Edit button.svg" alt="Edit" class="admin-edit-icon"></a>
-                    <a href="#" onclick="if(confirm('Delete this book?')){window.location.href='deleteBook.php?book_id=<?php echo $bookId; ?>';}"><img src="/images/Delete Button.svg" alt="Delete" class="admin-delete-icon"></a>
+                    <a href="editBook.php?book_id=<?php echo $bookId; ?>"><img src="/images/editbtn.svg" alt="Edit" class="admin-edit-icon"></a>
+                    <a href="#" onclick="if(confirm('Delete this book?')){window.location.href='deleteBook.php?book_id=<?php echo $bookId; ?>';}"><img src="/images/deletebtn.svg" alt="Delete" class="admin-delete-icon"></a>
                 </h1>
                 <div class="book-meta">
                     By <b><?php echo htmlspecialchars($book['authors'] ?? 'Unknown'); ?></b><?php if (!empty($book['published_date'])): ?>, <?php echo htmlspecialchars($book['published_date']); ?><?php endif; ?><br>

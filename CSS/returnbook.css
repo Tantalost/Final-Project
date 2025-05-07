@@ -6,7 +6,7 @@
     --light-blue: #EAF6FF;
     --primary-blue: #6AB0E3;
     --bright-blue: #9CD5FF;
-    --text-color: #1D3774;
+    --text-color: #0D3958;
     --sidebar-width: 240px;
     --sidebar-transition: 0.3s ease;
   }
@@ -51,10 +51,10 @@
   
   .sidebar .logo img {
     width: 150px;
-    margin: 0 auto 30px;
+    margin: 50px auto 30px;
     display: block;
   }
-  
+
   .menu {
     list-style: none;
     padding: 0;
@@ -120,10 +120,9 @@
   }
   
   .menu-toggle {
-    background-color: #2980b9;
+    background-color: var(--primary-blue);
     color: #fff;
     border: none;
-    padding: 0.5rem;
     border-radius: 6px;
     cursor: pointer;
     display: flex;
@@ -136,10 +135,16 @@
     height: 24px;
     filter: brightness(0) invert(1);
   }
-  
+
+  .profile img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
   .topbar {
     background-color: var(--primary-blue);
-    padding: 1rem 3rem 1rem 5rem;
+    padding: 1rem 3rem 1rem 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -385,6 +390,7 @@ margin-top: 2px;
     padding: 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    color: #0D3958;
   }
   
   .table-section th {
@@ -480,7 +486,7 @@ margin-top: 2px;
     position: absolute;
     top: 12px;
     right: 20px;
-    font-size: 24px;
+    font-size: 14px;
     color: #aaa;
     cursor: pointer;
   }
@@ -530,7 +536,7 @@ margin-top: 2px;
     height: 100vh;
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.4);
-    display: none;
+    display: none; 
     align-items: center;
     justify-content: center;
   }
@@ -546,8 +552,8 @@ margin-top: 2px;
   }
   
   #return-confirmation-modal .modal-content img {
-    width: 70px;
-    margin-bottom: 20px;
+    width: 100px;
+    margin-bottom: 10px;
   }
   
   #return-confirmation-modal p {
@@ -564,7 +570,7 @@ margin-top: 2px;
   }
   
   .confirm-btn {
-    background-color: #1D3774;
+    background-color: #6AB0E3;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -574,7 +580,7 @@ margin-top: 2px;
   }
   
   .cancel-btn {
-    background-color: #1D3774;
+    background-color: #6AB0E3;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -593,3 +599,5 @@ margin-top: 2px;
       transform: translateY(0);
     }
   }
+  
+  

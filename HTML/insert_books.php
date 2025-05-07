@@ -12,7 +12,7 @@ try {
 }
 
 // Load JSON file
-$books = json_decode(file_get_contents('real_books_with_images.json'), true);
+$books = json_decode(file_get_contents('real_books_highres.json'), true);
 
 // Prepare insert statement
 $sql = "INSERT INTO books (
@@ -37,13 +37,13 @@ foreach ($books as $book) {
     $publishedDate = formatDate($book['published_date']);
 
     // Convert local Windows path to web path
-    $filename = basename($book['image_local']); // e.g., 9780439023528.png
+    $filename = basename($book['image_url']);
     $webImagePath = '/images/books/' . $filename;
 
     try {
         $stmt->execute([
             ':title' => $book['title'],
-            ':authors' => implode(', ', $book['authors']),
+            ':authors' => is_array($book['authors']) ? implode(', ', $book['authors']) : $book['authors'],
             ':isbn' => $book['isbn'],
             ':edition' => $book['edition'],
             ':genre' => $book['genre'],
