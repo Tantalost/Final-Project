@@ -133,8 +133,10 @@ if (!empty($searchQuery)) {
                     <?php foreach ($filteredBooks as $book): ?>
                         <div class="book-card">
                             <div class="book-image">
-                                <img src="<?= htmlspecialchars($book['image_url'] ?? '/images/books/default_book.svg') ?>" 
-                                    alt="<?= htmlspecialchars($book['title'] ?? 'Untitled') ?> Book Cover">
+                                <a href="bookdescription.php?book_id=<?= urlencode($book['book_id']) ?>">
+                                    <img src="<?= htmlspecialchars($book['image_url'] ?? '/images/books/default_book.svg') ?>" 
+                                        alt="<?= htmlspecialchars($book['title'] ?? 'Untitled') ?> Book Cover">
+                                </a>
                             </div>
                             <div class="book-details">
                                 <h3 class="book-title"><?= htmlspecialchars(strtoupper($book['title'])) ?></h3>
@@ -146,8 +148,11 @@ if (!empty($searchQuery)) {
                     <?php endforeach; ?>
                 <?php endif; ?>
             </section>
+
+
         </main> 
     </div> 
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.getElementById('menu-toggle');
