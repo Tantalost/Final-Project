@@ -186,7 +186,7 @@ if (!empty($searchQuery)) {
                             <td>4.5</td>
                             <td><?php echo htmlspecialchars($book['genre']); ?></td>
                             <td><?php echo $isAvailable ? 'Available' : 'Borrowed'; ?></td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="checkbox"></td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>

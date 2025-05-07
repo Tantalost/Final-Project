@@ -60,10 +60,10 @@
                     <img class="logout-icon" src="/images/LogOut_vector.svg" alt="Logout">
                 </button>
                 <div class="dropdown-menu">
-                    <div class="menu-item">
-                        <img src="/images/Profile (2).svg" alt="Profile">
-                        <span>Profile</span>
-                    </div>
+                    <div class="menu-item" id="profile-button">
+                    <img src="/images/Profile (2).svg" alt="Profile">
+                    <span>Profile</span>
+                </div>
                     <div class="menu-item">
                         <img src="/images/accountsett.svg" alt="Account Settings">
                         <span>Account Settings</span>
@@ -282,9 +282,14 @@
             const confirmLogoutButton = document.getElementById('confirmLogout');
 
             // Trigger Profile Modal
-            document.querySelector('.menu-item:nth-child(1)').addEventListener('click', function() {
+            document.getElementById('profile-button').addEventListener('click', function() {
                 profileModal.style.display = 'flex';
                 profileModal.classList.add('active');
+            });
+
+            document.querySelector('.menu-button').addEventListener('click', function() {
+                const dropdown = document.querySelector('.dropdown-menu');
+                dropdown.classList.toggle('visible');
             });
 
             // Trigger Logout Modal

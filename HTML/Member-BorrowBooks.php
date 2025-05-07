@@ -19,7 +19,7 @@
                 <img src="/images/Home.svg" width="20" height="20" alt="Home">
                 <span>Home</span>
             </a>
-            <a href="#">
+            <a href="Searchpage.php">
                 <img src="/images/Search.svg" width="20" height="20" alt="Search">
                 <span>Search</span>
             </a>
@@ -55,34 +55,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="logout">
-                <button class="menu-button">
-                    <img class="logout-icon" src="/images/LogOut_vector.svg" alt="Logout">
-                </button>
-                <div class="dropdown-menu">
-                    <div class="menu-item">
-                        <img src="/images/Profile (2).svg" alt="Profile">
-                        <span>Profile</span>
-                    </div>
-                    <div class="menu-item">
-                        <img src="/images/accountsett.svg" alt="Account Settings">
-                        <span>Account Settings</span>
-                    </div>
-                    <div class="menu-item">
-                        <img src="/images/languageicon.svg" alt="Language">
-                        <span>Language</span>
-                    </div>
-                    <div class="menu-item">
-                        <img src="/images/darktheme.svg" alt="Dark Theme">
-                        <span>Dark Theme</span>
-                    </div>
-                    <div class="menu-item logout-option">
-                        <img src="/images/logout_vector.svg" alt="Log Out">
-                        <span>Log Out</span>
-                    </div>
-                </div>
-            </div>
         </header>
 
 
@@ -91,7 +63,9 @@
         <main class="content">
             <div class="header-container">
                 <div class="header-title">
-                    <img src="/images/backbtn.svg" class="back-button"> 
+                <a href="Member-Homepage.php">
+                    <img src="/images/backbtn.svg" class="back-button">
+                </a>
                     BORROW BOOKS</div>
             </div>
 
