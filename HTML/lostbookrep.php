@@ -11,13 +11,13 @@
       <div class="container">
           <nav class="sidebar" id="sidebar">
             <div class="logo">
-              <img src="/images/logov5.svg" alt="Library Logo">
+              <img src="/images/logov4.svg" alt="Library Logo">
             </div>
             <div class="menu-wrapper">
               <ul class="menu">
                 <li><a href="/HTML/admindash.php"><img src="/images/dashboard_vector.svg" alt="Dashboard"><span>Dashboard</span></a></li>
-                <li class="active"><a href="/HTML/managebook.html"><img src="/images/manage_books_vector.svg" alt="Manage Books"><span>Manage Books</span></a></li>
-                <li><a href="/HTML/manageuser.html"><img src="/images/manage_users_vector.svg" alt="Manage Users"><span>Manage Users</span></a></li>
+                <li class="active"><a href="/HTML/managebook.php"><img src="/images/manage_books_vector.svg" alt="Manage Books"><span>Manage Books</span></a></li>
+                <li><a href="/HTML/manageuser.php"><img src="/images/manage_users_vector.svg" alt="Manage Users"><span>Manage Users</span></a></li>
               </ul>
             </div>
             <div class="footer-sidebar">
