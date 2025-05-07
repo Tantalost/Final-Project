@@ -13,7 +13,7 @@
   <div class="container">
       <nav class="sidebar" id="sidebar">
         <div class="logo">
-          <img src="/images/logov5.svg" alt="Library Logo">
+          <img src="/images/logov4.svg" alt="Library Logo">
         </div>
         <div class="menu-wrapper">
           <ul class="menu">
@@ -46,12 +46,13 @@
 
       <main class="main-content" id="mainContent">
         <div class="header-container">
-        <a href="managebook.php">
-            <div class="header-title">
-            <img src="/images/backbtn.svg" class="back-button"> 
-                BORROWED BOOKS</div>
-            </div>
+        <div class="header-title">
+          <a href="managebook.php">
+            <img src="/images/backbtn.svg" class="back-button">
           </a>
+          BORROWED BOOKS
+        </div>
+            </div>
           </header>
 
             <div class="content">
