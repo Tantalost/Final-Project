@@ -221,6 +221,7 @@ $books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
             </div>
         </div>
     </div>
+    
     <div id="profileModal" class="viewmodal" role="dialog" aria-modal="true" tabindex="-1">
         <div class="modal-content">
             <div class="modal-header">
