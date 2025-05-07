@@ -95,14 +95,14 @@ session_start();
                 <div class="stat-card" data-link="managebook.php">
                     <img src="/images/manage_books_vector.svg" alt="Total Books">
                     <div class="stat-info">
-                        <h3>1090</h3>
+                        <h3>230</h3>
                         <p>Total Books</p>
                     </div>
                 </div>
                 <div class="stat-card" data-link="managebook.php">
                     <img src="/images/borrow_book_vector.svg" alt="Borrowed Books">
                     <div class="stat-info">
-                        <h3>190</h3>
+                        <h3>90</h3>
                         <p>Borrowed Books</p>
                     </div>
                 </div>
@@ -116,7 +116,7 @@ session_start();
                 <div class="stat-card" data-link="manageuser.php">
                     <img src="/images/manage_users_vector.svg" alt="Total Users">
                     <div class="stat-info">
-                        <h3>980</h3>
+                        <h3>36</h3>
                         <p>Total Users</p>
                     </div>
                 </div>
@@ -368,111 +368,10 @@ session_start();
             </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const profileModal = document.getElementById('profileModal');
-            const logoutModal = document.getElementById('logoutModal');
-            const closeButtons = document.querySelectorAll('.modalbtn.close');
-            const confirmLogoutButton = document.getElementById('confirmLogout');
-
-            // Trigger Profile Modal
-            document.querySelector('.menu-item:nth-child(1)').addEventListener('click', function() {
-                profileModal.style.display = 'flex';
-                profileModal.classList.add('active');
-            });
-
-            // Trigger Logout Modal
-            document.querySelector('.logout-option').addEventListener('click', function() {
-                logoutModal.style.display = 'flex';
-                logoutModal.classList.add('active');
-            });
-
-            // Close modals
-            closeButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    profileModal.style.display = 'none';
-                    profileModal.classList.remove('active');
-                    logoutModal.style.display = 'none';
-                    logoutModal.classList.remove('active');
-                });
-            });
-
-            // Confirm Logout
-            confirmLogoutButton.addEventListener('click', function() {
-                window.location.href = 'welcome.php';
-            });
-        });
-    </script>
+    
+    <script src="/js/modals.js"></script>
     <script src="/js/timecheck.js"></script>
     <script src="/js/admindash.js"></script>
-    <script>
-        // Generate random fines data for the last 7 days
-        const generateFinesData = () => {
-            const data = [];
-            let totalFines = 0;
-            for (let i = 0; i < 7; i++) {
-                const fine = Math.floor(Math.random() * 5000) + 1000; // Random amount between 1000 and 6000
-                data.push(fine);
-                totalFines += fine;
-            }
-            return { data, totalFines };
-        };
-
-        // Create line chart for fines
-        const createFinesChart = () => {
-            const ctx = document.getElementById('lineChart').getContext('2d');
-            const { data, totalFines } = generateFinesData();
-            
-            // Update total fines display
-            document.getElementById('total-fines').textContent = 
-                `Total Fines Collected: PHP ${totalFines.toLocaleString()}.00`;
-
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-                    datasets: [{
-                        label: 'Fines Collected (PHP)',
-                        data: data,
-                        borderColor: '#4CAF50',
-                        backgroundColor: 'rgba(76, 175, 80, 0.1)',
-                        tension: 0.4,
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return `PHP ${context.raw.toLocaleString()}.00`;
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function(value) {
-                                    return 'PHP ' + value.toLocaleString();
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        };
-
-        // Initialize the chart when the page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            createFinesChart();
-        });
-    </script>
+    <script src="/js/linegraph.js"></script>
 </body>
 </html>

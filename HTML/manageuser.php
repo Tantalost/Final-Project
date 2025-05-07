@@ -90,7 +90,7 @@
                     <input type="text" class="search-input" placeholder="Search...">
                 </div>
 
-                <a href="/html/" class="browse">
+                <a href="#" class="browse">
                     Browse
                     <img src="/images/browse.svg">
                 </a>

@@ -2,7 +2,6 @@
 require_once "book_operations.php";
 session_start();
 
-// Get books with optional filters
 $filters = [
     'title' => null,
     'author' => null,
@@ -10,18 +9,16 @@ $filters = [
     'status' => $_GET['status'] ?? null
 ];
 
-// Apply filter based on selected filter type
+
 $filterType = $_GET['filter'] ?? 'all';
 $searchTerm = trim($_GET['search'] ?? '');
 
 if ($searchTerm !== '') {
     if ($filterType === 'all') {
-        // Search across all fields
         $filters['title'] = $searchTerm;
         $filters['author'] = $searchTerm;
         $filters['isbn'] = $searchTerm;
     } else {
-        // Search in specific field
         $filters[$filterType] = $searchTerm;
     }
 }
@@ -96,7 +93,7 @@ $books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
                         <img src="/images/darktheme.svg" alt="Dark Theme">
                         <span>Dark Theme</span>
                     </div>
-                    <div class="menu-item logout-option" data-link="welcome.php">
+                    <div class="menu-item logout-option">
                         <img src="/images/logout_vector.svg" alt="Log Out">
                         <span>Log Out</span>
                     </div>
@@ -116,7 +113,6 @@ $books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
 
             <div class="stats">
                 <?php
-                // Get book statistics
                 $totalBooks = count($books);
                 $borrowedBooks = array_filter($books, function($book) {
                     return $book['status'] === 'borrowed';
@@ -282,42 +278,6 @@ $books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
             </div>
         </div>
     </div>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const profileModal = document.getElementById('profileModal');
-            const logoutModal = document.getElementById('logoutModal');
-            const closeButtons = document.querySelectorAll('.modalbtn.close');
-            const confirmLogoutButton = document.getElementById('confirmLogout');
-
-            // Trigger Profile Modal
-            document.querySelector('.menu-item:nth-child(1)').addEventListener('click', function() {
-                profileModal.style.display = 'flex';
-                profileModal.classList.add('active');
-            });
-
-            // Trigger Logout Modal
-            document.querySelector('.logout-option').addEventListener('click', function() {
-                logoutModal.style.display = 'flex';
-                logoutModal.classList.add('active');
-            });
-
-            // Close modals
-            closeButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    profileModal.style.display = 'none';
-                    profileModal.classList.remove('active');
-                    logoutModal.style.display = 'none';
-                    logoutModal.classList.remove('active');
-                });
-            });
-
-            // Confirm Logout
-            confirmLogoutButton.addEventListener('click', function() {
-                window.location.href = 'welcome.php';
-            });
-        });
-    </script>
 
     <script>
         // Show/Hide Modals
@@ -453,6 +413,7 @@ $books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
             });
         }
     </script>
+    <script src="/js/modals.js"></script>
     <script src="/js/admindash.js"></script>
 </body>
 </html> 
