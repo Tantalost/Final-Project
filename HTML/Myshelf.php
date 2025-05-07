@@ -44,7 +44,7 @@
                     <img src="/images/hamburgerbtn.svg" alt="Toggle Menu">
                 </button>
                 <div class="profile">
-                    <img src="/images/Profile (2).svg" alt="User">
+                    <img src="/images/Profile.svg" alt="User">
                     <div>
                         BARBIE SANTOS <br>
                         <span style="font-size: 12px;">Student</span>

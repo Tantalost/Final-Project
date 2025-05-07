@@ -78,7 +78,9 @@
         <div class="content">
             <div class="header-container">
                 <div class="header-title">
-                    <img src="/images/backbtn.svg" class="back-button"> 
+                <a href="managebook.php">
+                  <img src="/images/backbtn.svg" class="back-button">
+                </a>
                     MANAGE USERS</div>
             </div>
 

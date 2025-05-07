@@ -107,7 +107,9 @@ $books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
         <div class="content">
             <div class="header-container">
                 <div class="header-title">
-                    <img src="/images/backbtn.svg" class="back-button"> 
+                <a href="admindash.php">
+                  <img src="/images/backbtn.svg" class="back-button">
+                </a>
                     MANAGE BOOKS
                 </div>
             </div>
@@ -315,7 +317,7 @@ $books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
             });
         });
     </script>
-    
+
     <script>
         // Show/Hide Modals
         function showAddBookModal() {

@@ -13,21 +13,21 @@
     <!-- Sidebar structure (kept from original) -->
     <aside class="sidebar" id="sidebar">
         <div class="logo-container">
-            <img class="logo" src="logo (3).svg" alt="Library Logo">
+            <img class="logo" src="/images/logo (3).svg" alt="Library Logo">
         </div>
 
         <nav class="menu">
-            <a href="#">
-                <img src="Home.svg" width="20" height="20" alt="Home">
+            <a href="Member-Homepage.php">
+                <img src="/images/Home.svg" width="20" height="20" alt="Home">
                 <span>Home</span>
             </a>
-            <a href="#">
-                <img src="Myshelf.svg" width="20" height="20" alt="My Shelf">
+            <a href="Myshelf.php">
+                <img src="/images/Myshelf.svg" width="20" height="20" alt="My Shelf">
                 <span>My Shelf</span>
             </a>
             <!-- Added 'active' class here as it's the Search page now -->
-            <a href="#" class="active">
-                <img src="Search.svg" width="20" height="20" alt="Search">
+            <a href="Searchpage.php" class="active">
+                <img src="/images/Search.svg" width="20" height="20" alt="Search">
                 <span>Search</span>
             </a>
         </nav>
@@ -45,10 +45,10 @@
         <header class="topbar">
             <div class="topbar-left">
                 <button id="menu-toggle" class="menu-toggle">
-                    <img src="hamburgerbtn.svg" alt="Toggle Menu">
+                    <img src="/images/hamburgerbtn.svg" alt="Toggle Menu">
                 </button>
                 <div class="profile">
-                    <img src="Profile.svg" alt="User">
+                    <img src="/images/Profile.svg" alt="User">
                     <div>
                         BARBIE SANTOS <br>
                         <span style="font-size: 12px;">Student</span>
@@ -58,27 +58,27 @@
 
             <div class="logout">
                 <button class="menu-button">
-                    <img class="logout-icon" src="Log Out Button.svg" alt="User Menu">
+                    <img class="logout-icon" src="/images/logout_vector.svg" alt="User Menu">
                 </button>
                 <div class="dropdown-menu">
                     <div class="menu-item">
-                        <img src="Profile (2).svg" alt="Profile">
+                        <img src="/images/Profile (2).svg" alt="Profile">
                         <span>Profile</span>
                     </div>
                     <div class="menu-item">
-                        <img src="accountsett.svg" alt="Account Settings">
+                        <img src="/images/accountsett.svg" alt="Account Settings">
                         <span>Account Settings</span>
                     </div>
                     <div class="menu-item">
-                        <img src="languageicon.svg" alt="Language">
+                        <img src="/images/languageicon.svg" alt="Language">
                         <span>Language</span>
                     </div>
                     <div class="menu-item">
-                        <img src="darktheme.svg" alt="Dark Theme">
+                        <img src="/images/darktheme.svg" alt="Dark Theme">
                         <span>Dark Theme</span>
                     </div>
                     <div class="menu-item logout-option">
-                        <img src="logout_vector.svg" alt="Log Out">
+                        <img src="/images/logout_vector.svg" alt="Log Out">
                         <span>Log Out</span>
                     </div>
                 </div>
