@@ -1,3 +1,30 @@
+<?php
+require_once "book_operations.php";
+session_start();
+
+// Fetch all books from the database
+$booksResponse = $bookOps->getBooks();
+$books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
+
+// Handle category filtering
+$selectedCategory = $_GET['category'] ?? 'All';
+$filteredBooks = $books;
+if ($selectedCategory !== 'All') {
+    $filteredBooks = array_filter($books, function($book) use ($selectedCategory) {
+        return strtolower($book['genre']) === strtolower($selectedCategory);
+    });
+}
+
+// Handle search functionality
+$searchQuery = $_GET['search'] ?? '';
+if (!empty($searchQuery)) {
+    $searchQuery = strtolower($searchQuery);
+    $filteredBooks = array_filter($filteredBooks, function($book) use ($searchQuery) {
+        return strpos(strtolower($book['title']), $searchQuery) !== false ||
+               strpos(strtolower($book['authors']), $searchQuery) !== false;
+    });
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,24 +126,33 @@
                         <div class="tab active">All</div>
                         <div class="tab">Search</div>
                     </div>
-                    <input type="text" class="search-input" placeholder="Search...">
+                    <form method="GET" action="" class="search-form">
+                        <input type="text" name="search" class="search-input" placeholder="Search..." 
+                               value="<?php echo htmlspecialchars($searchQuery); ?>">
+                        <?php if ($selectedCategory !== 'All'): ?>
+                            <input type="hidden" name="category" value="<?php echo htmlspecialchars($selectedCategory); ?>">
+                        <?php endif; ?>
+                    </form>
                 </div>
                 
                 <!-- Browse categories dropdown -->
-                               <div class="browse-container">
-                                <div class="dropdown">
-                                    <button class="dropdown-btn">Browse <span class="dropdown-arrow">▼</span></button>
-                                    <div class="dropdown-content">
-                                        <a href="#">All</a>
-                                        <a href="#">Children's Literature</a>
-                                        <a href="#">Fantasy Novel</a>
-                                        <a href="#">History</a>
-                                        <a href="#">Non-Fiction</a>
-                                        <a href="#">Philosophy</a>
-                                        <a href="#">Popular Science</a>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="browse-container">
+                    <div class="dropdown">
+                        <button class="dropdown-btn">Browse <span class="dropdown-arrow">▼</span></button>
+                        <div class="dropdown-content">
+                            <a href="?category=All" class="<?php echo $selectedCategory === 'All' ? 'active' : ''; ?>">All</a>
+                            <?php
+                            $categories = array_unique(array_column($books, 'genre'));
+                            foreach ($categories as $category) {
+                                if (!empty($category)) {
+                                    $isActive = $selectedCategory === $category ? 'active' : '';
+                                    echo "<a href='?category=" . urlencode($category) . "' class='$isActive'>" . htmlspecialchars($category) . "</a>";
+                                }
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <!-- Books table -->
@@ -132,70 +168,27 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php foreach ($filteredBooks as $book): 
+                            $isAvailable = ($book['stock'] - ($book['borrowed'] ?? 0)) > 0;
+                        ?>
                         <tr>
                             <td class="book-details">
                                 <div class="book-cover">
-                                    <img src="image 1.svg" alt="Harry Potter Book Cover">
+                                    <img src="<?php echo htmlspecialchars($book['image_url'] ?? '/images/books/default_book.svg'); ?>" 
+                                         alt="<?php echo htmlspecialchars($book['title']); ?> Book Cover">
                                 </div>
                                 <div class="book-info">
-                                    <h3>HARRY POTTER AND THE PHILOSOPHER'S STONE</h3>
-                                    <p>J.K. Rowling</p>
-                                    <p>June 26, 1997</p>
-                                </div>
-                            </td>
-                            <td>5.0</td>
-                            <td>Fantasy Novel</td>
-                            <td>Available</td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td class="book-details">
-                                <div class="book-cover">
-                                    <img src="image 6.svg" alt="The Republic Book Cover">
-                                </div>
-                                <div class="book-info">
-                                    <h3>THE REPUBLIC</h3>
-                                    <p>Plato</p>
-                                    <p>375 BCE</p>
+                                    <h3><?php echo htmlspecialchars($book['title']); ?></h3>
+                                    <p><?php echo htmlspecialchars($book['authors']); ?></p>
+                                    <p><?php echo htmlspecialchars($book['published_date']); ?></p>
                                 </div>
                             </td>
                             <td>4.5</td>
-                            <td>Philosophy</td>
-                            <td>Borrowed</td>
+                            <td><?php echo htmlspecialchars($book['genre']); ?></td>
+                            <td><?php echo $isAvailable ? 'Available' : 'Borrowed'; ?></td>
                             <td><input type="checkbox"></td>
                         </tr>
-                        <tr>
-                            <td class="book-details">
-                                <div class="book-cover">
-                                    <img src="image 4.svg" alt="A Brief History of Time Book Cover">
-                                </div>
-                                <div class="book-info">
-                                    <h3>A BRIEF HISTORY OF TIME</h3>
-                                    <p>Stephen Hawking</p>
-                                    <p>April 1, 1988</p>
-                                </div>
-                            </td>
-                            <td>4.2</td>
-                            <td>Popular Science</td>
-                            <td>Available</td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td class="book-details">
-                                <div class="book-cover">
-                                    <img src="image 27.svg" alt="Humpty Dumpty Book Cover">
-                                </div>
-                                <div class="book-info">
-                                    <h3>HUMPTY DUMPTY</h3>
-                                    <p>Stephen Holmes</p>
-                                    <p>January 2015</p>
-                                </div>
-                            </td>
-                            <td>3.3</td>
-                            <td>Children's Literature</td>
-                            <td>Available</td>
-                            <td><input type="checkbox"></td>
-                        </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </section>
