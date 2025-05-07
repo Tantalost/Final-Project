@@ -230,6 +230,86 @@
         </main>
     </div>
 
+    <div id="profileModal" class="viewmodal" role="dialog" aria-modal="true" tabindex="-1">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>User Profile</h2>
+            </div>
+            <div class="modal-body">
+                <div class="profile-image">
+                    <img src="/images/Profile 1.svg" alt="Profile" style="width: 100px; height: 100px; border-radius: 50%;">
+                </div>
+                <div class="profile-details">
+                    <p><strong>Username:</strong> Rashdy Arobie</p>
+                    <p><strong>User ID:</strong> #12345</p>
+                    <p><strong>Status:</strong> <span class="status">Online</span></p>
+                </div>
+                <div class="profile-info">
+                    <p><strong>Address:</strong> 123 Library St, City</p>
+                    <p><strong>Date of Birth:</strong> January 1, 1990</p>
+                    <p><strong>Phone Number:</strong> 123-456-7890</p>
+                    <p><strong>Email:</strong> rashdy@example.com</p>
+                    <p><strong>Date Joined:</strong> January 1, 2020</p>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="modalbtn close">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="logoutModal" class="viewmodal" role="dialog" aria-modal="true" tabindex="-1">
+        <div class="modal-content2">
+            <img src="/images/logov4.svg" class="modal-logo">
+            <div class="modal-header">
+                <h2>Logout Confirmation</h2>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to log out?</p>
+            </div>
+            <div class="modal-actions">
+                <button class="modalbtn proceed" id="confirmLogout">Yes</button>
+                <button class="modalbtn close">No</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileModal = document.getElementById('profileModal');
+            const logoutModal = document.getElementById('logoutModal');
+            const closeButtons = document.querySelectorAll('.modalbtn.close');
+            const confirmLogoutButton = document.getElementById('confirmLogout');
+
+            // Trigger Profile Modal
+            document.querySelector('.menu-item:nth-child(1)').addEventListener('click', function() {
+                profileModal.style.display = 'flex';
+                profileModal.classList.add('active');
+            });
+
+            // Trigger Logout Modal
+            document.querySelector('.logout-option').addEventListener('click', function() {
+                logoutModal.style.display = 'flex';
+                logoutModal.classList.add('active');
+            });
+
+            // Close modals
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    profileModal.style.display = 'none';
+                    profileModal.classList.remove('active');
+                    logoutModal.style.display = 'none';
+                    logoutModal.classList.remove('active');
+                });
+            });
+
+            // Confirm Logout
+            confirmLogoutButton.addEventListener('click', function() {
+                window.location.href = 'welcome.php';
+            });
+        });
+    </script>
+
     <script src="/js/sidebar.js"></script>
     <script>
         const logout = document.querySelectorAll('.dropdown-menu .menu-item')
