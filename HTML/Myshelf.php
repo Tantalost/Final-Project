@@ -127,24 +127,25 @@ if (!empty($searchQuery)) {
             </section>
 
             <section class="books-grid">
-    <?php if (empty($filteredBooks)): ?>
-        <p style="text-align:center; font-size: 1.2rem;">No books found.</p>
-    <?php else: ?>
-        <?php foreach ($filteredBooks as $book): ?>
-            <div class="book-card">
-                <div class="book-image">
-                <img src="<?= htmlspecialchars($book['cover_image'] ?? '/images/default_cover.png') ?>"alt="<?= htmlspecialchars($book['title'] ?? 'Untitled') ?> Book Cover">
-                </div>
-                <div class="book-details">
-                    <h3 class="book-title"><?= htmlspecialchars(strtoupper($book['title'])) ?></h3>
-                    <p class="book-author">By <?= htmlspecialchars($book['authors']) ?></p>
-                    <p class="book-isbn">ISBN: <?= htmlspecialchars($book['isbn']) ?></p>
-                    <p class="book-remaining">Remaining: <?= htmlspecialchars($book['remaining'] ?? 'N/A') ?></p>
-                </div>
-            </div>
-        <?php endforeach; ?>
-    <?php endif; ?>
-</section>
+                <?php if (empty($filteredBooks)): ?>
+                    <p style="text-align:center; font-size: 1.2rem;">No books found.</p>
+                <?php else: ?>
+                    <?php foreach ($filteredBooks as $book): ?>
+                        <div class="book-card">
+                            <div class="book-image">
+                                <img src="<?= htmlspecialchars($book['image_url'] ?? '/images/books/default_book.svg') ?>" 
+                                    alt="<?= htmlspecialchars($book['title'] ?? 'Untitled') ?> Book Cover">
+                            </div>
+                            <div class="book-details">
+                                <h3 class="book-title"><?= htmlspecialchars(strtoupper($book['title'])) ?></h3>
+                                <p class="book-author">By <?= htmlspecialchars($book['authors']) ?></p>
+                                <p class="book-isbn">ISBN: <?= htmlspecialchars($book['isbn']) ?></p>
+                                <p class="book-remaining">Remaining: <?= htmlspecialchars($book['remaining'] ?? 'N/A') ?></p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </section>
         </main> 
     </div> 
     <script>
