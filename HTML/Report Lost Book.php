@@ -19,18 +19,18 @@
         </div>
 
         <nav class="menu">
-            <a href="#">
+            <a href="Member-Homepage.php">
                 <!-- Replace with actual icon path -->
                 <img src="/images/Home.svg" alt="Home Icon">
                 <span>Home</span>
             </a>
-             <a href="#">
+             <a href="Searchpage.php">
                  <!-- Replace with actual icon path -->
                 <img src="/images/Search.svg" alt="Search Icon">
                 <span>Search</span>
             </a>
             <!-- Assuming "My Shelf" is the active page -->
-            <a href="#" class="active">
+            <a href="Myshelf.php" class="active">
                  <!-- Replace with actual icon path -->
                 <img src="/images/Myshelf.svg" alt="My Shelf Icon">
                 <span>My Shelf</span>
@@ -66,7 +66,7 @@
             <div class="logout">
                 <button class="menu-button">
                     <!-- Replace with actual logout icon path -->
-                    <img class="logout-icon" src="/images/Log Out Button.svg" alt="Logout">
+                    <img class="logout-icon" src="/images/logout_vector.svg" alt="Logout">
                 </button>
                  <!-- Optional: Dropdown menu (structure from Damage Book) -->
                  <!-- You might not need this exact dropdown if the logout icon just logs out -->
@@ -103,7 +103,9 @@
                     <div class="page-header">
                         <button class="back-button" aria-label="Go back">
                             <!-- Replace with actual back arrow icon path -->
-                            <img src="/images/backbtn.svg" alt="Back">
+                            <a href="Member-Homepage.php">
+                                <img src="/images/backbtn.svg" class="back-button">
+                            </a>
                         </button>
                         <h1>Report a Lost Book</h1>
                     </div>
@@ -194,14 +196,8 @@
                 <aside class="reports-section">
                     <h2>Reports</h2>
                     <div class="report-item">
-                        <img src="/images/warning2.svg" alt="Warning" class="report-icon">
+                        <img src="/images/warning_vector.svg?v=1" alt="Warning" class="report-icon">
                         <p>Your report on Humpty Dumpty by Steven Holmes has been reviewed. <a href="#">View Report</a>.</p>
-                    </div>
-                    <div class="report-item placeholder">
-                         {/* Placeholder for another report */}
-                    </div>
-                     <div class="report-item placeholder">
-                         {/* Placeholder for another report */}
                     </div>
                 </aside>
             </div>
@@ -214,14 +210,6 @@
             const menuToggle = document.getElementById('menu-toggle');
             const sidebar = document.getElementById('sidebar');
             const mainContent = document.querySelector('.main-content');
-
-            // Assuming sidebar should be visible by default on larger screens
-            // and hamburger is hidden via CSS for the target design.
-            // If hamburger IS used, remove this initial state setting.
-             if (window.innerWidth >= 768) { // Or your desired breakpoint
-                 sidebar.classList.add('active');
-                 mainContent.classList.add('shifted');
-             }
             // Keep toggle functional if hamburger exists, otherwise it does nothing if hidden
              if (menuToggle && sidebar && mainContent) {
                  menuToggle.addEventListener('click', function() {
