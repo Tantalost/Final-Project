@@ -1,3 +1,32 @@
+
+<?php
+require_once "book_operations.php";
+session_start();
+
+$bookOps = new BookOperations($pdo);
+// Fetch all books from the database
+$booksResponse = $bookOps->getBooks();
+$books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
+
+// Handle category filtering
+$selectedCategory = $_GET['category'] ?? 'All';
+$filteredBooks = $books;
+if ($selectedCategory !== 'All') {
+    $filteredBooks = array_filter($books, function($book) use ($selectedCategory) {
+        return strtolower($book['genre']) === strtolower($selectedCategory);
+    });
+}
+
+// Handle search functionality
+$searchQuery = $_GET['search'] ?? '';
+if (!empty($searchQuery)) {
+    $searchQuery = strtolower($searchQuery);
+    $filteredBooks = array_filter($filteredBooks, function($book) use ($searchQuery) {
+        return strpos(strtolower($book['title']), $searchQuery) !== false ||
+               strpos(strtolower($book['authors']), $searchQuery) !== false;
+    });
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,114 +127,24 @@
             </section>
 
             <section class="books-grid">
-                <div class="book-card">
-                    <div class="book-image">
-                        <img src="/images/image 1.svg" alt="Harry Potter Book Cover">
-                    </div>
-                    <div class="book-details">
-                        <h3 class="book-title">HARRY POTTER AND THE PHILOSOPHER'S STONE</h3>
-                        <p class="book-author">By J.K. Rowling</p>
-                        <p class="book-isbn">ISBN: 978-0747532699</p>
-                        <p class="book-remaining">Remaining: 8</p>
-                    </div>
+    <?php if (empty($filteredBooks)): ?>
+        <p style="text-align:center; font-size: 1.2rem;">No books found.</p>
+    <?php else: ?>
+        <?php foreach ($filteredBooks as $book): ?>
+            <div class="book-card">
+                <div class="book-image">
+                <img src="<?= htmlspecialchars($book['cover_image'] ?? '/images/default_cover.png') ?>"alt="<?= htmlspecialchars($book['title'] ?? 'Untitled') ?> Book Cover">
                 </div>
-
-                <div class="book-card">
-                    <div class="book-image">
-                        <img src="/images/image 4.svg" alt="A Brief History of Time Book Cover">
-                    </div>
-                    <div class="book-details">
-                        <h3 class="book-title">A BRIEF HISTORY OF TIME</h3>
-                        <p class="book-author">By Stephen Hawking</p>
-                        <p class="book-isbn">ISBN: 978-0553380163</p>
-                        <p class="book-remaining">Remaining: 8</p>
-                    </div>
+                <div class="book-details">
+                    <h3 class="book-title"><?= htmlspecialchars(strtoupper($book['title'])) ?></h3>
+                    <p class="book-author">By <?= htmlspecialchars($book['authors']) ?></p>
+                    <p class="book-isbn">ISBN: <?= htmlspecialchars($book['isbn']) ?></p>
+                    <p class="book-remaining">Remaining: <?= htmlspecialchars($book['remaining'] ?? 'N/A') ?></p>
                 </div>
-
-                <div class="book-card">
-                    <div class="book-image">
-                        <img src="/images/image 28.svg" alt="Thinking, Fast and Slow Book Cover">
-                    </div>
-                    <div class="book-details">
-                        <h3 class="book-title">THINKING, FAST AND SLOW</h3>
-                        <p class="book-author">By Daniel Kahneman</p>
-                        <p class="book-isbn">ISBN: 978-0374533557</p>
-                        <p class="book-remaining">Remaining: 8</p>
-                    </div>
-                </div>
-
-                <div class="book-card">
-                    <div class="book-image">
-                        <img src="/images/image 27.svg" alt="Humpty Dumpty Book Cover">
-                    </div>
-                    <div class="book-details">
-                        <h3 class="book-title">HUMPTY DUMPTY</h3>
-                        <p class="book-author">By Charles Reasoner</p>
-                        <p class="book-isbn">ISBN: 978-0843178835</p>
-                        <p class="book-remaining">Remaining: 8</p>
-                    </div>
-                </div>
-
-                <div class="book-card">
-                    <div class="book-image">
-                        <img src="/images/image 6.svg" alt="The Republic Book Cover">
-                    </div>
-                    <div class="book-details">
-                        <h3 class="book-title">THE REPUBLIC</h3>
-                        <p class="book-author">By Plato</p>
-                        <p class="book-isbn">ISBN: 978-0140455113</p>
-                        <p class="book-remaining">Remaining: 8</p>
-                    </div>
-                </div>
-
-                <div class="book-card">
-                    <div class="book-image">
-                        <img src="/images/image 5.svg" alt="The History of the Ancient World Book Cover">
-                    </div>
-                    <div class="book-details">
-                        <h3 class="book-title">THE HISTORY OF THE ANCIENT WORLD</h3>
-                        <p class="book-author">By Susan Wise Bauer</p>
-                        <p class="book-isbn">ISBN: 978-0393059748</p>
-                        <p class="book-remaining">Remaining: 8</p>
-                    </div>
-                </div>
-
-                <div class="book-card">
-                    <div class="book-image">
-                        <img src="/images/image 9.svg" alt="The Hobbit Book Cover">
-                    </div>
-                    <div class="book-details">
-                        <h3 class="book-title">THE HOBBIT</h3>
-                        <p class="book-author">By Charles Reasoner</p>
-                        <p class="book-isbn">ISBN: 978-0843178835</p>
-                        <p class="book-remaining">Remaining: 8</p>
-                    </div>
-                </div>
-
-                <div class="book-card">
-                    <div class="book-image">
-                        <img src="/images/image 22.svg" alt="Harry Potter and the Deathly Hallows Book Cover">
-                    </div>
-                    <div class="book-details">
-                        <h3 class="book-title">HARRY POTTER AND THE DEATHLY HOLLOWS</h3>
-                        <p class="book-author">By J.K. Rowling</p>
-                        <p class="book-isbn">ISBN: 978-0747532699</p>
-                        <p class="book-remaining">Remaining: 8</p>
-                    </div>
-                </div>
-
-                <div class="book-card">
-                    <div class="book-image">
-                        <img src="/images/image 26.svg" alt="Beginner's Step-by-Step Coding Course Book Cover">
-                    </div>
-                    <div class="book-details">
-                        <h3 class="book-title">BEGINNER'S STEP-BY-STEP CODING COURSE: LEA...</h3>
-                        <p class="book-author">By Daniel Kahneman</p>
-                        <p class="book-isbn">ISBN: 978-0374533557</p>
-                        <p class="book-remaining">Remaining: 8</p>
-                    </div>
-                </div>
-            </section>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</section>
         </main> 
     </div> 
     <script>
