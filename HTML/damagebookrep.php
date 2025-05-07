@@ -44,13 +44,13 @@
       </div>
 
       <main class="main-content" id="mainContent">
-      <a href="/HTML/reportbook.php">
           <div class="header-container">
             <div class="header-title">
-            <img src="/images/backbtn.svg" class="back-button"> 
+            <a href="managebook.php">
+              <img src="/images/backbtn.svg" class="back-button">
+            </a>
                 DAMAGED BOOKS</div>
             </div>
-        </a>
           </header>
 
           <div class="header-actions">

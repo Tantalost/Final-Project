@@ -44,12 +44,12 @@
     
           <main class="main-content" id="mainContent">
             <div class="header-container">
-            <a href="reportbook.php">
                 <div class="header-title">
-                <img src="/images/backbtn.svg" class="back-button"> 
+                <a href="managebook.php">
+                  <img src="/images/backbtn.svg" class="back-button">
+                </a>
                     LOST BOOKS</div>
                 </div>
-              </a>
               </header>
 
               <div class="header-actions">
