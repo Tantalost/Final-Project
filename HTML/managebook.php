@@ -280,7 +280,6 @@ $books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
     </div>
 
     <script>
-        // Show/Hide Modals
         function showAddBookModal() {
             document.getElementById('addBookModal').style.display = 'flex';
         }
@@ -413,6 +412,7 @@ $books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
             });
         }
     </script>
+    
     <script src="/js/modals.js"></script>
     <script src="/js/admindash.js"></script>
 </body>

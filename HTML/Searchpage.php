@@ -1,27 +1,56 @@
 <?php
+require_once "user_operations.php";
 require_once "book_operations.php";
 session_start();
 
-// Fetch all books from the database
-$booksResponse = $bookOps->getBooks();
-$books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
+if (!isset($_SESSION['member_id'])) {
+    header("Location: Member-Login.php");
+    exit();
+}
 
-// Handle category filtering
+$memberId = $_SESSION['member_id'];
+$bookOps = new BookOperations($pdo);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_list'])) {
+    $bookId = $_POST['book_id'] ?? 0;
+    
+    try {
+        $stmt = $pdo->prepare("SELECT * FROM shelves WHERE user_id = ? AND book_id = ?");
+        $stmt->execute([$memberId, $bookId]);
+        
+        if ($stmt->rowCount() === 0) {
+            $stmt = $pdo->prepare("INSERT INTO shelves (user_id, book_id, status) VALUES (?, ?, 'reading')");
+            $stmt->execute([$memberId, $bookId]);
+            
+            $book = $bookOps->getBookById($bookId);
+            if ($book) {
+            $memberOps->addNotification(
+                     $memberId,
+                     'Book Added to List',
+                     "You've added '{$book['title']}' to your reading list."
+                 );
+             }
+        }
+    } catch (PDOException $e) {
+    }
+}
+
+$booksResponse = $bookOps->getBooks();
+$books = ($booksResponse['status'] === 'success') ? $booksResponse['data'] : [];
+
+$searchQuery = $_GET['search'] ?? '';
+if (!empty($searchQuery)) {
+    $books = array_filter($books, function($book) use ($searchQuery) {
+        return stripos($book['title'], $searchQuery) !== false ||
+               stripos($book['authors'], $searchQuery) !== false;
+    });
+}
+
 $selectedCategory = $_GET['category'] ?? 'All';
 $filteredBooks = $books;
 if ($selectedCategory !== 'All') {
     $filteredBooks = array_filter($books, function($book) use ($selectedCategory) {
         return strtolower($book['genre']) === strtolower($selectedCategory);
-    });
-}
-
-// Handle search functionality
-$searchQuery = $_GET['search'] ?? '';
-if (!empty($searchQuery)) {
-    $searchQuery = strtolower($searchQuery);
-    $filteredBooks = array_filter($filteredBooks, function($book) use ($searchQuery) {
-        return strpos(strtolower($book['title']), $searchQuery) !== false ||
-               strpos(strtolower($book['authors']), $searchQuery) !== false;
     });
 }
 ?>
@@ -37,7 +66,6 @@ if (!empty($searchQuery)) {
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Lugrasimo&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Sidebar structure (kept from original) -->
     <aside class="sidebar" id="sidebar">
         <div class="logo-container">
             <img class="logo" src="/images/logo (3).svg" alt="Library Logo">
@@ -52,7 +80,6 @@ if (!empty($searchQuery)) {
                 <img src="/images/Myshelf.svg" width="20" height="20" alt="My Shelf">
                 <span>My Shelf</span>
             </a>
-            <!-- Added 'active' class here as it's the Search page now -->
             <a href="Searchpage.php" class="active">
                 <img src="/images/Search.svg" width="20" height="20" alt="Search">
                 <span>Search</span>
@@ -66,9 +93,7 @@ if (!empty($searchQuery)) {
         </nav>
     </aside>
 
-    <!-- Main content wrapper -->
     <div class="main-content">
-        <!-- Topbar structure (kept from original) -->
         <header class="topbar">
             <div class="topbar-left">
                 <button id="menu-toggle" class="menu-toggle">
@@ -112,10 +137,8 @@ if (!empty($searchQuery)) {
             </div>
         </header>
 
-        <!-- Main content area based on the image provided -->
         <main class="page-specific-content">
 
-            <!-- Search area -->
             <section class="search-section">
                 <div class="search-header">
                     <h1>DISCOVER YOUR NEXT ADVENTURE!</h1>
@@ -135,7 +158,6 @@ if (!empty($searchQuery)) {
                     </form>
                 </div>
                 
-                <!-- Browse categories dropdown -->
                 <div class="browse-container">
                     <div class="dropdown">
                         <button class="dropdown-btn">Browse <span class="dropdown-arrow">▼</span></button>
@@ -155,7 +177,6 @@ if (!empty($searchQuery)) {
                 </div>
             </section>
 
-            <!-- Books table -->
             <section class="books-table-section">
                 <table class="books-table">
                     <thead>
@@ -168,32 +189,46 @@ if (!empty($searchQuery)) {
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($filteredBooks as $book): 
-                            $isAvailable = ($book['stock'] - ($book['borrowed'] ?? 0)) > 0;
-                        ?>
-                        <tr>
-                            <td class="book-details">
-                                <div class="book-cover">
-                                    <img src="<?php echo htmlspecialchars($book['image_url'] ?? '/images/books/default_book.svg'); ?>" 
-                                         alt="<?php echo htmlspecialchars($book['title']); ?> Book Cover">
-                                </div>
-                                <div class="book-info">
-                                    <h3><?php echo htmlspecialchars($book['title']); ?></h3>
-                                    <p><?php echo htmlspecialchars($book['authors']); ?></p>
-                                    <p><?php echo htmlspecialchars($book['published_date']); ?></p>
-                                </div>
-                            </td>
-                            <td>4.5</td>
-                            <td><?php echo htmlspecialchars($book['genre']); ?></td>
-                            <td><?php echo $isAvailable ? 'Available' : 'Borrowed'; ?></td>
-                            <td><input type="checkbox" class="checkbox"></td>
-                        </tr>
+                        <?php foreach ($filteredBooks as $book): ?>
+                            <tr class="book-row">
+                                <td>
+                                    <div class="book-info">
+                                        <img src="<?php echo htmlspecialchars($book['image_url'] ?? '/images/books/default_book.svg'); ?>" 
+                                             alt="<?php echo htmlspecialchars($book['title']); ?>" 
+                                             class="book-cover">
+                                        <div class="book-details">
+                                            <h4><?php echo htmlspecialchars($book['title']); ?></h4>
+                                            <p><?php echo htmlspecialchars($book['authors']); ?></p>
+                                            <p><?php echo htmlspecialchars($book['published_date']); ?></p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="rating"><?php echo number_format($book['rating'] ?? 0, 1); ?></div>
+                                </td>
+                                <td>
+                                    <div class="category"><?php echo htmlspecialchars($book['genre']); ?></div>
+                                </td>
+                                <td>
+                                    <div class="<?php echo $book['stock'] > 0 ? 'available' : 'not-available'; ?>">
+                                        <?php echo $book['stock'] > 0 ? 'Available' : 'Not Available'; ?>
+                                    </div>
+                                </td>
+                                <td>
+                                    <form method="POST" action="" style="margin: 0;">
+                                        <input type="hidden" name="book_id" value="<?php echo $book['book_id']; ?>">
+                                        <button type="submit" name="add_to_list" class="add-to-list-btn" 
+                                                <?php echo $book['stock'] <= 0 ? 'disabled' : ''; ?>>
+                                            Add to List
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
             </section>
 
-            <!-- Footer (from the image) -->
             <footer class="main-footer">
                 <div class="footer-links">
                     <a href="#">About</a>
@@ -204,7 +239,7 @@ if (!empty($searchQuery)) {
         </main>
     </div>
 
-    <!-- JavaScript -->
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.getElementById('menu-toggle');
