@@ -9,6 +9,7 @@ if (!isset($_SESSION['member_id'])) {
     exit();
 }
 
+$memberName = $_SESSION['name'];
 $memberId = $_SESSION['member_id'];
 $bookOps = new BookOperations($pdo);
 $memberOps = new MemberOperations($pdo);
@@ -142,8 +143,8 @@ $userBooks = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="profile">
                     <img src="/images/Profile 2.svg" alt="User">
                     <div>
-                        Barbie Santos <br> 
-                        <span style="font-size: 12px;">Student</span>
+                        <?php echo htmlspecialchars($memberName); ?> <br>
+                        <span style="font-size: 12px;">Member</span>
                     </div>
                 </div>
             </div>

@@ -29,15 +29,15 @@ if ($bookId) {
         </div>
 
         <nav class="menu">
-            <a href="#">
+            <a href="Member-Homepage.php">
                 <img src="/images/Home.svg" width="20" height="20" alt="Home">
                 <span>Home</span>
             </a>
-            <a href="#" class="active">
+            <a href="Myshelf.php" class="active">
                 <img src="/images/Myshelf.svg" width="20" height="20" alt="My Shelf">
                 <span>My Shelf</span>
             </a>
-            <a href="#">
+            <a href="Searchpage.php">
                 <img src="/images/Search.svg" width="20" height="20" alt="Search">
                 <span>Search</span>
             </a>
@@ -337,10 +337,7 @@ if ($bookId) {
     </div>
 
     <script>
-        // Existing scripts
-        // Modified script for one-click Add to Shelf
-document.addEventListener('DOMContentLoaded', function() {
-    // Keep existing menu toggle and dropdown code
+    document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.querySelector('.main-content');

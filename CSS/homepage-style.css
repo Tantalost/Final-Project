@@ -507,7 +507,6 @@ h2 {
     font-style: italic;
 }
 
-/* Custom scrollbar for notification container */
 .notification-container::-webkit-scrollbar {
     width: 6px;
 }

@@ -1,7 +1,9 @@
 <?php
 require_once "user_operations.php";
+require_once "book_operations.php";
 session_start();
 
+// Check if member is logged in
 if (!isset($_SESSION['member_id'])) {
     header("Location: Member-Login.php");
     exit();
@@ -11,11 +13,47 @@ $memberId = $_SESSION['member_id'];
 $memberName = $_SESSION['name'];
 $memberEmail = $_SESSION['email'];
 
+// Initialize book operations
+$bookOps = new BookOperations($pdo);
+
+// Get all books and randomize them
+$booksResponse = $bookOps->getBooks();
+$allBooks = ($booksResponse['status'] === 'success') ? $booksResponse['data'] : [];
+
+// Shuffle the books array to randomize
+shuffle($allBooks);
+
+// Get books for each category
+$recentlyViewed = array_slice($allBooks, 0, 9);
+$recommendedBooks = array_slice($allBooks, 9, 9);
+$academicBooks = array_filter($allBooks, function($book) {
+    return strtolower($book['genre']) === 'academic' || 
+           strtolower($book['genre']) === 'education' || 
+           strtolower($book['genre']) === 'textbook';
+});
+$academicBooks = array_slice($academicBooks, 0, 9);
+
+$fictionalBooks = array_filter($allBooks, function($book) {
+    return strtolower($book['genre']) === 'fiction' || 
+           strtolower($book['genre']) === 'novel' || 
+           strtolower($book['genre']) === 'literature';
+});
+$fictionalBooks = array_slice($fictionalBooks, 0, 9);
+
+$scifiBooks = array_filter($allBooks, function($book) {
+    return strtolower($book['genre']) === 'science fiction' || 
+           strtolower($book['genre']) === 'sci-fi' || 
+           strtolower($book['genre']) === 'fantasy';
+});
+$scifiBooks = array_slice($scifiBooks, 0, 9);
+
+// Initialize notifications and borrowed books
 $notifications = $memberOps->getNotifications($memberId);
 $borrowedBooks = $memberOps->getBorrowedBooks($memberId);
 $returnedBooks = $memberOps->getReturnedBooks($memberId);
 $totalReturned = is_array($returnedBooks) ? count($returnedBooks) : 0;
 
+// Initialize statistics
 $totalBorrowed = is_array($borrowedBooks) ? count($borrowedBooks) : 0;
 $overdueCount = 0;
 $dueSoonCount = 0;
@@ -26,6 +64,18 @@ if (is_array($borrowedBooks)) {
         } elseif ($book['status'] === 'due_soon') {
             $dueSoonCount++;
         }
+    }
+}
+
+// Get member profile (if you want to show more info, you can expand this)
+//$memberProfile = $memberOps->getMemberProfile($memberId); // Not used if not needed
+
+$bookId = $_GET['book_id'] ?? null;
+$book = null;
+if ($bookId) {
+    $bookResponse = $bookOps->getBookById($bookId);
+    if ($bookResponse['status'] === 'success') {
+        $book = $bookResponse['data'];
     }
 }
 
@@ -192,71 +242,66 @@ if (is_array($borrowedBooks)) {
 
             <div class="book-container-line"></div>
             <div class="book-container">
-                <div class="book"><img src="/images/image 25.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 8.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 43.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 10.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 44.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 46.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 40.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 39.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 42.svg" alt="Book" loading="lazy"></div>
+                <?php foreach ($recentlyViewed as $book): ?>
+                    <a href="bookdescription.php?book_id=<?php echo htmlspecialchars($book['book_id']); ?>" class="book">
+                        <img src="<?php echo htmlspecialchars($book['image_url'] ?? '/images/default_book.svg'); ?>" 
+                             alt="<?php echo htmlspecialchars($book['title']); ?>" 
+                             loading="lazy"
+                             title="<?php echo htmlspecialchars($book['title']); ?>">
+                    </a>
+                <?php endforeach; ?>
             </div>
 
             <h2>Recommended for You</h2>
             <div class="book-container-line"></div>
             <div class="book-container">
-                <div class="book"><img src="/images/image 1.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 38.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 3.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 4.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 5.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 39.svg" alt="Book" loading="lazy"></div>            
-                <div class="book"><img src="/images/image 41.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 45.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 48.svg" alt="Book" loading="lazy"></div>
+                <?php foreach ($recommendedBooks as $book): ?>
+                    <a href="bookdescription.php?book_id=<?php echo htmlspecialchars($book['book_id']); ?>" class="book">
+                        <img src="<?php echo htmlspecialchars($book['image_url'] ?? '/images/default_book.svg'); ?>" 
+                             alt="<?php echo htmlspecialchars($book['title']); ?>" 
+                             loading="lazy"
+                             title="<?php echo htmlspecialchars($book['title']); ?>">
+                    </a>
+                <?php endforeach; ?>
             </div>
 
             <h2>Academic Books</h2>
             <div class="book-container-line"></div>
             <div class="book-container">
-                <div class="book"><img src="/images/image 7.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 4.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 20.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 19.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 21.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 26.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 53.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 54.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 55.svg" alt="Book" loading="lazy"></div>
+                <?php foreach ($academicBooks as $book): ?>
+                    <a href="bookdescription.php?book_id=<?php echo htmlspecialchars($book['book_id']); ?>" class="book">
+                        <img src="<?php echo htmlspecialchars($book['image_url'] ?? '/images/default_book.svg'); ?>" 
+                             alt="<?php echo htmlspecialchars($book['title']); ?>" 
+                             loading="lazy"
+                             title="<?php echo htmlspecialchars($book['title']); ?>">
+                    </a>
+                <?php endforeach; ?>
             </div>
 
             <h2>Fictional Books</h2>
             <div class="book-container-line"></div>
             <div class="book-container">
-                <div class="book"><img src="/images/image 22.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 8.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 9.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 10.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 23.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 1.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 51.svg" alt="Book" loading="lazy"> </div>
-                <div class="book"><img src="/images/image 52.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 50.svg" alt="Book" loading="lazy"></div>
+                <?php foreach ($fictionalBooks as $book): ?>
+                    <a href="bookdescription.php?book_id=<?php echo htmlspecialchars($book['book_id']); ?>" class="book">
+                        <img src="<?php echo htmlspecialchars($book['image_url'] ?? '/images/default_book.svg'); ?>" 
+                             alt="<?php echo htmlspecialchars($book['title']); ?>" 
+                             loading="lazy"
+                             title="<?php echo htmlspecialchars($book['title']); ?>">
+                    </a>
+                <?php endforeach; ?>
             </div>
 
             <h2>Sci-Fi Books</h2>
             <div class="book-container-line"></div>
             <div class="book-container">
-                <div class="book"><img src="/images/image 29.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 30.svg" alt="Book"loading="lazy"></div>
-                <div class="book"><img src="/images/image 31.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 32.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 33.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 34.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 35.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 36.svg" alt="Book" loading="lazy"></div>
-                <div class="book"><img src="/images/image 37.svg" alt="Book" loading="lazy"></div>
+                <?php foreach ($scifiBooks as $book): ?>
+                    <a href="bookdescription.php?book_id=<?php echo htmlspecialchars($book['book_id']); ?>" class="book">
+                        <img src="<?php echo htmlspecialchars($book['image_url'] ?? '/images/default_book.svg'); ?>" 
+                             alt="<?php echo htmlspecialchars($book['title']); ?>" 
+                             loading="lazy"
+                             title="<?php echo htmlspecialchars($book['title']); ?>">
+                    </a>
+                <?php endforeach; ?>
             </div>
         </main>
     </div>
@@ -271,6 +316,7 @@ if (is_array($borrowedBooks)) {
         });
 
         addClickListener(confirm, () => {
+            // Optionally show the success modal here, but first submit the form:
             document.getElementById('borrowForm').submit();
         });
     </script>
