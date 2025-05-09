@@ -286,4 +286,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('borrow_success') === '1') {
+        if (viewmodal && successModal) {
+            viewmodal.style.display = 'flex';
+            viewmodal.classList.add('active');
+            successModal.style.display = 'flex';
+        }
+    }
+
+    document.querySelectorAll('.modalbtn.close').forEach(btn => {
+        btn.addEventListener('click', () => {
+            btn.closest('.modal-content, .modal-content2').style.display = 'none';
+
+            const anyOpenModal = document.querySelector('.modal-content[style*="block"], .modal-content2[style*="block"]');
+            if (!anyOpenModal) {
+                document.getElementById('viewmodal').style.display = 'none';
+            }
+        });
+    });
 });

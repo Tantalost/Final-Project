@@ -436,38 +436,94 @@ h2 {
 }
 
 .notification-container {
-    background-color: white;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    flex: 1;
-    max-width: 100%;
-    margin-right: 20px;
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-height: 300px;
+    overflow-y: auto;
+    margin: 10px;
 }
 
 .notification-header {
-    text-align: center;
-    font-weight: bolder;
-    padding: 10px;
-    background-color: #cbe9fe;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #0D3958;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #EAF6FF;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1;
 }
 
 .notification-item {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    gap: 12px;
     padding: 10px;
-    margin-bottom: 10px;
-    cursor: pointer;
+    border-bottom: 1px solid #EAF6FF;
+    transition: background-color 0.2s;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-item:hover {
+    background-color: #F5F9FF;
 }
 
 .notification-item img {
     width: 20px;
-    margin-right: 10px;
+    height: 20px;
+    margin-top: 2px;
 }
 
 .notification-text {
+    flex: 1;
     font-size: 14px;
+    line-height: 1.4;
+}
+
+.notification-text strong {
+    color: #0D3958;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.notification-text small {
+    color: #666;
+    font-size: 12px;
+    display: block;
+    margin-top: 4px;
+}
+
+.no-notifications {
+    text-align: center;
+    color: #666;
+    padding: 20px;
+    font-style: italic;
+}
+
+/* Custom scrollbar for notification container */
+.notification-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.notification-container::-webkit-scrollbar-track {
+    background: #F5F9FF;
+    border-radius: 3px;
+}
+
+.notification-container::-webkit-scrollbar-thumb {
+    background: #6AB0E3;
+    border-radius: 3px;
+}
+
+.notification-container::-webkit-scrollbar-thumb:hover {
+    background: #4A90D6;
 }
 
 .welcome-container {

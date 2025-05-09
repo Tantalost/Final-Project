@@ -97,35 +97,39 @@ if ($bookId) {
         <main class="page-specific-content">
             <div class="book-details-container">
                 <div class="book-image-container">
-                    <img src="image 1.svg" alt="Book Cover" class="book-image">
+                    <img src="<?php echo htmlspecialchars($book['image_url'] ?? '/images/default_book.svg'); ?>" 
+                         alt="<?php echo htmlspecialchars($book['title']); ?>" 
+                         class="book-image">
                 </div>
                 <div class="book-info">
-                    <h1 class="book-title">HARRY POTTER AND THE PHILOSOPHER'S STONE</h1>
+                    <h1 class="book-title"><?php echo htmlspecialchars($book['title']); ?></h1>
                     <div class="book-description">
-                        Harry Potter and the Philosopher's Stone is a fantasy novel written by the British author J. K. Rowling. It is the first novel in the Harry Potter series and was Rowling's debut novel. The story follows Harry Potter, a young boy who discovers he is a wizard and is invited to attend Hogwarts School of Witchcraft and Wizardry.
+                        <?php echo htmlspecialchars($book['description']); ?>
                     </div>
                     <div class="book-meta">
-                        By J. K. Rowling, June 26, 1997<br>
-                        1st Edition<br>
-                        ISBN: 978-0-7475-3269-9<br>
-                        Genres: Novel, Children's literature, Fantasy Fiction, High fantasy
+                        By <?php echo htmlspecialchars($book['authors']); ?>, 
+                        <?php echo date('F d, Y', strtotime($book['published_date'])); ?><br>
+                        <?php echo htmlspecialchars($book['edition']); ?> Edition<br>
+                        ISBN: <?php echo htmlspecialchars($book['isbn']); ?><br>
+                        Genres: <?php echo htmlspecialchars($book['genre']); ?>
                     </div>
                     <div class="rating">
                         <div class="stars">
-                            <div class="star"></div>
-                            <div class="star"></div>
-                            <div class="star"></div>
-                            <div class="star"></div>
-                            <div class="star"></div>
+                            <?php
+                            $rating = $book['rating'] ?? 0;
+                            for ($i = 1; $i <= 5; $i++) {
+                                echo '<div class="star' . ($i <= $rating ? ' filled' : '') . '"></div>';
+                            }
+                            ?>
                         </div>
-                        <div class="rating-text">5.0 Ratings</div>
+                        <div class="rating-text"><?php echo number_format($rating, 1); ?> Ratings</div>
                     </div>
                     <div class="action-buttons">
                         <button class="borrow-button" id="openBorrowModal">Borrow</button>
                         <button class="book-cart-button" id="openCartModal">Book Cart</button>
                         <button class="add-to-shelf-button" id="openShelfModal">Add to My Shelf</button>
                         <div class="heart-button">
-                            <img src="Vector.svg" alt="Favorite">
+                            <img src="/images/Vector.svg" alt="Favorite">
                         </div>
                     </div>
                 </div>
@@ -134,37 +138,29 @@ if ($bookId) {
             <div class="related-books-section">
                 <h2 class="section-title">Related Books</h2>
                 <div class="related-books">
-                    <div class="related-book">
-                        <img src="image 3.svg" alt="Related Book">
-                    </div>
-                    <div class="related-book">
-                        <img src="image 2.svg" alt="Related Book">
-                    </div>
-                    <div class="related-book">
-                        <img src="image 1.svg" alt="Related Book">
-                    </div>
-                    <div class="related-book">
-                        <img src="image 22.svg" alt="Related Book">
-                    </div>
-                    <div class="related-book">
-                        <img src="image 23.svg" alt="Related Book">
-                    </div>
-                    <div class="related-book">
-                        <img src="image 24.svg" alt="Related Book">
-                    </div>
-                    <div class="related-book">
-                        <img src="image 8.svg" alt="Related Book">
-                    </div>
-                    <div class="related-book">
-                        <img src="image 25.svg" alt="Related Book">
-                    </div>
+                    <?php
+                    $relatedBooksResponse = $bookOps->getBooks(['genre' => $book['genre']]);
+                    $relatedBooks = ($relatedBooksResponse['status'] === 'success') ? $relatedBooksResponse['data'] : [];
+
+                    $relatedBooks = array_filter($relatedBooks, function($relatedBook) use ($book) {
+                        return $relatedBook['book_id'] !== $book['book_id'];
+                    });
+                    $relatedBooks = array_slice($relatedBooks, 0, 8);
+                    
+                    foreach ($relatedBooks as $relatedBook):
+                    ?>
+                        <a href="bookdescription.php?book_id=<?php echo htmlspecialchars($relatedBook['book_id']); ?>" class="related-book">
+                            <img src="<?php echo htmlspecialchars($relatedBook['image_url'] ?? '/images/default_book.svg'); ?>" 
+                                 alt="<?php echo htmlspecialchars($relatedBook['title']); ?>"
+                                 title="<?php echo htmlspecialchars($relatedBook['title']); ?>">
+                        </a>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </main>
 
     </div>
 
-    <!-- Book Cart Modal -->
     <div class="modal-overlay" id="cartModalOverlay">
         <div class="modal">
             <div class="modal-header">
@@ -172,15 +168,16 @@ if ($bookId) {
             </div>
             <div class="modal-body">
                 <div class="book-info-row">
-                    <img class="book-thumbnail" src="image 1.svg" alt="Book Cover">
+                    <img class="book-thumbnail" src="<?php echo htmlspecialchars($book['image_url'] ?? '/images/default_book.svg'); ?>" 
+                         alt="<?php echo htmlspecialchars($book['title']); ?>">
                     <div class="book-details">
-                        <div class="book-title-small">HARRY POTTER AND THE PHILOSOPHER'S STONE</div>
-                        <div>J.K. Rowling</div>
-                        <div>June 26, 1997</div>
+                        <div class="book-title-small"><?php echo htmlspecialchars($book['title']); ?></div>
+                        <div><?php echo htmlspecialchars($book['authors']); ?></div>
+                        <div><?php echo date('F d, Y', strtotime($book['published_date'])); ?></div>
                     </div>
                 </div>
                 <div class="user-id">
-                    <span>Your ID: AB0070124</span>
+                    <span>Your ID: <?php echo htmlspecialchars($_SESSION['member_id']); ?></span>
                     <span>Total: 1</span>
                 </div>
             </div>
@@ -190,7 +187,6 @@ if ($bookId) {
         </div>
     </div>
 
-    <!-- Borrow Modal -->
     <div class="modal-overlay" id="borrowModalOverlay">
         <div class="modal">
             <div class="modal-header">
@@ -202,15 +198,12 @@ if ($bookId) {
                     <div class="date-inputs">
                         <select id="borrowDay">
                             <option value="01">01</option>
-                            <!-- Additional options would be populated here -->
                         </select>
                         <select id="borrowMonth">
                             <option value="05">05</option>
-                            <!-- Additional options would be populated here -->
                         </select>
                         <select id="borrowYear">
                             <option value="2024">2024</option>
-                            <!-- Additional options would be populated here -->
                         </select>
                     </div>
                 </div>
@@ -334,7 +327,7 @@ if ($bookId) {
                 </div>
                 <div class="shelf-success-message">Successfully Added!</div>
                 <div class="shelf-success-details">
-                    "Harry Potter and the Philosopher's Stone" has been added to your shelf.
+                    "<?php echo htmlspecialchars($book['title']); ?>" has been added to your shelf.
                 </div>
             </div>
             <div class="modal-footer">
@@ -453,13 +446,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Populate date dropdowns
     function populateDateDropdowns() {
         const days = document.querySelectorAll('#borrowDay, #dueDay');
         const months = document.querySelectorAll('#borrowMonth, #dueMonth');
         const years = document.querySelectorAll('#borrowYear, #dueYear');
-        
-        // Days
+
         days.forEach(select => {
             select.innerHTML = '';
             for (let i = 1; i <= 31; i++) {
@@ -471,7 +462,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Months
         months.forEach(select => {
             select.innerHTML = '';
             for (let i = 1; i <= 12; i++) {
@@ -482,8 +472,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 select.appendChild(option);
             }
         });
-        
-        // Years
+    
         const currentYear = new Date().getFullYear();
         years.forEach(select => {
             select.innerHTML = '';

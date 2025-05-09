@@ -21,17 +21,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_list'])) {
         if ($stmt->rowCount() === 0) {
             $stmt = $pdo->prepare("INSERT INTO shelves (user_id, book_id, status) VALUES (?, ?, 'reading')");
             $stmt->execute([$memberId, $bookId]);
-            
+
             $book = $bookOps->getBookById($bookId);
             if ($book) {
-            $memberOps->addNotification(
-                     $memberId,
-                     'Book Added to List',
-                     "You've added '{$book['title']}' to your reading list."
-                 );
-             }
+                $memberOps->addNotification(
+                    $memberId,
+                    'Book Added to List',
+                    "You've added '{$book['title']}' to your reading list."
+                );
+            }
+
+            $_SESSION['add_to_list_success'] = true;
+            header("Location: " . $_SERVER['HTTP_REFERER']);
+            exit();
+        } else {
+            $_SESSION['add_to_list_error'] = "Book is already in your list.";
+            header("Location: " . $_SERVER['HTTP_REFERER']);
+            exit();
         }
     } catch (PDOException $e) {
+        $_SESSION['add_to_list_error'] = "Failed to add book to list.";
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit();
     }
 }
 
@@ -53,6 +64,19 @@ if ($selectedCategory !== 'All') {
         return strtolower($book['genre']) === strtolower($selectedCategory);
     });
 }
+
+$showSuccess = false;
+if (isset($_SESSION['borrow_success'])) {
+    $showSuccess = true;
+    unset($_SESSION['borrow_success']);
+}
+
+$showAddToListSuccess = isset($_SESSION['add_to_list_success']);
+$showAddToListError = isset($_SESSION['add_to_list_error']);
+$addToListError = $_SESSION['add_to_list_error'] ?? '';
+
+unset($_SESSION['add_to_list_success']);
+unset($_SESSION['add_to_list_error']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -239,7 +263,6 @@ if ($selectedCategory !== 'All') {
         </main>
     </div>
 
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.getElementById('menu-toggle');
@@ -329,7 +352,34 @@ if ($selectedCategory !== 'All') {
                 }
             });
     
+            const borrowForm = document.getElementById('borrowForm');
+            const modalProceed = document.getElementById('proceed'); 
+
+            if (modalProceed && borrowForm) {
+                modalProceed.addEventListener('click', function() {
+                    borrowForm.submit();
+                });
+            }
         });
     </script>
+
+    <?php if ($showSuccess): ?>
+        <div class="success-message" style="color: green; text-align: center; margin: 10px 0;">
+            Books borrowed successfully!
+        </div>
+    <?php endif; ?>
+
+    <?php if ($showAddToListSuccess): ?>
+        <div class="success-message" style="color: green; text-align: center; margin: 10px 0;">
+            Book successfully added to your list! 
+            <a href="Member-BorrowBooks.php" style="color: #0066cc; text-decoration: underline;">Go to Borrow Books</a>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($showAddToListError): ?>
+        <div class="error-message" style="color: red; text-align: center; margin: 10px 0;">
+            <?php echo htmlspecialchars($addToListError); ?>
+        </div>
+    <?php endif; ?>
 </body>
 </html>

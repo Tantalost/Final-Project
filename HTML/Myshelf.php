@@ -1,32 +1,59 @@
-
 <?php
+require_once "user_operations.php";
 require_once "book_operations.php";
 session_start();
 
+if (!isset($_SESSION['member_id'])) {
+    header("Location: Member-Login.php");
+    exit();
+}
+
+$memberId = $_SESSION['member_id'];
 $bookOps = new BookOperations($pdo);
-// Fetch all books from the database
-$booksResponse = $bookOps->getBooks();
-$books = $booksResponse['status'] === 'success' ? $booksResponse['data'] : [];
 
-// Handle category filtering
-$selectedCategory = $_GET['category'] ?? 'All';
-$filteredBooks = $books;
-if ($selectedCategory !== 'All') {
-    $filteredBooks = array_filter($books, function($book) use ($selectedCategory) {
-        return strtolower($book['genre']) === strtolower($selectedCategory);
-    });
+$stmt = $pdo->prepare("
+    SELECT b.*, s.shelf_id, t.transaction_id
+    FROM books b
+    LEFT JOIN shelves s ON b.book_id = s.book_id AND s.user_id = ? AND s.status = 'reading'
+    LEFT JOIN transactions t ON b.book_id = t.book_id AND t.user_id = ? AND t.transaction_type = 'borrow' AND t.return_date IS NULL
+    WHERE s.shelf_id IS NOT NULL OR t.transaction_id IS NOT NULL
+");
+$stmt->execute([$memberId, $memberId]);
+$myshelfBooks = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['borrowBooks'])) {
+    $selectedItems = $_POST['selected_items'] ?? [];
+
+    foreach ($selectedItems as $item) {
+        if (strpos($item, 'shelf_') === 0) {
+            $shelfId = str_replace('shelf_', '', $item);
+            $stmt = $pdo->prepare("DELETE FROM shelves WHERE shelf_id = ? AND user_id = ?");
+            $stmt->execute([$shelfId, $memberId]);
+
+        } elseif (strpos($item, 'trans_') === 0) {
+            $transactionId = str_replace('trans_', '', $item);
+
+            $stmt = $pdo->prepare("UPDATE transactions SET return_date = NOW() WHERE transaction_id = ? AND user_id = ?");
+            $stmt->execute([$transactionId, $memberId]);
+
+            $stmt = $pdo->prepare("SELECT book_id FROM transactions WHERE transaction_id = ?");
+            $stmt->execute([$transactionId]);
+            $book = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($book) {
+                $stmt = $pdo->prepare("UPDATE books SET stock = stock + 1 WHERE book_id = ?");
+                $stmt->execute([$book['book_id']]);
+            }
+        }
+    }
+
+    header("Location: myshelf.php");
+    exit();
 }
 
-// Handle search functionality
-$searchQuery = $_GET['search'] ?? '';
-if (!empty($searchQuery)) {
-    $searchQuery = strtolower($searchQuery);
-    $filteredBooks = array_filter($filteredBooks, function($book) use ($searchQuery) {
-        return strpos(strtolower($book['title']), $searchQuery) !== false ||
-               strpos(strtolower($book['authors']), $searchQuery) !== false;
-    });
-}
+$totalBooks = count($myshelfBooks);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,16 +61,12 @@ if (!empty($searchQuery)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Shelf</title>
     <link rel="stylesheet" href="/CSS/myshelf-style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Lugrasimo&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
-<body> 
+<body>
     <aside class="sidebar" id="sidebar">
         <div class="logo-container">
             <img class="logo" src="/images/logov4.svg" alt="Library Logo">
         </div>
-
         <nav class="menu">
             <a href="/HTML/Member-Homepage.php">
                 <img src="/images/Home.svg" width="20" height="20" alt="Home">
@@ -58,7 +81,6 @@ if (!empty($searchQuery)) {
                 <span>Search</span>
             </a>
         </nav>
-
         <nav class="footer-sidebar">
             <a href="#">About</a>
             <a href="#">Support</a>
@@ -75,13 +97,15 @@ if (!empty($searchQuery)) {
                 <div class="profile">
                     <img src="/images/Profile.svg" alt="User">
                     <div>
-                        BARBIE SANTOS <br>
+                        <?php echo htmlspecialchars($_SESSION['name']); ?> <br>
                         <span style="font-size: 12px;">Student</span>
                     </div>
                 </div>
             </div>
+        </header>
 
-            <div class="logout">
+        
+        <div class="logout">
                 <button class="menu-button">
                     <img class="logout-icon" src="/images/LogOut_vector.svg" alt="User Menu">
                 </button>
@@ -126,69 +150,80 @@ if (!empty($searchQuery)) {
                 </div>
             </section>
 
-            <section class="books-grid">
-                <?php if (empty($filteredBooks)): ?>
-                    <p style="text-align:center; font-size: 1.2rem;">No books found.</p>
-                <?php else: ?>
-                    <?php foreach ($filteredBooks as $book): ?>
-                        <div class="book-card">
-                            <div class="book-image">
-                                <a href="bookdescription.php?book_id=<?= urlencode($book['book_id']) ?>">
-                                    <img src="<?= htmlspecialchars($book['image_url'] ?? '/images/books/default_book.svg') ?>" 
-                                        alt="<?= htmlspecialchars($book['title'] ?? 'Untitled') ?> Book Cover">
-                                </a>
-                            </div>
-                            <div class="book-details">
-                                <h3 class="book-title"><?= htmlspecialchars(strtoupper($book['title'])) ?></h3>
-                                <p class="book-author">By <?= htmlspecialchars($book['authors']) ?></p>
-                                <p class="book-isbn">ISBN: <?= htmlspecialchars($book['isbn']) ?></p>
-                                <p class="book-remaining">Remaining: <?= htmlspecialchars($book['remaining'] ?? 'N/A') ?></p>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </section>
-
-
-        </main> 
-    </div> 
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.getElementById('menu-toggle');
-            const sidebar = document.getElementById('sidebar');
-            const mainContent = document.querySelector('.main-content'); 
-
-            if (menuToggle && sidebar && mainContent) {
-
-
-                menuToggle.addEventListener('click', function() {
-                    sidebar.classList.toggle('active');
-                    mainContent.classList.toggle('shifted');
-                });
-            } else {
-                console.error("Sidebar toggle elements not found!");
-            }
-
-            const menuButton = document.querySelector('.menu-button');
-            const dropdownMenu = document.querySelector('.dropdown-menu');
-
-            if (menuButton && dropdownMenu) {
-                menuButton.addEventListener('click', function(e) {
-                    e.stopPropagation(); 
-                    dropdownMenu.classList.toggle('show');
-                });
-
-                document.addEventListener('click', function(event) {
-                    if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                        dropdownMenu.classList.remove('show');
-                    }
-                });
-            } else {
-                console.error("Logout dropdown elements not found!");
-            }
-        });
-    </script>
-
+        <main class="page-specific-content">
+            <div class="content">
+                <div class="header-actions">
+                    <div class="count-display">
+                        <span class="count"><?php echo $totalBooks; ?></span> Books in Shelf
+                    </div>
+                </div>
+                <form method="POST">
+                    <table class="book-table">
+                        <thead class="book-header">
+                            <tr>
+                                <th>Select</th>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>ISBN</th>
+                                <th>Remaining</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if (empty($myshelfBooks)): ?>
+                                <tr>
+                                    <td colspan="5" style="text-align:center; font-size:1.1rem;">No books in your shelf.</td>
+                                </tr>
+                            <?php else: ?>
+                                <?php foreach ($myshelfBooks as $book): ?>
+                                        <tr class="book-row">
+                                            <td>
+                                            <input type="checkbox" name="selected_items[]" value="<?= isset($book['shelf_id']) ? 'shelf_' . $book['shelf_id'] : 'trans_' . $book['transaction_id'] ?>">
+                                            </td>
+                                            <td>
+                                                <div class="book-info" style="display: flex; align-items: center;">
+                                                    <img src="<?= htmlspecialchars($book['image_url'] ?? '/images/books/default_book.svg') ?>"
+                                                        alt="<?= htmlspecialchars($book['title'] ?? 'Untitled') ?> Book Cover"
+                                                        class="book-cover"
+                                                        style="width:80px;height:120px;object-fit:cover;margin-right:16px;">
+                                                    <div class="book-details">
+                                                        <h4 style="font-size:1.3rem; margin:0; padding:0;">
+                                                            <?= htmlspecialchars($book['title']) ?>
+                                                        </h4>
+                                                        <span class="status">
+                                                            <?= isset($book['transaction_id']) ? 'Borrowed' : 'Reading' ?>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td><?= htmlspecialchars($book['authors']) ?></td>
+                                            <td><?= htmlspecialchars($book['isbn']) ?></td>
+                                            <td><?= htmlspecialchars($book['stock'] ?? 'N/A') ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                    <?php if (!empty($myshelfBooks)): ?>
+                        <button type="submit" name="borrowBooks" class="borrow-button">
+                            Return Borrow (Remove from Shelf)
+                        </button>
+                    <?php endif; ?>
+                </form>
+            </div>
+        </main>
+    </div>
 </body>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.querySelector('.main-content');
+    if (menuToggle && sidebar && mainContent) {
+        menuToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+            mainContent.classList.toggle('shifted');
+        });
+    }
+});
+</script>
 </html>

@@ -1,26 +1,42 @@
 <?php
 require_once '../db_connect.php';
+session_start(); // Start the session
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $name = trim($_POST['name']);
+    $email = trim($_POST['email']);
+    $password = $_POST['password'];
 
-    try {
-        // Check if email already exists
-        $stmt = $pdo->prepare("SELECT * FROM members WHERE email = ?");
-        $stmt->execute([$email]);
-        
-        if ($stmt->rowCount() > 0) {
-            $error = "Email already exists";
-        } else {
-          $stmt = $pdo->prepare("INSERT INTO members (name, email, password) VALUES (?, ?, ?)");
-            $stmt->execute([$name, $email, $password]);
-            header("Location: Member-Homepage.php");
-            exit();
+    // Validate fields
+    if (empty($name) || empty($email) || empty($password)) {
+        $error = "All fields are required.";
+    } else {
+        // Hash the password
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        try {
+            // Check if email already exists
+            $stmt = $pdo->prepare("SELECT * FROM members WHERE email = ?");
+            $stmt->execute([$email]);
+            
+            if ($stmt->rowCount() > 0) {
+                $error = "Email already exists";
+            } else {
+                // Insert into database
+                $stmt = $pdo->prepare("INSERT INTO members (name, email, password) VALUES (?, ?, ?)");
+                $stmt->execute([$name, $email, $hashedPassword]);
+                
+                // Fetch the inserted ID and start a session
+                $_SESSION['user_id'] = $pdo->lastInsertId();
+                $_SESSION['user_name'] = $name;
+                
+                // Redirect to the homepage
+                header("Location: Member-Homepage.php");
+                exit();
+            }
+        } catch(PDOException $e) {
+            $error = "Registration failed: " . $e->getMessage();
         }
-    } catch(PDOException $e) {
-        $error = "Registration failed: " . $e->getMessage();
     }
 }
 ?>

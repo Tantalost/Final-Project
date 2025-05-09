@@ -1,3 +1,35 @@
+<?php
+require_once "user_operations.php";
+session_start();
+
+if (!isset($_SESSION['member_id'])) {
+    header("Location: Member-Login.php");
+    exit();
+}
+
+$memberId = $_SESSION['member_id'];
+$memberName = $_SESSION['name'];
+$memberEmail = $_SESSION['email'];
+
+$notifications = $memberOps->getNotifications($memberId);
+$borrowedBooks = $memberOps->getBorrowedBooks($memberId);
+$returnedBooks = $memberOps->getReturnedBooks($memberId);
+$totalReturned = is_array($returnedBooks) ? count($returnedBooks) : 0;
+
+$totalBorrowed = is_array($borrowedBooks) ? count($borrowedBooks) : 0;
+$overdueCount = 0;
+$dueSoonCount = 0;
+if (is_array($borrowedBooks)) {
+    foreach ($borrowedBooks as $book) {
+        if ($book['status'] === 'overdue') {
+            $overdueCount++;
+        } elseif ($book['status'] === 'due_soon') {
+            $dueSoonCount++;
+        }
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,11 +54,11 @@
                 <img src="/images/Search.svg" width="20" height="20" alt="Search">
                 <span>Search</span>
             </a>
-            <a href="/HTML/Myshelf.php">
+            <a href="/HTML/myshelf.php">
                 <img src="/images/Myshelf.svg" width="20" height="20" alt="My Shelf">
                 <span>My Shelf</span>
             </a>
-            <a href="/HTML/Member-History.php">
+            <a href="/html/Member-History.php">
                 <img src="/images/history_vector.svg" width="20" height="20" alt="History">
                 <span>History</span>
             </a>
@@ -47,10 +79,10 @@
                     <img src="/images/hamburgerbtn.svg" alt="Toggle Menu">
                 </button>
                 <div class="profile">
-                    <img src="/images/Profile 2.svg" alt="User">
+                    <img src="/images/Profile.svg" alt="User">
                     <div>
-                        Barbie Santos <br> 
-                        <span style="font-size: 12px;">Student</span>
+                            <?php echo htmlspecialchars($memberName); ?> <br>
+                            <span style="font-size: 12px;">Member</span>
                     </div>
                 </div>
             </div>
@@ -76,7 +108,7 @@
                         <img src="/images/darktheme.svg" alt="Dark Theme">
                         <span>Dark Theme</span>
                     </div>
-                    <div class="menu-item logout-option" data-link="welcome.php">
+                    <div class="menu-item logout-option" data-link="logout.php">
                         <img src="/images/logout_vector.svg" alt="Log Out">
                         <span>Log Out</span>
                     </div>
@@ -84,15 +116,12 @@
             </div>
         </header>
 
-
-
-
         <main class="content">
             <div class="welcome-container">
                 <img src="/images/Profile 2.svg" alt="Profile" class="profile-img">
             
                 <div class="welcome-text">
-                    <h2>Welcome! <span>Barbie Santos</span></h2>
+                    <h2>Welcome! <span><?php echo htmlspecialchars($memberName); ?></span></h2>
                     <p>Explore books, manage your borrowings, and discover something new every day.</p>
                 </div>
             </div>
@@ -102,7 +131,7 @@
                     <div class="actions-grid">
                         <a href="/html/Member-BorrowBooks.php" class="action-button">
                             <img class="action-icon" src="/images/borrow_book_vector.svg" alt="Borrow Book">
-                            <div class="action-text">Borrow Book</div>
+                            <div class="action-text">Borrowed Book</div>
                         </a>
                         <a href="/html/Member-ReturnBooks.php" class="action-button">
                             <img class="action-icon" src="/images/return_book_vector.svg" alt="Return Book" width="50" height="50">
@@ -118,17 +147,17 @@
                         </a>
                     </div>
                 </div>
-                        
+
                 <div class="lower-dashboard">
                     <div class="left-section">
                         <div class="stats-section">
                             <div class="stats-container">
                                 <div class="stat-box">
-                                    <div style="font-size: 40px; font-weight: 700;">0</div>
+                                    <div style="font-size: 40px; font-weight: 700;"><?php echo $totalBorrowed; ?></div>
                                     <div style="font-size: 14px; font-weight: 400;">Borrowed Books</div>
                                 </div>
                                 <div class="stat-box">
-                                    <div style="font-size: 40px; font-weight: 700;">0</div>
+                                    <div style="font-size: 40px; font-weight: 700;"><?php echo $totalReturned; ?></div>
                                     <div style="font-size: 14px; font-weight: 400;">Returned Books</div>
                                 </div>
                             </div>
@@ -138,18 +167,20 @@
                     <div class="right-section">
                         <div class="notification-container">
                             <div class="notification-header">Notifications</div>
-                            <div class="notification-item">
-                                <img src="/images/warning_vector.svg" alt="Overdue Notification">
-                                <div class="notification-text">Humpty Dumpty has passed the due date. Click to see details.</div>
-                            </div>
-                            <div class="notification-item">
-                                <img src="/images/due_tom_icon.svg" alt="Due Tomorrow">
-                                <div class="notification-text"> The Republic is due tomorrow.</div>
-                            </div>
-                            <div class="notification-item">
-                                <img src="/images/book_available_vector.svg" alt="Available Book">
-                                <div class="notification-text">A Brief History of Time is now Available</div>
-                            </div>
+                            <?php if (empty($notifications)): ?>
+                                <p class="no-notifications">No new notifications</p>
+                            <?php else: ?>
+                                <?php foreach ($notifications as $notification): ?>
+                                    <div class="notification-item">
+                                        <img src="/images/warning_vector.svg" alt="Notification">
+                                        <div class="notification-text">
+                                            <strong><?php echo htmlspecialchars($notification['title']); ?></strong>
+                                            <?php echo htmlspecialchars($notification['message']); ?>
+                                            <small><?php echo date('M d, Y H:i', strtotime($notification['created_at'])); ?></small>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -237,6 +268,10 @@
                 const link = this.getAttribute('data-link');
                 if (link) window.location.href = link;
             });
+        });
+
+        addClickListener(confirm, () => {
+            document.getElementById('borrowForm').submit();
         });
     </script>
 </body>

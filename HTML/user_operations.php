@@ -131,6 +131,28 @@ class MemberOperations {
             return ['status' => 'error', 'message' => 'Database error: ' . $e->getMessage()];
         }
     }
+
+    /**
+     * Get user's returned books
+     * @param int $userId User ID
+     * @return array List of returned books
+     */
+    public function getReturnedBooks($userId) {
+        try {
+            $stmt = $this->conn->prepare("
+                SELECT b.*, t.return_date
+                FROM transactions t
+                JOIN books b ON t.book_id = b.book_id
+                WHERE t.user_id = ? 
+                AND t.transaction_type = 'borrow'
+                AND t.return_date IS NOT NULL
+            ");
+            $stmt->execute([$userId]);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return ['status' => 'error', 'message' => 'Database error: ' . $e->getMessage()];
+        }
+    }
 }
 
 $memberOps = new MemberOperations($pdo);

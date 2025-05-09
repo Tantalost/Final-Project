@@ -1,3 +1,95 @@
+<?php
+require_once "user_operations.php";
+require_once "book_operations.php";
+session_start();
+
+// Check if member is logged in
+if (!isset($_SESSION['member_id'])) {
+    header("Location: Member-Login.php");
+    exit();
+}
+
+$memberId = $_SESSION['member_id'];
+$bookOps = new BookOperations($pdo);
+$memberOps = new MemberOperations($pdo);
+
+// Handle borrowing books
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['borrow_books'])) {
+    $selectedBooks = $_POST['selected_books'] ?? [];
+    $borrowDuration = $_POST['borrow_duration'] ?? 14; // Default 14 days
+    
+    if (!empty($selectedBooks)) {
+        $dueDate = date('Y-m-d', strtotime("+{$borrowDuration} days"));
+        
+        foreach ($selectedBooks as $bookId) {
+            try {
+                // Check if book is available
+                $stmt = $pdo->prepare("SELECT stock FROM books WHERE book_id = ?");
+                $stmt->execute([$bookId]);
+                $book = $stmt->fetch(PDO::FETCH_ASSOC);
+                
+                if ($book && $book['stock'] > 0) {
+                    // Create transaction
+                    $stmt = $pdo->prepare("
+                        INSERT INTO transactions (user_id, book_id, transaction_type, due_date, return_date)
+                        VALUES (?, ?, 'borrow', ?, NULL)
+                    ");
+                    if (!$stmt->execute([$memberId, $bookId, $dueDate])) {
+                        print_r($stmt->errorInfo());
+                    }
+                    
+                    // Update book stock
+                    $stmt = $pdo->prepare("
+                        UPDATE books 
+                        SET stock = stock - 1,
+                            status = CASE WHEN stock - 1 = 0 THEN 'borrowed' ELSE status END
+                        WHERE book_id = ?
+                    ");
+                    if (!$stmt->execute([$bookId])) {
+                        print_r($stmt->errorInfo());
+                    }
+                    
+                    // Remove from shelves
+                    $stmt = $pdo->prepare("DELETE FROM shelves WHERE user_id = ? AND book_id = ?");
+                    $stmt->execute([$memberId, $bookId]);
+                    
+                    // Add notification for borrowed book
+                    $bookInfo = $bookOps->getBookById($bookId);
+                    if ($bookInfo) {
+                        $memberOps->addNotification(
+                            $memberId,
+                            'Book Borrowed',
+                            "You've borrowed '{$bookInfo['title']}'. Due date: " . date('M d, Y', strtotime($dueDate))
+                        );
+                    } else {
+                        echo "Failed to fetch book info for ID: $bookId";
+                    }
+                } else {
+                    echo "Book not available or out of stock.";
+                }
+            } catch (PDOException $e) {
+                echo 'Error: ' . $e->getMessage();
+            }
+        }
+
+        $_SESSION['total_borrowed_books'] = count($memberOps->getBorrowedBooks($memberId));
+        
+        header("Location: Member-Homepage.php?borrow_success=1");
+        exit();
+    }
+}
+
+$stmt = $pdo->prepare("
+    SELECT b.*, s.status as list_status
+    FROM shelves s
+    JOIN books b ON s.book_id = b.book_id
+    WHERE s.user_id = ? AND s.status = 'reading'
+    AND s.book_id NOT IN (SELECT book_id FROM transactions WHERE user_id = ? AND transaction_type = 'borrow')
+");
+$stmt->execute([$memberId, $memberId]);
+$userBooks = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,9 +149,6 @@
             </div>
         </header>
 
-
-
-
         <main class="content">
             <div class="header-container">
                 <div class="header-title">
@@ -75,113 +164,74 @@
                     <input type="text" class="search-input" placeholder="Search Books">
                 </div>
 
-                <!-- ung link ng search -->
                 <a href="/" class="browse"> 
                     Browse
                     <img src="/images/browse.svg">
                 </a>
             </div>
 
-            <table class="book-table">
-                <thead class="book-header">
-                    <tr>
-                        <th>Title</th>
-                        <th>Ratings</th>
-                        <th>Category</th>
-                        <th>Status</th>
-                        <th>Borrow</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <form method="POST" action="" id="borrowForm">
+                <div class="borrow-duration">
+                    <label for="borrow_duration">Borrow Duration (days):</label>
+                    <select name="borrow_duration" id="borrow_duration">
+                        <option value="7">7 days</option>
+                        <option value="14" selected>14 days</option>
+                        <option value="21">21 days</option>
+                        <option value="30">30 days</option>
+                    </select>
+                </div>
 
-                    <tr class="book-row">
-                        <td>
-                            <div class="book-info">
-                                <img src="/images/image 25.svg" alt="Harry Potter and the Sorcerer's Stone" class="book-cover">
-                                <div class="book-details">
-                                    <h4>Harry Potter and the Sorcerer's Stone</h4>
-                                    <p> J. K. Rowling</p>
-                                    <p>June 26, 1997</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="rating">4.7</div>
-                        </td>
-                        <td>
-                            <div class="category">Novel, Fantasy Fiction, Children's literature, High fantasy</div>
-                        </td>
-                        <td>
-                            <div class="available">Available</div>
-                        </td>
-                        <td>
-                            <input type="checkbox" class="checkbox">
-                        </td>
-                    </tr>
-                    
-                    <tr class="book-row">
-                        <td>
-                            <div class="book-info">
-                                <img src="/images/image 33.svg" alt="The Long Way to a Small, Angry Planet" class="book-cover">
-                                <div class="book-details">
-                                    <h4>The Long Way to a Small, Angry Planet</h4>
-                                    <p> Becky Chambers</p>
-                                    <p>2014</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="rating">4.6</div>
-                        </td>
-                        <td>
-                            <div class="category">Science fiction, Novel, Space opera, Adventure fiction</div>
-                        </td>
-                        <td>
-                            <div class="not-available">Not Available</div>
-                        </td>
-                        <td>
-                            <input type="checkbox" class="checkbox">
-                        </td>
-                    </tr>
-                    
-                    <tr class="book-row">
-                        <td>
-                            <div class="book-info">
-                                <img src="/images/image 47.svg" alt="The Calculating Stars " class="book-cover">
-                                <div class="book-details">
-                                    <h4>The Calculating Stars</h4>
-                                    <p>Mary Robinette Kowal</p>
-                                    <p>July 3, 2018</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="rating">4.0</div>
-                        </td>
-                        <td>
-                            <div class="category">Science fiction, Novel, Alternate history, Hard science fiction</div>
-                        </td>
-                        <td>
-                            <div class="available">Available</div>
-                        </td>
-                        <td>
-                            <input type="checkbox" class="checkbox">
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                <table class="book-table">
+                    <thead class="book-header">
+                        <tr>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Select</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($userBooks as $book): ?>
+                            <tr class="book-row">
+                                <td>
+                                    <div class="book-info">
+                                        <img src="<?php echo htmlspecialchars($book['image_url'] ?? '/images/books/default_book.svg'); ?>" 
+                                             alt="<?php echo htmlspecialchars($book['title']); ?>" 
+                                             class="book-cover">
+                                        <div class="book-details">
+                                            <h4><?php echo htmlspecialchars($book['title']); ?></h4>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><?php echo htmlspecialchars($book['authors']); ?></td>
+                                <td><?php echo htmlspecialchars($book['genre']); ?></td>
+                                <td>
+                                    <div class="<?php echo $book['stock'] > 0 ? 'available' : 'not-available'; ?>">
+                                        <?php echo $book['stock'] > 0 ? 'Available' : 'Not Available'; ?>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="checkbox" class="checkbox" name="selected_books[]" value="<?php echo $book['book_id']; ?>"
+                                           <?php echo $book['stock'] <= 0 ? 'disabled' : ''; ?>>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+
+                <div class="bottom-select">
+                    <label class="select-all">
+                        <input type="checkbox" id="select-all-checkbox">
+                        <span>ALL</span>
+                    </label>
+                    <div class="right-side">
+                        <div class="total-count">Total: <span id="total-count">0</span></div>
+                        <button type="button" name="borrow_books" class="button" id="borrowbutton">Borrow</button>
+                    </div>
+                </div>
+            </form>
         </main>
-
-        <div class="bottom-select">
-            <label class="select-all">
-                <input type="checkbox" id="select-all-checkbox">
-                <span>ALL</span>
-            </label>
-            <div class="right-side">
-                <div class="total-count">Total: <span id="total-count"> 0 </span> </div>
-                <button class="button" id="borrowbutton">Borrow</button>
-            </div>
-        </div>
 
         <div class="viewmodal" id="viewmodal">
             <div class="modal-content" id="borrowModal">
@@ -232,6 +282,79 @@
     <script src="/js/sidebar.js"></script>
     <script src="/js/bookselection.js"></script>
     <script src="/js/borrowReturnModals.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const selectAllCheckbox = document.getElementById('select-all-checkbox');
+        const bookCheckboxes = document.querySelectorAll('input[name="selected_books[]"]');
+        const totalCountSpan = document.getElementById('total-count');
+        const borrowButton = document.getElementById('borrowbutton');
+
+        function updateTotalCount() {
+            const selectedCount = document.querySelectorAll('input[name="selected_books[]"]:checked').length;
+            totalCountSpan.textContent = selectedCount;
+            borrowButton.disabled = selectedCount === 0;
+        }
+
+        selectAllCheckbox.addEventListener('change', function() {
+            bookCheckboxes.forEach(checkbox => {
+                if (!checkbox.disabled) {
+                    checkbox.checked = this.checked;
+                }
+            });
+            updateTotalCount();
+        });
+
+        bookCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateTotalCount);
+        });
+
+        updateTotalCount();
+
+        const confirmBtn = document.getElementById('confirm');
+
+confirmBtn.addEventListener('click', async function () {
+    const selectedBookIds = Array.from(document.querySelectorAll('input[name="selected_books[]"]:checked'))
+        .map(cb => cb.value);
+    const borrowDuration = parseInt(document.getElementById('borrow_duration').value);
+
+    try {
+        const response = await fetch('ajax_borrow_books.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                selected_books: selectedBookIds,
+                borrow_duration: borrowDuration
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            document.getElementById('confirmationModal').style.display = 'none';
+            document.getElementById('successModal').style.display = 'block';
+
+            result.borrowed_books.forEach(bookId => {
+                const checkbox = document.querySelector(input[name="selected_books[]"][value="${bookId}"]);
+                if (checkbox) {
+                    checkbox.closest('tr').remove();
+                }
+            });
+
+            document.getElementById('total-count').textContent =
+                document.querySelectorAll('input[name="selected_books[]"]:checked').length;
+
+        } else {
+            alert("Borrow failed: " + (result.message || "Unknown error"));
+        }
+    } catch (error) {
+        console.error("AJAX error:", error);
+        alert("An error occurred while borrowing books.");
+    }
+});
+    });
+    </script>
 
 </body>
 </html>
