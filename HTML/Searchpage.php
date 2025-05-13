@@ -84,7 +84,7 @@ unset($_SESSION['add_to_list_error']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search | Library App</title>
-    <link rel="stylesheet" href="/CSS/searchpage.css">
+    <link rel="stylesheet" href="../CSS/searchpage.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Lugrasimo&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -92,20 +92,20 @@ unset($_SESSION['add_to_list_error']);
 <body>
     <aside class="sidebar" id="sidebar">
         <div class="logo-container">
-            <img class="logo" src="/images/logo (3).svg" alt="Library Logo">
+            <img class="logo" src="../images/logo (3).svg" alt="Library Logo">
         </div>
 
         <nav class="menu">
             <a href="Member-Homepage.php">
-                <img src="/images/Home.svg" width="20" height="20" alt="Home">
+                <img src="../images/Home.svg" width="20" height="20" alt="Home">
                 <span>Home</span>
             </a>
             <a href="Myshelf.php">
-                <img src="/images/Myshelf.svg" width="20" height="20" alt="My Shelf">
+                <img src="../images/Myshelf.svg" width="20" height="20" alt="My Shelf">
                 <span>My Shelf</span>
             </a>
-            <a href="Searchpage.php" class="active">
-                <img src="/images/Search.svg" width="20" height="20" alt="Search">
+            <a href="../html/Searchpage.php" class="active">
+                <img src="../images/Search.svg" width="20" height="20" alt="Search">
                 <span>Search</span>
             </a>
         </nav>
@@ -121,10 +121,10 @@ unset($_SESSION['add_to_list_error']);
         <header class="topbar">
             <div class="topbar-left">
                 <button id="menu-toggle" class="menu-toggle">
-                    <img src="/images/hamburgerbtn.svg" alt="Toggle Menu">
+                    <img src="../images/hamburgerbtn.svg" alt="Toggle Menu">
                 </button>
                 <div class="profile">
-                    <img src="/images/Profile.svg" alt="User">
+                    <img src="../images/Profile.svg" alt="User">
                     <div>
                         BARBIE SANTOS <br>
                         <span style="font-size: 12px;">Student</span>
@@ -134,27 +134,27 @@ unset($_SESSION['add_to_list_error']);
 
             <div class="logout">
                 <button class="menu-button">
-                    <img class="logout-icon" src="/images/logout_vector.svg" alt="User Menu">
+                    <img class="logout-icon" src="../images/logout_vector.svg" alt="User Menu">
                 </button>
                 <div class="dropdown-menu">
                     <div class="menu-item">
-                        <img src="/images/Profile (2).svg" alt="Profile">
+                        <img src="../images/Profile (2).svg" alt="Profile">
                         <span>Profile</span>
                     </div>
                     <div class="menu-item">
-                        <img src="/images/accountsett.svg" alt="Account Settings">
+                        <img src="../images/accountsett.svg" alt="Account Settings">
                         <span>Account Settings</span>
                     </div>
                     <div class="menu-item">
-                        <img src="/images/languageicon.svg" alt="Language">
+                        <img src="../images/languageicon.svg" alt="Language">
                         <span>Language</span>
                     </div>
                     <div class="menu-item">
-                        <img src="/images/darktheme.svg" alt="Dark Theme">
+                        <img src="../images/darktheme.svg" alt="Dark Theme">
                         <span>Dark Theme</span>
                     </div>
                     <div class="menu-item logout-option">
-                        <img src="/images/logout_vector.svg" alt="Log Out">
+                        <img src="../images/logout_vector.svg" alt="Log Out">
                         <span>Log Out</span>
                     </div>
                 </div>
@@ -162,16 +162,15 @@ unset($_SESSION['add_to_list_error']);
         </header>
 
         <main class="page-specific-content">
-
-            <section class="search-section">
-                <div class="search-header">
+        
+            <div class="search-header">
                     <h1>DISCOVER YOUR NEXT ADVENTURE!</h1>
                 </div>
                 
+            <section class="search-section">
                 <div class="search-container">
                     <div class="search-tabs">
                         <div class="tab active">All</div>
-                        <div class="tab">Search</div>
                     </div>
                     <form method="GET" action="" class="search-form">
                         <input type="text" name="search" class="search-input" placeholder="Search..." 
@@ -217,7 +216,7 @@ unset($_SESSION['add_to_list_error']);
                             <tr class="book-row">
                                 <td>
                                     <div class="book-info">
-                                        <img src="<?php echo htmlspecialchars($book['image_url'] ?? '/images/books/default_book.svg'); ?>" 
+                                        <img src="<?php echo htmlspecialchars($book['image_url'] ?? '../images/image 40.svg'); ?>" 
                                              alt="<?php echo htmlspecialchars($book['title']); ?>" 
                                              class="book-cover">
                                         <div class="book-details">
@@ -252,14 +251,6 @@ unset($_SESSION['add_to_list_error']);
                     </tbody>
                 </table>
             </section>
-
-            <footer class="main-footer">
-                <div class="footer-links">
-                    <a href="#">About</a>
-                    <a href="#">Support</a>
-                    <a href="#">Terms & condition</a>
-                </div>
-            </footer>
         </main>
     </div>
 

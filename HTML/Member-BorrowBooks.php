@@ -97,31 +97,31 @@ $userBooks = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Borrow Books</title>
-    <link rel="stylesheet" href="/css/sidebar.css">
-    <link rel="stylesheet" href="/css/return-borrowstyles.css">
-    <link rel="stylesheet" href="/css/modalstyles.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="../css/return-borrowstyles.css">
+    <link rel="stylesheet" href="../css/modalstyles.css">
 </head>
 <body>
     <aside class="sidebar" id="sidebar">
         <div class="logo-container">
-            <img class="logo" src="/images/logo (3).svg" alt="Logo">
+            <img class="logo" src="../images/logo (3).svg" alt="Logo">
         </div>
 
         <nav class="menu">
             <a href="/html/Member-Homepage.php" class="active">
-                <img src="/images/Home.svg" width="20" height="20" alt="Home">
+                <img src="../images/Home.svg" width="20" height="20" alt="Home">
                 <span>Home</span>
             </a>
-            <a href="Searchpage.php">
-                <img src="/images/Search.svg" width="20" height="20" alt="Search">
+            <a href="../html/Searchpage.php">
+                <img src="../images/Search.svg" width="20" height="20" alt="Search">
                 <span>Search</span>
             </a>
-            <a href="/HTML/Myshelf.php">
-                <img src="/images/Myshelf.svg" width="20" height="20" alt="My Shelf">
+            <a href="../HTML/Myshelf.php">
+                <img src="../images/Myshelf.svg" width="20" height="20" alt="My Shelf">
                 <span>My Shelf</span>
             </a>
             <a href="/html/Member-History.php">
-                <img src="/images/history_vector.svg" width="20" height="20" alt="History">
+                <img src="../images/history_vector.svg" width="20" height="20" alt="History">
                 <span>History</span>
             </a>
         </nav>
@@ -138,23 +138,53 @@ $userBooks = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
             <div class="topbar-left">
                 <button id="menu-toggle" class="menu-toggle">
-                    <img src="/images/hamburgerbtn.svg" alt="Toggle Menu">
+                    <img src="../images/hamburgerbtn.svg" alt="Toggle Menu">
                 </button>
                 <div class="profile">
-                    <img src="/images/Profile 2.svg" alt="User">
+                    <img src="../images/Profile 2.svg" alt="User">
                     <div>
                         <?php echo htmlspecialchars($memberName); ?> <br>
                         <span style="font-size: 12px;">Member</span>
                     </div>
                 </div>
             </div>
+
+            <div class="logout">
+                <button class="menu-button">
+                    <img class="logout-icon" src="../images/LogOut_vector.svg" alt="Logout">
+                </button>
+                <div class="dropdown-menu">
+                    <div class="menu-item" id="profile-button">
+                    <img src="../images/Profile (2).svg" alt="Profile">
+                    <span>Profile</span>
+                </div>
+                    <div class="menu-item">
+                        <img src="../images/accountsett.svg" alt="Account Settings">
+                        <span>Account Settings</span>
+                    </div>
+                    <div class="menu-item">
+                        <img src="../images/languageicon.svg" alt="Language">
+                        <span>Language</span>
+                    </div>
+                    <div class="menu-item">
+                        <img src="../images/darktheme.svg" alt="Dark Theme">
+                        <span>Dark Theme</span>
+                    </div>
+                    <div class="menu-item logout-option" data-link="logout.php">
+                        <img src="../images/logout_vector.svg" alt="Log Out">
+                        <span>Log Out</span>
+                    </div>
+                </div>
+            </div>
         </header>
+
+        
 
         <main class="content">
             <div class="header-container">
                 <div class="header-title">
                 <a href="Member-Homepage.php">
-                    <img src="/images/backbtn.svg" class="back-button">
+                    <img src="../images/backbtn.svg" class="back-button">
                 </a>
                     BORROW BOOKS</div>
             </div>
@@ -167,14 +197,14 @@ $userBooks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 <a href="/" class="browse"> 
                     Browse
-                    <img src="/images/browse.svg">
+                    <img src="../images/browse.svg">
                 </a>
             </div>
 
             <form method="POST" action="" id="borrowForm">
                 <div class="borrow-duration">
                     <label for="borrow_duration">Borrow Duration (days):</label>
-                    <select name="borrow_duration" id="borrow_duration">
+                    <select name="borrow_duration" id="borrow_duration" class="duration-filter">
                         <option value="7">7 days</option>
                         <option value="14" selected>14 days</option>
                         <option value="21">21 days</option>
@@ -197,7 +227,7 @@ $userBooks = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <tr class="book-row">
                                 <td>
                                     <div class="book-info">
-                                        <img src="<?php echo htmlspecialchars($book['image_url'] ?? '/images/books/default_book.svg'); ?>" 
+                                        <img src="<?php echo htmlspecialchars($book['image_url'] ?? '../images/books/default_book.svg'); ?>" 
                                              alt="<?php echo htmlspecialchars($book['title']); ?>" 
                                              class="book-cover">
                                         <div class="book-details">
@@ -260,7 +290,7 @@ $userBooks = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
 
             <div class="modal-content2" id="confirmationModal" style="display: none;">
-                <img src="/images/logov4.svg" class="modal-logo">
+                <img src="../images/logov4.svg" class="modal-logo">
                 <h2>Confirm</h2>
                 <h4>Are you sure you want to borrow books?</h4>
                 <div class="buttonmodal">
@@ -270,19 +300,19 @@ $userBooks = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
 
             <div class="modal-content2" id="successModal" style="display: none;">
-                <img src="/images/logov4.svg" class="modal-logo">
+                <img src="../images/logov4.svg" class="modal-logo">
                 <h2>Success!</h2>
                 <p>Thank you!</p>
-                <img  src="/images/check.svg" class="checkimg">
+                <img  src="../images/check.svg" class="checkimg">
                 <div class="buttonmodal">
                     <button type="button" class="modalbtn close">Close</button> 
                 </div>
             </div>
         </div>
 
-    <script src="/js/sidebar.js"></script>
-    <script src="/js/bookselection.js"></script>
-    <script src="/js/borrowReturnModals.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/bookselection.js"></script>
+    <script src="../js/borrowReturnModals.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const selectAllCheckbox = document.getElementById('select-all-checkbox');

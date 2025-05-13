@@ -60,25 +60,29 @@ $totalBooks = count($myshelfBooks);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Shelf</title>
-    <link rel="stylesheet" href="/CSS/myshelf-style.css">
+    <link rel="stylesheet" href="../CSS/myshelf-style.css">
 </head>
 <body>
     <aside class="sidebar" id="sidebar">
         <div class="logo-container">
-            <img class="logo" src="/images/logov4.svg" alt="Library Logo">
+            <img class="logo" src="../images/logov5.svg" alt="Library Logo">
         </div>
         <nav class="menu">
             <a href="/HTML/Member-Homepage.php">
-                <img src="/images/Home.svg" width="20" height="20" alt="Home">
+                <img src="../images/Home.svg" width="20" height="20" alt="Home">
                 <span>Home</span>
             </a>
             <a href="/HTML/Myshelf.php" class="active">
-                <img src="/images/Myshelf.svg" width="20" height="20" alt="My Shelf">
+                <img src="../images/Myshelf.svg" width="20" height="20" alt="My Shelf">
                 <span>My Shelf</span>
             </a>
             <a href="/HTML/Searchpage.php">
-                <img src="/images/Search.svg" width="20" height="20" alt="Search">
+                <img src="../images/Search.svg" width="20" height="20" alt="Search">
                 <span>Search</span>
+            </a>
+            <a href="../html/Member-History.php">
+                <img src="../images/history_vector.svg" width="20" height="20" alt="History">
+                <span>History</span>
             </a>
         </nav>
         <nav class="footer-sidebar">
@@ -92,46 +96,43 @@ $totalBooks = count($myshelfBooks);
         <header class="topbar">
             <div class="topbar-left">
                 <button id="menu-toggle" class="menu-toggle">
-                    <img src="/images/hamburgerbtn.svg" alt="Toggle Menu">
+                    <img src="../images/hamburgerbtn.svg" alt="Toggle Menu">
                 </button>
                 <div class="profile">
-                    <img src="/images/Profile.svg" alt="User">
+                    <img src="../images/Profile.svg" alt="User">
                     <div>
                         <?php echo htmlspecialchars($_SESSION['name']); ?> <br>
                         <span style="font-size: 12px;">Student</span>
                     </div>
                 </div>
             </div>
-        </header>
 
-        
         <div class="logout">
                 <button class="menu-button">
-                    <img class="logout-icon" src="/images/LogOut_vector.svg" alt="User Menu">
+                    <img class="logout-icon" src="../images/LogOut_vector.svg" alt="User Menu">
                 </button>
                 <div class="dropdown-menu">
                     <div class="menu-item">
-                        <img src="/images/Profile (2).svg" alt="Profile">
+                        <img src="../images/Profile (2).svg" alt="Profile">
                         <span>Profile</span>
                     </div>
                     <div class="menu-item">
-                        <img src="/images/accountsett.svg" alt="Account Settings">
+                        <img src="../images/accountsett.svg" alt="Account Settings">
                         <span>Account Settings</span>
                     </div>
                     <div class="menu-item">
-                        <img src="/images/languageicon.svg" alt="Language">
+                        <img src="../images/languageicon.svg" alt="Language">
                         <span>Language</span>
                     </div>
                     <div class="menu-item">
-                        <img src="/images/darktheme.svg" alt="Dark Theme">
+                        <img src="../images/darktheme.svg" alt="Dark Theme">
                         <span>Dark Theme</span>
                     </div>
                     <div class="menu-item logout-option">
-                        <img src="/images/LogOut_vector.svg" alt="Log Out">
+                        <img src="../images/LogOut_vector.svg" alt="Log Out">
                         <span>Log Out</span>
                     </div>
                 </div>
-            </div>
         </header>
 
         <main class="page-specific-content">
@@ -141,68 +142,72 @@ $totalBooks = count($myshelfBooks);
                     <div class="text">BOOK TREASURES!</div>
                 </div>
 
+                <div class="wrapper">
                 <div class="search-container">
                     <div class="search-tabs">
                         <div class="tab active">All</div>
-                        <div class="tab">User</div>
                     </div>
                     <input type="text" class="search-input" placeholder="Search...">
                 </div>
-            </section>
 
-        <main class="page-specific-content">
-            <div class="content">
                 <div class="header-actions">
                     <div class="count-display">
                         <span class="count"><?php echo $totalBooks; ?></span> Books in Shelf
                     </div>
                 </div>
+                </div>
+            </section>
+
+        <main class="page-specific-content">
+            <div class="content">
                 <form method="POST">
-                    <table class="book-table">
-                        <thead class="book-header">
-                            <tr>
-                                <th>Select</th>
-                                <th>Title</th>
-                                <th>Author</th>
-                                <th>ISBN</th>
-                                <th>Remaining</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if (empty($myshelfBooks)): ?>
+                    <div class="table">
+                        <table class="book-table">
+                            <thead class="book-header">
                                 <tr>
-                                    <td colspan="5" style="text-align:center; font-size:1.1rem;">No books in your shelf.</td>
+                                    <th>Select</th>
+                                    <th>Title</th>
+                                    <th>Author</th>
+                                    <th>ISBN</th>
+                                    <th>Remaining</th>
                                 </tr>
-                            <?php else: ?>
-                                <?php foreach ($myshelfBooks as $book): ?>
-                                        <tr class="book-row">
-                                            <td>
-                                            <input type="checkbox" name="selected_items[]" value="<?= isset($book['shelf_id']) ? 'shelf_' . $book['shelf_id'] : 'trans_' . $book['transaction_id'] ?>">
-                                            </td>
-                                            <td>
-                                                <div class="book-info" style="display: flex; align-items: center;">
-                                                    <img src="<?= htmlspecialchars($book['image_url'] ?? '/images/books/default_book.svg') ?>"
-                                                        alt="<?= htmlspecialchars($book['title'] ?? 'Untitled') ?> Book Cover"
-                                                        class="book-cover"
-                                                        style="width:80px;height:120px;object-fit:cover;margin-right:16px;">
-                                                    <div class="book-details">
-                                                        <h4 style="font-size:1.3rem; margin:0; padding:0;">
-                                                            <?= htmlspecialchars($book['title']) ?>
-                                                        </h4>
-                                                        <span class="status">
-                                                            <?= isset($book['transaction_id']) ? 'Borrowed' : 'Reading' ?>
-                                                        </span>
+                            </thead>
+                            <tbody>
+                                <?php if (empty($myshelfBooks)): ?>
+                                    <tr>
+                                        <td colspan="5" style="text-align:center; font-size:1.1rem;">No books in your shelf.</td>
+                                    </tr>
+                                <?php else: ?>
+                                    <?php foreach ($myshelfBooks as $book): ?>
+                                            <tr class="book-row">
+                                                <td>
+                                                <input type="checkbox" name="selected_items[]" value="<?= isset($book['shelf_id']) ? 'shelf_' . $book['shelf_id'] : 'trans_' . $book['transaction_id'] ?>">
+                                                </td>
+                                                <td>
+                                                    <div class="book-info" style="display: flex; align-items: center;">
+                                                        <img src="<?= htmlspecialchars($book['image_url'] ?? '../images/books/default_book.svg') ?>"
+                                                            alt="<?= htmlspecialchars($book['title'] ?? 'Untitled') ?> Book Cover"
+                                                            class="book-cover"
+                                                            style="width:80px;height:120px;object-fit:cover;margin-right:16px;">
+                                                        <div class="book-details">
+                                                            <h4 style="font-size:1.3rem; margin:0; padding:0;">
+                                                                <?= htmlspecialchars($book['title']) ?>
+                                                            </h4>
+                                                            <span class="status">
+                                                                <?= isset($book['transaction_id']) ? 'Borrowed' : 'Reading' ?>
+                                                            </span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td><?= htmlspecialchars($book['authors']) ?></td>
-                                            <td><?= htmlspecialchars($book['isbn']) ?></td>
-                                            <td><?= htmlspecialchars($book['stock'] ?? 'N/A') ?></td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
+                                                </td>
+                                                <td><?= htmlspecialchars($book['authors']) ?></td>
+                                                <td><?= htmlspecialchars($book['isbn']) ?></td>
+                                                <td><?= htmlspecialchars($book['stock'] ?? 'N/A') ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
+                    </div>
                     <?php if (!empty($myshelfBooks)): ?>
                         <button type="submit" name="borrowBooks" class="borrow-button">
                             Return Borrow (Remove from Shelf)

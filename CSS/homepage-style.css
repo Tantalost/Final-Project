@@ -9,8 +9,13 @@
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
+    scroll-behavior: smooth;
     background-color: #EAF6FF;
     color: #0D3958;
+}
+
+* {
+    transition: all 0.2s ease;
 }
 
 
@@ -155,7 +160,7 @@ body {
     padding: 0 20px;
 }
 
-.profile img {
+.profile img{
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -196,12 +201,10 @@ h2 {
 .dropdown-menu {
     display: none;
     position: absolute;
-    top: calc(100% + 8px);
-    right: 0;
     background: white;
-    border-radius: 12px;
+    border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    min-width: 200px;
+    min-width: 180px;
     padding: 8px;
     z-index: 1000;
 }
@@ -210,6 +213,41 @@ h2 {
     display: block;
 }
 
+@media (max-width: 768px) {
+    .dropdown-menu {
+        min-width: 100px;
+    }
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #6AB0E3;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #5a9bcf;
+}
+
+@media (max-width: 576px) {
+    button {
+        width: 100%;
+    }
+}
 .menu-item {
     display: flex;
     align-items: center;
@@ -436,93 +474,40 @@ h2 {
 }
 
 .notification-container {
-    background: white;
-    border-radius: 12px;
-    padding: 15px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    max-height: 300px;
+    background-color: white;
+    max-height: 140px;
     overflow-y: auto;
-    margin: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    flex: 1;
+    max-width: 100%;
+    margin-right: 20px;
 }
 
 .notification-header {
-    font-size: 18px;
-    font-weight: 600;
-    color: #0D3958;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #EAF6FF;
-    position: sticky;
-    top: 0;
-    background: white;
-    z-index: 1;
+    text-align: center;
+    font-weight: bolder;
+    padding: 10px;
+    background-color: #cbe9fe;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 }
 
 .notification-item {
     display: flex;
-    align-items: flex-start;
-    gap: 12px;
+    align-items: center;
     padding: 10px;
-    border-bottom: 1px solid #EAF6FF;
-    transition: background-color 0.2s;
-}
-
-.notification-item:last-child {
-    border-bottom: none;
-}
-
-.notification-item:hover {
-    background-color: #F5F9FF;
+    margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .notification-item img {
     width: 20px;
-    height: 20px;
-    margin-top: 2px;
+    margin-right: 10px;
 }
 
 .notification-text {
-    flex: 1;
     font-size: 14px;
-    line-height: 1.4;
-}
-
-.notification-text strong {
-    color: #0D3958;
-    display: block;
-    margin-bottom: 4px;
-}
-
-.notification-text small {
-    color: #666;
-    font-size: 12px;
-    display: block;
-    margin-top: 4px;
-}
-
-.no-notifications {
-    text-align: center;
-    color: #666;
-    padding: 20px;
-    font-style: italic;
-}
-
-.notification-container::-webkit-scrollbar {
-    width: 6px;
-}
-
-.notification-container::-webkit-scrollbar-track {
-    background: #F5F9FF;
-    border-radius: 3px;
-}
-
-.notification-container::-webkit-scrollbar-thumb {
-    background: #6AB0E3;
-    border-radius: 3px;
-}
-
-.notification-container::-webkit-scrollbar-thumb:hover {
-    background: #4A90D6;
 }
 
 .welcome-container {
@@ -531,7 +516,7 @@ h2 {
         rgba(221, 240, 255, 0.5) 0%, 
         rgba(106, 177, 227, 0.491) 84%, 
         rgba(63, 140, 195, 0.852) 100%),
-        url('/images/background.svg')  center center;
+        url('/images/welcbackground.svg')  center center;
 
     padding: 20px;
     margin: 20px;
@@ -622,5 +607,122 @@ h2 {
 
     .topbar-left {
         padding-left: 20px;
+    }
+}
+
+/* --- Mobile and Tablet Responsiveness --- */
+@media (max-width: 992px) {
+    .sidebar {
+        width: 220px;
+    }
+
+    .main-content.shifted {
+        margin-left: 220px;
+        width: calc(100% - 220px);
+    }
+
+    .stat-box {
+        flex: 1 1 45%;
+    }
+
+    .right-section, .left-section {
+        flex: 1 1 100%;
+        margin: 10px;
+    }
+
+    .notification-container {
+        max-height: 200px;
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+        left: -200px;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+
+    .menu-toggle {
+        position: absolute;
+        left: 10px;
+        top: 15px;
+    }
+
+    .main-content.shifted {
+        margin-left: 0;
+    }
+
+    .topbar {
+        flex-direction: column;
+        height: auto;
+        align-items: flex-start;
+        padding: 10px 20px;
+    }
+
+    .profile {
+        padding: 10px 0;
+    }
+
+    .notification-item {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .notification-text {
+        font-size: 13px;
+    }
+
+    .notification-item img {
+        width: 18px;
+    }
+}
+
+@media (max-width: 576px) {
+    .stat-box {
+        flex: 1 1 100%;
+        padding: 15px;
+    }
+
+    .notification-container {
+        max-height: 250px;
+        margin: 0 10px;
+    }
+
+    .notification-item {
+        padding: 8px;
+    }
+
+    .notification-text small {
+        font-size: 11px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .welcome-container {
+        padding: 10px;
+    }
+
+    .welcome-text h2 {
+        font-size: 18px;
+    }
+
+    .welcome-text p {
+        font-size: 12px;
+    }
+
+    .menu a {
+        font-size: 14px;
+        padding: 10px;
     }
 }

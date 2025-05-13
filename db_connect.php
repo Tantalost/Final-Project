@@ -1,8 +1,8 @@
 <?php
 $host = "localhost";
-$username = "root";
-$password = "";
-$database = "scriptorium";
+$username = "rgaaprux_scriptorium_db";
+$password = "EFpAYNxtne7EKbF6dpfF";
+$database = "rgaaprux_scriptorium_db";
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);

@@ -16,14 +16,11 @@ $memberEmail = $_SESSION['email'];
 // Initialize book operations
 $bookOps = new BookOperations($pdo);
 
-// Get all books and randomize them
 $booksResponse = $bookOps->getBooks();
 $allBooks = ($booksResponse['status'] === 'success') ? $booksResponse['data'] : [];
 
-// Shuffle the books array to randomize
 shuffle($allBooks);
 
-// Get books for each category
 $recentlyViewed = array_slice($allBooks, 0, 9);
 $recommendedBooks = array_slice($allBooks, 9, 9);
 $academicBooks = array_filter($allBooks, function($book) {
@@ -47,13 +44,11 @@ $scifiBooks = array_filter($allBooks, function($book) {
 });
 $scifiBooks = array_slice($scifiBooks, 0, 9);
 
-// Initialize notifications and borrowed books
 $notifications = $memberOps->getNotifications($memberId);
 $borrowedBooks = $memberOps->getBorrowedBooks($memberId);
 $returnedBooks = $memberOps->getReturnedBooks($memberId);
 $totalReturned = is_array($returnedBooks) ? count($returnedBooks) : 0;
 
-// Initialize statistics
 $totalBorrowed = is_array($borrowedBooks) ? count($borrowedBooks) : 0;
 $overdueCount = 0;
 $dueSoonCount = 0;
@@ -66,9 +61,6 @@ if (is_array($borrowedBooks)) {
         }
     }
 }
-
-// Get member profile (if you want to show more info, you can expand this)
-//$memberProfile = $memberOps->getMemberProfile($memberId); // Not used if not needed
 
 $bookId = $_GET['book_id'] ?? null;
 $book = null;

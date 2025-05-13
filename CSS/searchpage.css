@@ -276,25 +276,26 @@ ul {
 .search-section {
     padding: 20px;
     position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .search-header h1 {
     color: var(--primary-color);
-    font-size: 28px;
+    font-size: 40px;
     font-weight: 800;
-    margin-bottom: 20px;
+    margin-top: 20px;
     text-align: center;
 }
 
 .search-container {
-    max-width: 600px;
-    margin: 0 auto 20px;
+    width: 600px;
     background-color: white;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     display: flex;
-    border: 1px solid #ccc;
 }
 
 .search-tabs {
@@ -307,13 +308,13 @@ ul {
     transition: background-color 0.3s;
     text-align: center;
     font-size: 14px;
-    color: #555;
+    color: #0D3958;
 }
 
 .tab.active {
-    background-color: #f0f0f0;
+    background-color:#C1E5FF;
     font-weight: bold;
-    color: #333;
+    color: #0D3958;
 }
 
 .search-input {
@@ -326,7 +327,7 @@ ul {
 
 .browse-container {
     max-width: 600px;
-    margin: 0 auto;
+    margin-left: 10px;
     position: relative;
     text-align: left;
 }
@@ -337,10 +338,10 @@ ul {
 }
 
 .dropdown-btn {
-    background-color: white;
-    color: #333;
     padding: 8px 15px;
-    border: 1px solid #ccc;
+    background-color: #C1E5FF;
+    border: none;
+    color: #0D3958;
     border-radius: 20px;
     font-size: 14px;
     cursor: pointer;
@@ -372,7 +373,7 @@ ul {
 .dropdown-content a {
     padding: 10px 15px;
     display: block;
-    color: #333;
+    color: #0D3958;
     font-size: 14px;
     transition: background-color 0.2s;
 }
@@ -411,16 +412,24 @@ ul {
 .books-table td {
     padding: 15px;
     border-bottom: 1px solid #eee;
-    color: #333;
-    font-size: 14px;
-    vertical-align: middle;
+    color: #0D3958;
 }
 
 .book-details {
     display: flex;
-    align-items: center;
-    gap: 15px;
+    align-items: left;
+    flex-direction: column;
+    vertical-align: middle;
+    margin-left: 20px;
 }
+
+.book-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 
 .book-cover {
     width: 60px;
@@ -599,4 +608,18 @@ ul {
         margin-left: auto;
         margin-right: auto;
     }
+}
+
+.add-to-list-btn {
+    background-color: #C1E5FF;
+    border: none;
+    color: #0D3958;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    width: 70px;
+}
+
+.category {
+    width: 100px;
 }
