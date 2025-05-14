@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
         logoutModal.style.display = 'flex';
         logoutModal.classList.add('active');
     });
-
+    
     // Close modals
     closeButtons.forEach(button => {
         button.addEventListener('click', function() {
